@@ -75,6 +75,10 @@ h2 {
   color: #fff;
 }
 
+.bg-white{
+  background-color: #fff;
+}
+
 .bg-dark{
   background: #1d1d20;
 }
@@ -133,15 +137,14 @@ section, footer {
   padding:5px 15px;
   margin-top:15px;
   font-size: 1em;
+  border: 0;
   border-radius: 2px;
   cursor: pointer;
 }
 
-.btn-secondary-outline{
+.btn-danger{
   background: rgb(158, 26, 6);
   color: #fff;
-  border: 0;
-
 }
 
 .order-btn{
