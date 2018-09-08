@@ -75,6 +75,10 @@ h2 {
   color: #fff;
 }
 
+.bg-dark{
+  background: #1d1d20;
+}
+
 /* Margin and padding*/
 
 .margin-top-4{
@@ -91,7 +95,7 @@ h2 {
 
 /* section */
 
-section {
+section, footer {
   padding: 60px 0;
 }
 
@@ -210,5 +214,5 @@ header{
 }
 
 /* ----------------------------------------------- */
-/* MEALS SECTION */
+/* FOOTER SECTION */
 /* ----------------------------------------------- */
