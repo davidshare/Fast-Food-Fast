@@ -87,11 +87,7 @@ NA
 * David Essien
 
 ## License
-<<<<<<< HEAD
 This project is licensed under the GNU General Public License v3.0 - see the LICENSE.md file for details.
-=======
-This project is licensed under the MIT License - see the LICENSE.md file for details.
->>>>>>> 6bc95b0e0180849a16e66eb11087a60033117820
 
 ## Acknowledgement
 I acknowledge the individuals from the organisation and groups below. They were a great source of motivation in completing this project.
