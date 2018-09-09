@@ -59,10 +59,14 @@ th, td {
   vertical-align: baseline;
 }
 
-.order-table tr{
+.order-table tr, .cart-table tr{
   border-bottom: 1px solid #ddd;
 }
 
-.order-table tr:last-child{
+.order-table tr:last-child, .cart-table tr:last-child{
   border-bottom: 0;
+}
+
+.cart-table tr td.item{
+  width: 40%;
 }
