@@ -46,3 +46,19 @@ section{
 .pagination a:hover:not(.active){
   border-bottom: 1px solid #1d1d20;
 }
+
+/* ----------------------------------------------- */
+/* TABLES */
+/* ----------------------------------------------- */
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px 15px;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.order-table tr{
+  border-bottom: 1px solid #ddd;
+}
