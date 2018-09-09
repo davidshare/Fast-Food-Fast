@@ -1,0 +1,68 @@
+/* ----------------------------------------------- */
+/* HEADER */
+/* ----------------------------------------------- */
+header{
+  height: 40vh;
+  width:100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/images/food photo.jpg');
+  background-size: cover;
+  background-position: center;
+  /* background: rgba(17,25,35, 0.5); */
+}
+
+section{
+  padding: 20px 0;
+}
+
+.hero-search{
+  padding: 10px 10px 10px 50px;
+  width: 40%;
+  font-size: 1em;
+  background-position: 15px 10px;
+}
+
+/* ----------------------------------------------- */
+/* PAGINATION */
+/* ----------------------------------------------- */
+.pagination{
+	border-top:1px solid #cdcdcd;
+  padding: 40px 0;
+  margin-top: 20px;
+}
+
+ /* Pagination links */
+.pagination a {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #1d1d20;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active{
+  border: 1px solid #1d1d20;
+}
+
+.pagination a:hover:not(.active){
+  border-bottom: 1px solid #1d1d20;
+}
+
+/* ----------------------------------------------- */
+/* TABLES */
+/* ----------------------------------------------- */
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px 15px;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.order-table tr{
+  border-bottom: 1px solid #ddd;
+}
+
+.order-table tr:last-child{
+  border-bottom: 0;
+}

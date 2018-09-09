@@ -1,0 +1,239 @@
+
+
+/* ----------------------------------------------- */
+/* BASIC STYLES */
+/* ----------------------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #F3F3F1;
+  color:#343A40;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+.clearfix {zoom: 1;}
+.clearfix:after {
+  content: '.';
+  clear: both;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+/* ----------------------------------------------- 
+ GENERAL CLASSES 
+/* ----------------------------------------------- */
+.container{
+  width:85%;
+  margin:0 auto;
+}
+
+.container-max{
+  width: 100%;
+  margin:0;
+}
+
+h1,
+h2 {
+  text-transform: uppercase;
+}
+
+/* Alignments */
+.right-float{
+  float: right;
+}
+
+.left-float{
+  float: left;
+}
+
+.center-float{
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-justify{
+  text-align: justify;
+}
+
+/* colors */
+
+.text-white{
+  color: #fff;
+}
+
+.bg-white{
+  background-color: #fff;
+}
+
+.bg-dark{
+  background: #1d1d20;
+}
+
+/* Margin and padding*/
+
+.margin-top-4{
+  margin-top: 40px;
+}
+
+.margin-bottom-4{
+  margin-bottom: 40px;
+}
+
+.margin-top-bottom-1{
+  margin: 10px 0;
+}
+
+/* section */
+
+section, footer {
+  padding: 60px 0;
+}
+
+/* Height and width */
+.w3{
+  width:30%;
+  margin:1.6%;
+}
+
+/* cards */
+.card{
+  background: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-img img{
+  width: 100%;
+  height: 200px;
+}
+
+.card-body{
+  padding:30px;
+}
+
+.card-body{
+  font-size: 0.9em;
+}
+
+.card .btn{
+  padding: 10px 15px;
+}
+
+/* Buttons */
+.btn{
+  padding:5px 15px;
+  margin-top:15px;
+  font-size: 1em;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn-danger{
+  background: rgb(158, 26, 6);
+  color: #fff;
+}
+
+.btn-success{
+  background: rgb(2, 92, 17);
+  color: #fff;
+}
+
+.btn-dark{
+  background: rgb(52, 54, 52);
+  color: #fff;
+}
+
+.btn-primary{
+background: #007acc;
+color: #fff;
+}
+
+.order-btn{
+  text-decoration: none;
+  color: #fff;
+  padding:5px;
+}
+
+
+/* ----------------------------------------------- */
+/* HEADER */
+/* ----------------------------------------------- */
+header{
+  height:100vh;
+  width:100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/images/food photo.jpg');
+  background-size: cover;
+  background-position: center;
+  /* background: rgba(17,25,35, 0.5); */
+}
+
+/* Navbar */
+.navbar{
+  padding:20px;
+}
+
+.nav-item{
+  display: inline;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.nav-item a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-item a:hover, .active{
+  color: #d6b640;
+  font-weight: 600;
+  border-bottom: 1px solid #d6b640;
+}
+
+.main-nav .welcome, .brand{
+  font-weight: 800;
+  color: #d6b640;
+}
+
+.welcome{
+  margin-right: 30px;
+}
+
+/* Hero */
+.hero{
+  margin-top: 25vh;
+}
+
+.hero-title{
+  margin:10px 0;
+}
+
+.hero-search{
+  font-size:1.1em;
+  width: 60%;
+  margin-top:30px;
+  padding: 15px 15px 15px 50px;
+  border: 0;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  background: #fff url(../assets/images/searchicon.png) no-repeat;
+  background-position: 15px 15px; 
+}
+
+/* ----------------------------------------------- */
+/* FOOTER SECTION */
+/* ----------------------------------------------- */
