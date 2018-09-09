@@ -62,3 +62,7 @@ th, td {
 .order-table tr{
   border-bottom: 1px solid #ddd;
 }
+
+.order-table tr:last-child{
+  border-bottom: 0;
+}
