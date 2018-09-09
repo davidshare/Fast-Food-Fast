@@ -114,6 +114,10 @@ section, footer {
   width:40%;
 }
 
+.w6{
+  width:60%;
+}
+
 /* cards */
 .card{
   background: #fff;
@@ -145,6 +149,23 @@ section, footer {
   width: 100px;
 }
 
+.card .delivery-form input{
+  width: 250px !important;
+  margin: 5px 3px;
+}
+
+.card .delivery-form input[type=number]{
+  width: 150px !important;
+}
+
+.card .delivery-form input[type=address]{
+  width: 500px !important;
+}
+
+.checkout-section .card{
+  padding: 30px 40px;
+  min-height: 60vh;
+}
 /* Buttons */
 .btn{
   padding:5px 15px;
@@ -249,3 +270,8 @@ header{
 /* ----------------------------------------------- */
 /* FOOTER SECTION */
 /* ----------------------------------------------- */
+.footer-bottom{
+  min-height: 40vh;
+}
+
+
