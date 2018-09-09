@@ -58,8 +58,8 @@ h2 {
 }
 
 .center-float{
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 .text-center{
@@ -110,6 +110,10 @@ section, footer {
   margin:1.6%;
 }
 
+.w4{
+  width:40%;
+}
+
 /* cards */
 .card{
   background: #fff;
@@ -131,6 +135,14 @@ section, footer {
 
 .card .btn{
   padding: 10px 15px;
+}
+
+.card input{
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  width:20%;
 }
 
 /* Buttons */
@@ -163,7 +175,7 @@ background: #007acc;
 color: #fff;
 }
 
-.order-btn{
+.order-btn, .cart-btn{
   text-decoration: none;
   color: #fff;
   padding:5px;
