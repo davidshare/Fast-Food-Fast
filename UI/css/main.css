@@ -153,6 +153,11 @@ section, footer {
   color: #fff;
 }
 
+.btn-success{
+  background: rgb(2, 92, 17);
+  color: #fff;
+}
+
 .order-btn{
   text-decoration: none;
   color: #fff;
