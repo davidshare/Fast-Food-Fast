@@ -78,6 +78,10 @@ th, td {
   width: 40%;
 }
 
+table .order-info{
+  border: 0 !important;
+}
+
 .order-summary{
   border-right: 1px solid #ddd;
   padding: 10px 5px;
@@ -87,7 +91,11 @@ th, td {
   padding: 5px;
 }
 
-.order-summary table{
+.order-summary .user-details tr td{
+  width: 150px !important ;
+}
+
+.card .order-summary table{
   margin: 0 !important;
 }
 
