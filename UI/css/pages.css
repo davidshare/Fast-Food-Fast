@@ -59,8 +59,15 @@ th, td {
   vertical-align: baseline;
 }
 
-.order-table tr, .cart-table tr{
+.order-table tr,
+.cart-table tr,
+.order-summary table tr{
   border-bottom: 1px solid #ddd;
+}
+
+.order-summary table tr th{
+  padding-left: 5px;
+  padding-right: 15px;
 }
 
 .order-table tr:last-child, .cart-table tr:last-child{
@@ -69,4 +76,26 @@ th, td {
 
 .cart-table tr td.item{
   width: 40%;
+}
+
+.order-summary{
+  border-right: 1px solid #ddd;
+  padding: 10px 5px;
+}
+
+.order-summary table tr td{
+  padding: 5px;
+}
+
+.order-summary table{
+  margin: 0 !important;
+}
+
+.delivery-form .info{
+  font-size: 0.9em;
+}
+
+.delivery-details{
+  padding-left: 100px;
+  margin-bottom: 20px;
 }
