@@ -1,8 +1,3 @@
-/*
-Gold color: #d6b640;
-Blue color: #111923;
-
-*/
 
 
 /* ----------------------------------------------- */
@@ -156,6 +151,16 @@ section, footer {
 .btn-success{
   background: rgb(2, 92, 17);
   color: #fff;
+}
+
+.btn-dark{
+  background: rgb(52, 54, 52);
+  color: #fff;
+}
+
+.btn-primary{
+background: #007acc;
+color: #fff;
 }
 
 .order-btn{
