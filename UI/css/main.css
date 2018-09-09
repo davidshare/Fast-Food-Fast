@@ -62,6 +62,11 @@ h2 {
   float: left;
 }
 
+.center-float{
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .text-center{
   text-align: center;
 }

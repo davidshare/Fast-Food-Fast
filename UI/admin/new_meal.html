@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>FFF: New meal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/pages.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/forms.css" />
+</head>
+<body>
+  <header class="text-white">
+    <div id="navbar" class="navbar container clearfix">
+      <div class="brand left-float">
+        <h2>Fast-Food-Fast</h2>
+      </div>
+      <div class="nav">
+        <ul class="main-nav right-float">
+          <li class="nav-item welcome">Welcome David!</li>
+          <li class="nav-item"><a href="../index.html">Home</a></li>
+          <li class="nav-item active"><a href="../meals.html">Meals</a></li>
+          <li class="nav-item"><a href="../signup.html">Signup</a></li>
+          <li class="nav-item"><a href="../signin.html">Signin</a></li>
+          <li class="nav-item"><a href="../logout.html">Signout</a></li>
+        </ul>
+      </div>
+    </div>
+    <h1 class="section-title margin-top-4 text-center">Admin</h1>
+    </div>
+  </header>
+  <section class="meals-section container clearfix new-meal-container">
+      <h2 class="text-center">Add a new meal</h2>
+      <form method="post" name="new-meal-form" class="new-meal-form center-float">
+        <p class="form-control">
+          <label for="meal-name">Meal name</label>
+          <input type="text" name="meal-name" id="meal-name" placeholder="Enter the name of the meal">
+        </p>
+        <p class="form-control">
+          <label for="meal-description">Meal description</label>
+          <textarea rows="4" name="meal-description"></textarea>
+        </p>
+        <p class="form-control">
+          <label for="meal-price">Meal price</label>
+          <input type="text" name="meal-price" id="meal-price" placeholder="Enter the price of the meal">
+        </p>
+        <p class="form-control">
+          <button class="btn btn-danger" id="signin-btn">Signin</button>
+        </p>
+      </form>
+  </section>
+  <footer class="bg-dark text-white text-center">
+      <p>Developed by Essien, David Itam - for Andela 21</p>
+      Copyright &copy 2018
+  </footer>
+</body>
+
+</html>
