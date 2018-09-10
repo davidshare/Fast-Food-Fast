@@ -16,5 +16,6 @@ const routes = (app) => {
   }));
 
   app.get('/api/v1/orders', OrdersController.getAllOrders);
+  app.get('/api/v1/orders/:orderId', OrdersController.getOrderById);
 };
 export default routes;
