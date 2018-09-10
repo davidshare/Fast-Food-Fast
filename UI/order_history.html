@@ -3,23 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>FFF: New meal</title>
+  <title>Order History : Fast-Food-Fast</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="css/pages.css" />
 </head>
 <body>
-  <header class="text-white">
+  <header class="short-header text-white">
     <div id="navbar" class="navbar container clearfix">
       <div class="brand left-float">
         <h2>Fast-Food-Fast</h2>
+      </div>
+      <div class="menu-icon right-float display-hide" onclick="toggleNavDisplay(this)">
+        <span class="bar1"></span>
+        <span class="bar2"></span>
+        <span class="bar3"></span>
       </div>
       <div class="nav">
         <ul class="main-nav right-float">
           <li class="nav-item welcome">Welcome David!</li>
           <li class="nav-item"><a href="index.html">Home</a></li>
           <li class="nav-item"><a href="meals.html">Meals</a></li>
-          <li class="nav-item active"><a href="order_history.html">Orders</a></li>
+          <li class="nav-item active"><a href="order_history.html">Order History</a></li>
           <li class="nav-item"><a href="signup.html">Signup</a></li>
           <li class="nav-item"><a href="signin.html">Signin</a></li>
           <li class="nav-item"><a href="logout.html">Signout</a></li>
@@ -29,7 +33,7 @@
     <h1 class="section-title margin-top-4 text-center">Order history</h1>
     </div>
   </header>
-  <section class="history-list container clearfix">
+  <section class="history-list container table-responsive clearfix">
       <table class="order-table center-float margin-bottom-4 margin-top-4">
         <tr>
           <th>S/N</th>
@@ -48,7 +52,7 @@
           <td>15,000</td>
           <td>Dec. 28, 2018</td>
           <td>Accepted</td>
-          <td><button class="btn btn-success">View order</button></td>
+          <td><button class="btn btn-success"><a class="order-btn" href="order_summary.html">View</a></button></td>
           <td><button class="btn btn-danger">Cancel</button></td>
         </tr>
         <tr>
@@ -58,7 +62,7 @@
           <td>15,000</td>
           <td>Dec. 28, 2018</td>
           <td>Declined</td>
-          <td><button class="btn btn-success">View order</button></td>
+          <td><button class="btn btn-success"><a class="order-btn" href="order_summary.html">View</a></button></td>
           <td><button class="btn btn-danger">Cancel</button></td>
         </tr>
         <tr>
@@ -68,7 +72,7 @@
           <td>15,000</td>
           <td>Dec. 28, 2018</td>
           <td>Fulfilled</td>
-          <td><button class="btn btn-success">View order</button></td>
+          <td><button class="btn btn-success"><a class="order-btn" href="order_summary.html">View</a></button></td>
           <td><button class="btn btn-danger">Cancel</button></td>
         </tr>
         <tr>
@@ -78,7 +82,7 @@
           <td>15,000</td>
           <td>Dec. 28, 2018</td>
           <td>Pending</td>
-          <td><button class="btn btn-success">View order</button></td>
+          <td><button class="btn btn-success"><a class="order-btn" href="order_summary.html">View</a></button></td>
           <td><button class="btn btn-danger">Cancel</button></td>
         </tr>
         <tr>
@@ -88,7 +92,7 @@
           <td>15,000</td>
           <td>Dec. 28, 2018</td>
           <td>Pending</td>
-          <td><button class="btn btn-success">View order</button></td>
+          <td><button class="btn btn-success"><a class="order-btn" href="order_summary.html">View</a></button></td>
           <td><button class="btn btn-danger">Cancel</button></td>
         </tr>
       </table>
@@ -98,6 +102,7 @@
       <p>Developed by Essien, David Itam - for Andela 21</p>
       Copyright &copy 2018
   </footer>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

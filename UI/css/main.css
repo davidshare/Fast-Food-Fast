@@ -48,7 +48,36 @@ h2 {
   text-transform: uppercase;
 }
 
-/* Alignments */
+section, footer {
+  padding: 60px 0;
+}
+
+/* width */
+.w3{
+  width:30%;
+  margin:1.6%;
+}
+
+.w4{
+  width:40%;
+}
+
+.w6{
+  width:60%;
+}
+
+/* Display*/
+.display-hide{
+	display:none;
+}
+
+.display-show{
+	display:block !important;
+}
+
+/* ----------------------------------------------- 
+ ALIGNMENT AND FLOATS 
+/* ----------------------------------------------- */
 .right-float{
   float: right;
 }
@@ -70,7 +99,9 @@ h2 {
   text-align: justify;
 }
 
-/* colors */
+/* ----------------------------------------------- 
+ COLORS 
+/* ----------------------------------------------- */
 
 .text-white{
   color: #fff;
@@ -84,7 +115,9 @@ h2 {
   background: #1d1d20;
 }
 
-/* Margin and padding*/
+/* ----------------------------------------------- 
+ MARGIN AND PADDING 
+/* ----------------------------------------------- */
 
 .margin-top-4{
   margin-top: 40px;
@@ -98,27 +131,9 @@ h2 {
   margin: 10px 0;
 }
 
-/* section */
-
-section, footer {
-  padding: 60px 0;
-}
-
-/* Height and width */
-.w3{
-  width:30%;
-  margin:1.6%;
-}
-
-.w4{
-  width:40%;
-}
-
-.w6{
-  width:60%;
-}
-
-/* cards */
+/* ----------------------------------------------- 
+ CARDS 
+/* ----------------------------------------------- */
 .card{
   background: #fff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -158,15 +173,21 @@ section, footer {
   width: 150px !important;
 }
 
-.card .delivery-form input[type=address]{
-  width: 500px !important;
+.card .delivery-form textarea{
+  font-size: 1em;
+  border: 1px solid #ddd;
+  width: 100% !important;
 }
 
 .checkout-section .card{
   padding: 30px 40px;
   min-height: 60vh;
 }
-/* Buttons */
+
+
+/* ----------------------------------------------- 
+ BUTTONS 
+/* ----------------------------------------------- */
 .btn{
   padding:5px 15px;
   margin-top:15px;
@@ -207,39 +228,18 @@ color: #fff;
 /* HEADER */
 /* ----------------------------------------------- */
 header{
-  height:100vh;
   width:100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/images/food photo.jpg');
   background-size: cover;
   background-position: center;
-  /* background: rgba(17,25,35, 0.5); */
 }
 
-/* Navbar */
-.navbar{
-  padding:20px;
+.main-header{
+  min-height: 100vh;
 }
 
-.nav-item{
-  display: inline;
-  margin: 0 5px;
-  vertical-align: middle;
-}
-
-.nav-item a{
-  text-decoration: none;
-  color: #fff;
-}
-
-.nav-item a:hover, .active{
-  color: #d6b640;
-  font-weight: 600;
-  border-bottom: 1px solid #d6b640;
-}
-
-.main-nav .welcome, .brand{
-  font-weight: 800;
-  color: #d6b640;
+.short-header{
+  height: 40vh;
 }
 
 .welcome{
@@ -267,6 +267,91 @@ header{
   background-position: 15px 15px; 
 }
 
+.hero-search-small{
+  padding: 10px 10px 10px 50px;
+  width: 40%;
+  font-size: 1em;
+  background-position: 15px 10px;
+}
+
+/* ----------------------------------------------- 
+ NAV 
+/* ----------------------------------------------- */
+.navbar{
+  padding:20px;
+}
+
+.nav-item{
+  display: inline;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.nav-item a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-item a:hover, .active{
+  color: #d6b640;
+  font-weight: 600;
+  border-bottom: 1px solid #d6b640;
+}
+
+.main-nav .welcome, .brand{
+  font-weight: 800;
+  color: #d6b640;
+}
+
+
+
+/*-------------------------------------------------
+					MOBILE MENU
+--------------------------------------------------*/
+
+.menu-icon{
+	width:40px;
+	overflow: hidden;
+	border-radius: 5px;
+	border:1px solid #d6b640;
+	margin: 20px;
+	cursor:pointer;
+	padding:5px;
+}
+
+.menu-icon span{
+	display: block;
+	width:90%;
+	height: 2px;
+	margin: 5px auto;
+	background:#d6b640;
+}
+
+.menu-icon:hover{
+	border: 1px solid #fff;
+}
+
+.menu-icon:hover span{
+	background:#fff;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-4px, 5px) ;
+    transform: rotate(-45deg) translate(-4px, 5px);
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-4px, -7px) ;
+    transform: rotate(45deg) translate(-4px, -7px) ;
+}
+
 /* ----------------------------------------------- */
 /* FOOTER SECTION */
 /* ----------------------------------------------- */
@@ -274,4 +359,269 @@ header{
   min-height: 40vh;
 }
 
+/* ----------------------------------------------- */
+/* PAGINATION */
+/* ----------------------------------------------- */
+.pagination{
+	border-top:1px solid #cdcdcd;
+  padding: 40px 0;
+  margin-top: 20px;
+}
 
+ /* Pagination links */
+.pagination a {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #1d1d20;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active{
+  border: 1px solid #1d1d20;
+}
+
+.pagination a:hover:not(.active){
+  border-bottom: 1px solid #1d1d20;
+}
+
+/* ----------------------------------------------- 
+ TABLES 
+/* ----------------------------------------------- */
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px 15px;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.table-responsive{
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.order-table tr,
+.cart-table tr,
+.order-summary table tr{
+  border-bottom: 1px solid #ddd;
+}
+
+.order-summary table tr th{
+  padding-left: 5px;
+  padding-right: 15px;
+}
+
+.order-table tr:last-child, .cart-table tr:last-child{
+  border-bottom: 0;
+}
+
+.cart-table tr td.item{
+  width: 40%;
+}
+
+table .order-info{
+  border: 0 !important;
+}
+
+.order-summary{
+  border-right: 1px solid #ddd;
+  padding: 10px 5px;
+}
+
+.order-summary table tr td{
+  padding: 5px;
+}
+
+.order-summary .user-details tr td{
+  width: 150px !important ;
+}
+
+.card .order-summary table{
+  margin: 0 !important;
+}
+
+.delivery-form .info{
+  font-size: 0.9em;
+}
+
+.delivery-details{
+  padding-left: 100px;
+  margin-bottom: 20px;
+}
+
+
+/*-------------------------------------------------
+					MEDIA QUERIES
+--------------------------------------------------*/
+
+@media only screen and (max-width: 1024px) {
+	.form-container{
+    padding: 150px 40px !important;
+  }
+
+  .signup-form input,
+  .signup-form .btn,
+  .signin-form input,
+  .signin-form .btn{
+    width: 80% !important;
+  }
+
+  .new-meal-form{
+    width: 50% !important;
+  }
+}
+
+@media only screen and (max-width: 820px){
+  .w3{
+    width: 46%;
+  }
+
+  .order-summary,
+  .delivery-details{
+    display: block;
+    float: none;
+    width: 80%;
+    margin: auto;
+  }
+
+  .order-summary{
+    border-right: 0 !important;
+    margin-bottom: 40px;
+  }
+
+  .delivery-details{
+    padding-left: 0px !important;
+  }
+
+  .w4.order-card{
+    width: 50% !important;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+	.short-header{
+    min-height: 50vh;
+    height: auto;
+    padding-bottom: 40px;
+  }
+
+   .brand{
+   		display: inline-block;
+	   	margin:15px;
+	   	float:none;
+   }
+
+   .main-nav{
+   		float: none;
+   		padding:0;
+   		display: none;
+   }
+
+   .nav-item{
+		display: block;
+		border-bottom: 1px solid #ddd;
+		padding:15px 15px;
+   }
+
+  .menu-icon{
+		display: inline-block !important;
+	}
+
+	.hero{
+    margin-top: 10vh;
+		overflow: auto;
+		padding:20px;
+		clear:both;
+	}
+
+	.hero-title{
+		font-size: 1.8em;
+		line-height: 1;
+		clear:both;
+	}
+
+	.hero-search{
+    width:80%;
+    font-size: 0.8em;
+	}
+
+	.search{
+		padding:30px 50px;
+  }
+  
+  footer{
+    padding:40px;
+  }
+
+
+  /*-------------------------------------------------
+    Signup and Signin pages
+  ---------------------------------------------------*/
+  .page-container{
+    min-height: 100vh;
+  }
+
+  .page-content,
+  .form-container{
+    float: none;
+    display:block;
+    margin-left: auto;
+    margin-right:auto;
+  }
+
+  .form-container{
+    padding: 20px 10px 10px 40px !important;
+  }
+
+  .page-content{
+    width:90% !important;
+  }
+
+  .form-container{
+    width: 80% !important;
+  }
+
+  .page-content h2{
+    font-size: 1.2em;
+  }
+
+  .signup-call,
+  .signin-call{
+    margin-top: 2vh !important;
+  }
+}
+
+@media only screen and (max-width: 540px){
+  .w3{
+    width: 90%;
+    margin-left: 3%;
+    margin-right: 1%;
+  }
+
+  .new-meal-form{
+    width: 70% !important;
+  }
+}
+
+@media only screen and (max-width: 439px) {
+	.navbar{
+    padding: 0;
+  }
+
+  .menu-icon{
+    margin:20px 0;
+  }
+
+  .brand{
+    font-size: 0.8em;
+  }
+
+  .signup-form input,
+  .signup-form .btn,
+  .signin-form input,
+  .signin-form .btn{
+    width: 95% !important;
+  }
+}

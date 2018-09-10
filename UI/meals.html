@@ -3,22 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>FFF: Home</title>
+  <title>Meals: Fast-Food-Fast</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="css/pages.css" />
 </head>
 <body>
-  <header class="text-white">
+  <header class="short-header text-white">
     <div id="navbar" class="navbar container clearfix">
       <div class="brand left-float">
         <h2>Fast-Food-Fast</h2>
+      </div>
+      <div class="menu-icon right-float display-hide" onclick="toggleNavDisplay(this)">
+        <span class="bar1"></span>
+        <span class="bar2"></span>
+        <span class="bar3"></span>
       </div>
       <div class="nav">
         <ul class="main-nav right-float">
           <li class="nav-item welcome">Welcome David!</li>
           <li class="nav-item"><a href="index.html">Home</a></li>
           <li class="nav-item active"><a href="meals.html">Meals</a></li>
+          <li class="nav-item"><a href="order_history.html">Order History</a></li>
           <li class="nav-item"><a href="signup.html">Signup</a></li>
           <li class="nav-item"><a href="signin.html">Signin</a></li>
           <li class="nav-item"><a href="logout.html">Signout</a></li>
@@ -32,7 +37,7 @@
   <section class="meals-section clearfix">
     <div class="container-max text-center">
       <form name="search" method="post" class="hero-form"></form>
-      <input type="search" name="search" id="search" placeholder="I would love to have..." class="hero-search">
+      <input type="search" name="search" id="search" placeholder="I would love to have..." class="hero-search hero-search-small">
       </form>
     </div>
     <div class="container margin-top-4">
@@ -48,7 +53,7 @@
           </p>
           <div class="card-footer text-justify margin-top-bottom-1">
             <p><strong>Price:</strong> N3000</p>
-            <button class="btn btn-danger"><a href="meals.html" class="order-btn">Order now</a></p></button>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
           </div>
         </div>
       </div>
@@ -65,7 +70,7 @@
           </p>
           <div class="card-footer text-justify margin-top-bottom-1">
             <p><strong>Price:</strong> N3000</p>
-            <button class="btn btn-danger"><a href="meals.html" class="order-btn">Order now</a></p></button>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
           </div>
         </div>
       </div>
@@ -82,7 +87,7 @@
           </p>
           <div class="card-footer text-justify margin-top-bottom-1">
             <p><strong>Price:</strong> N3000</p>
-            <button class="btn btn-danger"><a href="meals.html" class="order-btn">Order now</a></p></button>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
           </div>
         </div>
       </div>
@@ -99,7 +104,7 @@
           </p>
           <div class="card-footer text-justify margin-top-bottom-1">
             <p><strong>Price:</strong> N3000</p>
-            <button class="btn btn-danger"><a href="meals.html" class="order-btn">Order now</a></p></button>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
           </div>
         </div>
       </div>
@@ -116,7 +121,7 @@
           </p>
           <div class="card-footer text-justify margin-top-bottom-1">
             <p><strong>Price:</strong> N3000</p>
-            <button class="btn btn-danger"><a href="meals.html" class="order-btn">Order now</a></p></button>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
           </div>
         </div>
       </div>
@@ -133,7 +138,7 @@
           </p>
           <div class="card-footer text-justify margin-top-bottom-1">
             <p><strong>Price:</strong> N3000</p>
-            <button class="btn btn-danger"><a href="meals.html" class="order-btn">Order now</a></p></button>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
           </div>
         </div>
       </div>
@@ -149,7 +154,7 @@
           </p>
           <div class="card-footer text-justify margin-top-bottom-1">
             <p><strong>Price:</strong> N3000</p>
-            <button class="btn btn-danger"><a href="meals.html" class="order-btn">Order now</a></p></button>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
           </div>
         </div>
       </div>
@@ -166,7 +171,7 @@
           </p>
           <div class="card-footer text-justify margin-top-bottom-1">
             <p><strong>Price:</strong> N3000</p>
-            <button class="btn btn-danger"><a href="meals.html" class="order-btn">Order now</a></p></button>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
           </div>
         </div>
       </div>
@@ -183,7 +188,7 @@
           </p>
           <div class="card-footer text-justify margin-top-bottom-1">
             <p><strong>Price:</strong> N3000</p>
-            <button class="btn btn-danger"><a href="meals.html" class="order-btn">Order now</a></p></button>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
           </div>
         </div>
       </div>
@@ -205,6 +210,7 @@
       <p>Developed by Essien, David Itam - for Andela 21</p>
       Copyright &copy 2018
   </footer>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
