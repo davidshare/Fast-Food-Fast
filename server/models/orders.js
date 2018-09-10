@@ -5,6 +5,8 @@
 
 const orders = [
   {
+  },
+  {
     orderId: 1,
     status: 'Pending',
     recipient: 'David Essien',
