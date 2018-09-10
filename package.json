@@ -1,0 +1,36 @@
+{
+  "name": "fast-food-fast",
+  "version": "1.0.0",
+  "description": "Fast-Food-Fast is a food delivery service app for a restaurant. A user can create an account, signin to the account ame make orders for food items.",
+  "main": "app.js",
+  "scripts": {
+    "lint": "eslint app.js",
+    "start": "babel-node app.js",
+    "dev-start": "nodemon --exec babel-node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidshare/Fast-Food-Fast.git"
+  },
+  "author": "David Essien",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidshare/Fast-Food-Fast/issues"
+  },
+  "homepage": "https://github.com/davidshare/Fast-Food-Fast#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
