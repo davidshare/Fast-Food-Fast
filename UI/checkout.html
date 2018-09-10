@@ -7,20 +7,25 @@
   <title>FFF: Checkout</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="css/pages.css" />
 </head>
 
 <body>
-  <header class="text-white">
+  <header class="short-header text-white">
     <div id="navbar" class="navbar container clearfix">
       <div class="brand left-float">
         <h2>Fast-Food-Fast</h2>
+      </div>
+      <div class="menu-icon right-float display-hide" onclick="toggleNavDisplay(this)">
+        <span class="bar1"></span>
+        <span class="bar2"></span>
+        <span class="bar3"></span>
       </div>
       <div class="nav">
         <ul class="main-nav right-float">
           <li class="nav-item welcome">Welcome David!</li>
           <li class="nav-item"><a href="index.html">Home</a></li>
-          <li class="nav-item active"><a href="meals.html">Meals</a></li>
+          <li class="nav-item"><a href="meals.html">Meals</a></li>
+          <li class="nav-item"><a href="order_history.html">Order History</a></li>
           <li class="nav-item"><a href="signup.html">Signup</a></li>
           <li class="nav-item"><a href="signin.html">Signin</a></li>
           <li class="nav-item"><a href="logout.html">Signout</a></li>
@@ -32,7 +37,7 @@
   </header>
   <section class="checkout-section bg-white footer-bottom">
     <div class="card container center-float bg-white clearfix">
-      <div class="order-summary w4 left-float">
+      <div class="order-summary table-responsive w4 left-float">
         <h3 class="margin-top-bottom-1">Order Summary</h3>
         <table class="center-float">
           <tr>
@@ -92,7 +97,7 @@
           <p class="info">Enter the recipient data</p>
           <p><input type="text" placeholder="First Name" id="firstname"><input type="text" placeholder="Last Name" id="lastname"></p>
           <p><input type="phone" placeholder="Phone Number"  id="phone"><input type="email" placeholder="Email" id="email"></p>
-          <p><input type="address" placeholder="Recipient address" id="recipient-address"></p>
+          <p><textarea rows="4" placeholder="Recipient address" id="recipient-address"></textarea></p>
           <h3 class="margin-top-bottom-1">Payment information</h3>
           <p class="info">Fill all the input fields in this section with numbers</p>
           <p><input type="text" placeholder="Card number"></p>
@@ -107,6 +112,7 @@
     <p>Developed by Essien, David Itam - for Andela 21</p>
     Copyright &copy 2018
   </footer>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
