@@ -17,5 +17,7 @@ const routes = (app) => {
 
   app.get('/api/v1/orders', OrdersController.getAllOrders);
   app.get('/api/v1/orders/:orderId', OrdersController.getOrderById);
+
+  app.post('/api/v1/orders', OrdersController.postOrder);
 };
 export default routes;

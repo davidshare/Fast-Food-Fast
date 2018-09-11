@@ -1,4 +1,5 @@
 import data from '../models/index';
+import dateTimeHelper from '../helpers/date';
 
 /**
  *    @fileOverview Class to manage orders
@@ -49,6 +50,48 @@ class OrdersController {
     return response.status(400).json({
       statusCode: 400,
       error: 'Error getting order. The orderId must be an integer.',
+    });
+  }
+
+  /**
+   *  Post an order
+   *  @param {Object} request
+   *  @param {Object} response
+   *
+   *
+   *  @return {Object} json
+   */
+  static postOrder(request, response) {
+    const {
+      recipient,
+      recipientEmail,
+      recipientPhoneNumber,
+      recipientAddress,
+      items,
+    } = request.body;
+
+    const order = {
+      orderId: data.orders.length,
+      status: 'Pending',
+      recipient,
+      recipientPhoneNumber,
+      recipientEmail,
+      recipientAddress,
+      items,
+      dateTimeOrder: dateTimeHelper.formattedDateTime(new Date()),
+      dateTimeDelivery: dateTimeHelper.formattedDateTime(new Date()),
+    };
+    if (data.orders.push(order)) {
+      response.status(201).json({
+        statusCode: 201,
+        message: 'Order placed successfully',
+        success: true,
+        order,
+      });
+    }
+    return response.status(400).json({
+      statusCode: 400,
+      error: 'Sorry! Could not place the order',
     });
   }
 }
