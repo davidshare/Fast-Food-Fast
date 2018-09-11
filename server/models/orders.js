@@ -13,8 +13,8 @@ const orders = [
     recipientEmail: 'davidessienshare@gmail.com',
     recipientPhoneNumber: '08167462431',
     recipientAddress: 'Andela Epic tower Lagos',
-    dateTimeOrder: '9:00am - 12th Dec, 2018',
-    dateTimeDelivery: '2:00pm - 12th Dec, 2018',
+    dateTimeOrder: '1:50pm - Tue Sep 11 2018',
+    dateTimeDelivery: '3:00pm - Tue Sep 11 2018',
     Items: [
       {
         itemId: 1,
@@ -40,8 +40,8 @@ const orders = [
     recipientEmail: 'sundaNelson@gmail.com',
     recipientPhoneNumber: '08167462431',
     recipientAddress: 'Andela Epic tower Lagos',
-    dateTimeOrder: '9:00am - 12th Dec, 2018',
-    dateTimeDelivery: '2:00pm - 12th Dec, 2018',
+    dateTimeOrder: '1:50pm - Tue Sep 11 2018',
+    dateTimeDelivery: '3:00pm - Tue Sep 11 2018',
     Items: [
       {
         itemId: 1,
@@ -66,8 +66,8 @@ const orders = [
     recipientEmail: 'sundaNelson@gmail.com',
     recipientPhoneNumber: '08167462431',
     recipientAddress: 'Andela Epic tower Lagos',
-    dateTimeOrder: '9:00am - 12th Dec, 2018',
-    dateTimeDelivery: '2:00pm - 12th Dec, 2018',
+    dateTimeOrder: '1:50pm - Tue Sep 11 2018',
+    dateTimeDelivery: '3:00pm - Tue Sep 11 2018',
     Items: [
       {
         itemId: 1,
