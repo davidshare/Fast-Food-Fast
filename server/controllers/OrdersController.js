@@ -94,6 +94,49 @@ class OrdersController {
       error: 'Sorry! Could not place the order',
     });
   }
+
+  /**
+   *  Update order status
+   *  @param {Object} request
+   *  @param {Object} response
+   *
+   *
+   *  @return {Object} json
+   */
+
+  static updateOrderStatus(request, response) {
+    const { orderId } = request.params;
+    const { orderStatus } = request.body;
+
+    if (parseInt(orderId, 10) > data.orders.length - 1 || parseInt(orderId, 10) < 0) {
+      return response.status(404).json({
+        statusCode: 404,
+        error: 'Sorry! Order not found.',
+      });
+    }
+
+    if (!parseInt(orderId, 10)) {
+      return response.status(400).json({
+        statusCode: 400,
+        error: 'Sorry your orderId must be an integer',
+      });
+    }
+    if (orderStatus) {
+      const currentOrder = data.orders[orderId];
+      currentOrder.orderStatus = orderStatus;
+      return response.status(202).json({
+        statusCode: 202,
+        message: 'Order updated successfully',
+        success: true,
+        currentOrder,
+      });
+    }
+
+    return response.status(400).json({
+      statusCode: 400,
+      error: 'Sorry! could not update order.',
+    });
+  }
 }
 
 export default OrdersController;

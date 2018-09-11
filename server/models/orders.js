@@ -8,7 +8,7 @@ const orders = [
   },
   {
     orderId: 1,
-    status: 'Pending',
+    orderStatus: 'Pending',
     recipient: 'David Essien',
     recipientEmail: 'davidessienshare@gmail.com',
     recipientPhoneNumber: '08167462431',
@@ -35,7 +35,7 @@ const orders = [
 
   {
     orderId: 2,
-    status: 'canceled',
+    orderStatus: 'canceled',
     recipient: 'Sunday Essien',
     recipientEmail: 'sundaNelson@gmail.com',
     recipientPhoneNumber: '08167462431',
@@ -61,7 +61,7 @@ const orders = [
   },
   {
     orderId: 3,
-    status: 'Completed',
+    orderStatus: 'Completed',
     recipient: 'Njesua Essien',
     recipientEmail: 'sundaNelson@gmail.com',
     recipientPhoneNumber: '08167462431',
