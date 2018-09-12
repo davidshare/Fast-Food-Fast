@@ -9,7 +9,7 @@
     "dev-start": "nodemon --exec babel-node app.js",
     "lint": "eslint app.js",
     "start": "babel-node app.js",
-    "test": "mocha server/tests/*.js --exit --require babel-register --reporter spec --timeout=30000"
+    "test": "mocha server/tests/*.js --exit --require babel-register --reporter spec --timeout=50000"
   },
   "repository": {
     "type": "git",
