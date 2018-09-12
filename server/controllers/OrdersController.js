@@ -19,7 +19,7 @@ class OrdersController {
   static getAllOrders(request, response) {
     return response.status(200).json({
       statusCode: 200,
-      message: 'Successfully got orders',
+      message: 'Successfully got all orders',
       orders: data.orders,
     });
   }
@@ -44,7 +44,7 @@ class OrdersController {
       return response.status(200).json({
         statusCode: 200,
         message: 'Successfully got order',
-        orders: data.orders[orderId],
+        order: data.orders[orderId],
       });
     }
     return response.status(400).json({
@@ -82,7 +82,7 @@ class OrdersController {
       dateTimeDelivery: dateTimeHelper.formattedDateTime(new Date()),
     };
     if (data.orders.push(order)) {
-      response.status(201).json({
+      return response.status(201).json({
         statusCode: 201,
         message: 'Order placed successfully',
         success: true,

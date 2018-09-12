@@ -20,11 +20,12 @@ class ValidateOrder {
       recipientEmail,
       recipientPhoneNumber,
       recipientAddress,
+      items,
     } = request.body;
 
-    let { items } = request.body;
-
     const errors = {};
+    const itemErrors = [];
+
     const rules = {
       validRecipient: /^[a-zA-Z][a-zA-Z\s]+$/,
       validAddress: /^[a-zA-Z][a-zA-Z0-9\s?.,:]+$/,
@@ -59,7 +60,7 @@ class ValidateOrder {
     }
 
     if (!rules.validAddress.test(recipientAddress)) {
-      errors.validRecipient = 'Please enter a valid Address';
+      errors.validAddress = 'Please enter a valid Address';
     }
 
     // recipient email
@@ -68,7 +69,7 @@ class ValidateOrder {
     }
 
     if (!rules.validEmail.test(recipientEmail)) {
-      errors.validEmail = 'Please enter a valid Address';
+      errors.validEmail = 'Please enter a valid email address';
     }
 
     // recipient phone number
@@ -82,29 +83,24 @@ class ValidateOrder {
 
     // order quantity
     if (!items || !rules.empty.test(items)) {
-      errors.itemsEmpty = 'Sorry! your order is invalid. Where are your items?';
+      errors.itemsEmpty = 'Sorry! your order is invalid. You did not pick any items?';
     }
 
-    if (items) {
-      items = Object.values(JSON.parse(items));
-      const itemErrors = [];
+    if (typeof items !== 'object') {
+      errors.validItems = 'Sorry the items are invalid. Enter valid items';
+    }
 
-      if (!Array.isArray(items)) {
-        errors.validItems = 'Sorry the items are invalid. Enter valid items';
-      }
+    if (typeof items[0] !== 'object') {
+      errors.validItems = 'Sorry the items are invalid. Valid items must be objects.';
+    }
 
-      if (typeof items[0] !== 'object') {
-        errors.validItems = 'Sorry the items are invalid. Valide items must be objects.';
+    items.forEach((item) => {
+      if (!Number.isInteger(item.quantity) || item.quantity < 1) {
+        itemErrors.push('The quantity of the an item must be a number greater than zero');
       }
-
-      items.forEach((item) => {
-        if (!Number.isInteger(item.quantity) || item.quantity < 1) {
-          itemErrors.push(`The quantity of the item '${item.item}' must be a number greater than zero`);
-        }
-      });
-      if (itemErrors.length > 0) {
-        errors.itemErrors = itemErrors;
-      }
+    });
+    if (itemErrors.length > 0) {
+      errors.itemErrors = itemErrors;
     }
 
     if (Object.keys(errors).length > 0) {
