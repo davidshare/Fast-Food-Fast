@@ -1,5 +1,10 @@
 # Fast-Food-Fast
 
+[![Build Status](https://travis-ci.org/davidshare/Fast-Food-Fast.svg?branch=develop)](https://travis-ci.org/davidshare/Fast-Food-Fast)
+[![Coverage Status](https://coveralls.io/repos/github/davidshare/Fast-Food-Fast/badge.svg?branch=develop)](https://coveralls.io/github/davidshare/Fast-Food-Fast?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/bb0fb6c0ea6be7e66123/maintainability)](https://codeclimate.com/github/davidshare/Fast-Food-Fast/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/bb0fb6c0ea6be7e66123/test_coverage)](https://codeclimate.com/github/davidshare/Fast-Food-Fast/test_coverage)
+
 Fast-Food-Fast is a food delivery service app for a restaurant. A user can create an account, signin to the account and make orders for food items.
 
 ## UI hosted on gh pages
@@ -35,35 +40,46 @@ NA
 
 
 ### Prerequisites for installation
-1. Git
-
+1. Node js
+2. Express
+3. Git
 
 ### Installation
 1. Clone this repository into your local machine:
 ```
 e.g git clone https://github.com/davidshare/Fast-Food-Fast
 ```
-2. Navigate to the UI directory and open index.html
+2. Install dependencies 
+```
+e.g npm install.
+```
+3. Start the application by running the start script.
+
+e.g npm start
+
+4. Install postman to test all endpoints on port 3000.
 
 ### Test
-NA
+run test using 'npm test'.
 
 ### API End Points Test Using Postman
 
-NA
+<table>
+<tr><th>HTTP VERB</th><th>ENDPOINT</th><th>FUNCTIONALITY</th></tr>
+
+<tr><td>POST</td> <td>/api/v1/orders</td>  <td>Posts a order</td></tr>
+
+<tr><td>PUT</td> <td>/api/v1/orders/:orderId</td>  <td>Updates the status of an order</td></tr>
+
+<tr><td>GET</td> <td>/api/v1/orders</td>  <td>Gets all orders</td></tr>
+
+<tr><td>GET</td> <td>/api/v1/orders/:orderId</td>  <td>Gets an order by orderId</td></tr>
+</table>
 
 ### Coding Style
 * Airbnb style guide. 
 
 ## Features
-
-### Users
- * A user can create an accounts
- * A user can signin to his/her account
- * A user can view available food items
- * A user can make orders and cancel the orders
- * A user can delete an order
- * A user can see history of orders
 
  ### Admin
  * Admins can add food items
@@ -72,9 +88,17 @@ NA
  * Admins can see food orders
  * Admins can decline food orders
  * Admins can mark food orders as completed
+
+ ### Users
+ * A user can create an account
+ * A user can signin to his/her account
+ * A user can view available food items
+ * A user can make orders and cancel the orders
+ * A user can see history of orders
  
 
 ## Built With
+* NodeJs-EXPRESS: Node.js is a javascript runtime built on Chrome's V8 javascript engine.
 
 * html5: It is used for structuring the frontend.
 
