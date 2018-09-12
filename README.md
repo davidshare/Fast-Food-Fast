@@ -1,6 +1,6 @@
 # Fast-Food-Fast
 
-Fast-Food-Fast is a food delivery service app for a restaurant. A user can create an account, signin to the account ame make orders for food items.
+Fast-Food-Fast is a food delivery service app for a restaurant. A user can create an account, signin to the account and make orders for food items.
 
 ## UI hosted on gh pages
 https://davidshare.github.io/fast-food-fast/UI/index.html
