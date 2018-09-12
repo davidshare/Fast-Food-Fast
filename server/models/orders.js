@@ -15,7 +15,7 @@ const orders = [
     recipientAddress: 'Andela Epic tower Lagos',
     dateTimeOrder: '1:50pm - Tue Sep 11 2018',
     dateTimeDelivery: '3:00pm - Tue Sep 11 2018',
-    Items: [
+    items: [
       {
         itemId: 1,
         item: 'Onion soup',
@@ -42,7 +42,7 @@ const orders = [
     recipientAddress: 'Andela Epic tower Lagos',
     dateTimeOrder: '1:50pm - Tue Sep 11 2018',
     dateTimeDelivery: '3:00pm - Tue Sep 11 2018',
-    Items: [
+    items: [
       {
         itemId: 1,
         item: 'Tomatoes stew',
@@ -68,7 +68,7 @@ const orders = [
     recipientAddress: 'Andela Epic tower Lagos',
     dateTimeOrder: '1:50pm - Tue Sep 11 2018',
     dateTimeDelivery: '3:00pm - Tue Sep 11 2018',
-    Items: [
+    items: [
       {
         itemId: 1,
         item: 'Fried chicken',
