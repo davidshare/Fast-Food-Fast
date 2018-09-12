@@ -1,11 +1,8 @@
 # Fast-Food-Fast
 
 [![Build Status](https://travis-ci.org/davidshare/Fast-Food-Fast.svg?branch=develop)](https://travis-ci.org/davidshare/Fast-Food-Fast)
-
 [![Coverage Status](https://coveralls.io/repos/github/davidshare/Fast-Food-Fast/badge.svg?branch=develop)](https://coveralls.io/github/davidshare/Fast-Food-Fast?branch=develop)
-
 [![Maintainability](https://api.codeclimate.com/v1/badges/bb0fb6c0ea6be7e66123/maintainability)](https://codeclimate.com/github/davidshare/Fast-Food-Fast/maintainability)
-
 [![Test Coverage](https://api.codeclimate.com/v1/badges/bb0fb6c0ea6be7e66123/test_coverage)](https://codeclimate.com/github/davidshare/Fast-Food-Fast/test_coverage)
 
 Fast-Food-Fast is a food delivery service app for a restaurant. A user can create an account, signin to the account and make orders for food items.
@@ -76,7 +73,7 @@ run test using 'npm test'.
 
 <tr><td>GET</td> <td>/api/v1/orders</td>  <td>Gets all orders</td></tr>
 
-<tr><td>GET</td> <td>/api/v1/questions/:orderId</td>  <td>Gets an order by orderId</td></tr>
+<tr><td>GET</td> <td>/api/v1/orders/:orderId</td>  <td>Gets an order by orderId</td></tr>
 </table>
 
 ### Coding Style
