@@ -7,7 +7,7 @@
     "dev-start": "nodemon --exec babel-node app.js",
     "lint": "eslint app.js",
     "start": "babel-node app.js",
-    "test": "cross-env set NODE_ENV=test&& nyc --reporter=html --reporter=text mocha --compilers js:babel-register ./server/tests/ --timeout 10000 --exit",
+    "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-register ./server/tests/ --timeout 10000 --exit",
     "coveralls": "nyc npm test&& nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
