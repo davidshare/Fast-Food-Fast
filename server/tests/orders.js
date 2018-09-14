@@ -212,7 +212,7 @@ describe('ORDERS CONTROLLER ', () => {
               item: 'Abak soup and semovita',
               price: 3500,
               quantity: 2,
-              total: 700,
+              total: 7000,
             },
           ],
         })
@@ -433,14 +433,14 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.itemErrors[0]).to.equal('The quantity of the an item must be a number greater than zero');
+          expect(response.body.error.itemErrors[0]).to.equal('The quantity of an item must be a number greater than zero');
           done();
         });
     });
   });
 
   describe('PUT /orders/:orderId endpoint', () => {
-    it('it update the status of an order', (done) => {
+    it('it should update the status of an order', (done) => {
       chai.request(app)
         .put(`${ordersURL}/1`)
         .send({
