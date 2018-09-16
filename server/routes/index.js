@@ -5,7 +5,7 @@ import ValidateOrder from '../middleware/orderValidator';
  * @fileOverview index file for routes - it hosts all routes
  * @requires OrdersController
  * @requires ../controllsers/OrdersController
- * * @requires ../middleware/orderValidator
+ * @requires ../middleware/orderValidator
  * @param {object} app
  * @exports routes What is exported
  */

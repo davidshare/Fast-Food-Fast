@@ -87,8 +87,6 @@ class ValidateOrder {
     // order quantity
     if (!items || !rules.empty.test(items)) errors.itemsEmpty = validationErrors.itemsEmpty;
 
-    if (typeof items !== 'object') errors.validItems = validationErrors.validItems;
-
     if (typeof items[0] !== 'object') errors.validItems = validationErrors.validItems;
 
     items.forEach((item) => {
@@ -110,15 +108,10 @@ class ValidateOrder {
   static validateOrderStatus(request, response, next) {
     const errors = {};
     const validOrderStatus = ['Canceled', 'Declined', 'Accepted', 'Completed'];
-    let { orderStatus } = request.body;
-    orderStatus = orderStatus.toString() || '';
+    const { orderStatus } = request.body;
     if (!ValidateOrder.checkValidId(request)) errors.validId = validationErrors.validId;
-    if (orderStatus) {
-      if (!validOrderStatus.includes(orderStatus)) {
-        errors.validStatus = validationErrors.validStatus;
-      }
-    } else {
-      errors.emptyStatus = validationErrors.emptyStatus;
+    if (!validOrderStatus.includes(orderStatus)) {
+      errors.validStatus = validationErrors.validStatus;
     }
 
     ValidateOrder.checkValidationErrors(response, errors, next);
