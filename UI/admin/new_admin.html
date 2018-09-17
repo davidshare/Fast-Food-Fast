@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Signup: Fast-Food-Fast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/forms.css" />
+</head>
+<body>
+  <section class="page-container">
+    <div class="page-content left-float">
+        <div id="navbar" class="navbar container">
+            <div class="brand">
+              <h2>Fast-Food-Fast</h2>
+            </div>
+            <div class="menu-icon right-float display-hide" onclick="toggleNavDisplay(this)">
+              <span class="bar1"></span>
+              <span class="bar2"></span>
+              <span class="bar3"></span>
+            </div>
+            <div class="nav">
+              <ul class="main-nav">
+                  <li class="nav-item welcome">Welcome David!</li>
+                  <li class="nav-item"><a href="../index.html">Home</a></li>
+                  <li class="nav-item"><a href="../meals.html">Meals</a></li>
+                  <li class="nav-item"><a href="orders.html">Orders</a></li>
+                  <li class="nav-item"><a href="new_meal.html">New meal</a></li>
+                  <li class="nav-item active"><a href="new_admin.html">New Admin</a></li>
+                  <li class="nav-item"><a href="../logout.html">Signout</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="text-white container signup-call">
+            <h2>
+              Yeah we need more hands... <br/>Add them up!
+            </h2>
+            <p>Lots of orders waiting to be process add a new admin now.</p>
+          </div>
+    </div>
+    <div class="form-container right-float bg-white">
+      <h2>Create Admin</h2>
+      <p>Add a new Admin</p>
+      <form method="post" name="signup-form" class="signup-form">
+        <p class="form-control">
+          <label for="fullname">Fulllname</label>
+          <input type="text" name="fullname" id="fullname" placeholder="Enter your fullname" required>
+        </p>
+        <p class="form-control">
+          <label for="fullname">Email</label>
+          <input type="email" name="email" id="email" placeholder="Enter your email address required">
+        </p>
+        <p class="form-control">
+          <label for="fullname">Password</label>
+          <input type="password" name="password" id="password" placeholder="Enter your password" required>
+        </p>
+        <p class="form-control">
+          <label for="level">Level</label>
+          <select name="leve">
+              <option>Please select an admin level</option>
+            <option value="1">Admin</option>
+            <option value="2">Super admin</option>
+          </select>
+        </p>
+        <p class="form-control">
+          <button class="btn btn-danger" id="signup-btn">Signup</button>
+        </p>
+      </form>
+    </div>
+  </section>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
