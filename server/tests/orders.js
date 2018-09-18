@@ -7,6 +7,19 @@ const { expect } = chai;
 chai.use(chaiHttp);
 const ordersURL = '/api/v1/orders';
 
+describe('HOME ROUTE', () => {
+  it('it should take users to the landing page', (done) => {
+    chai.request(app)
+      .get('/')
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body).to.be.an('object');
+        expect(response.body.message).to.equal('Welcome to Fast-Food-Fast');
+        done();
+      });
+  });
+});
+
 describe('ORDERS CONTROLLER ', () => {
   describe('GET /orders endpoint', () => {
     it('it should get all orders', (done) => {
@@ -465,6 +478,20 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body.error.validId).to.equal('Please the orderId must be a number greater than zero');
+          done();
+        });
+    });
+
+    it('it should return an error for non existent orders', (done) => {
+      chai.request(app)
+        .put(`${ordersURL}/10`)
+        .send({
+          orderStatus: 'Canceled',
+        })
+        .end((error, response) => {
+          expect(response).to.have.status(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal('Sorry! Order not found.');
           done();
         });
     });
