@@ -9,9 +9,11 @@ const formattedTime = (dateObject) => {
   return formattedTimeString;
 };
 
-const formattedDate = (dateObject) => {
-  new Date(dateObject.getFullYear(), dateObject.getMonth(), dateObject.getDate()).toDateString();
-};
+const formattedDate = dateObject => new Date(
+  dateObject.getFullYear(),
+  dateObject.getMonth(),
+  dateObject.getDate()
+).toDateString();
 
 const formattedDateTime = dateObject => `${formattedTime(dateObject)} - ${formattedDate(dateObject)}`;
 

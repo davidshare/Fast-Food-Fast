@@ -1,5 +1,6 @@
 import rules from '../helpers/validationRules';
 import validationErrors from '../helpers/validationErrors';
+import ValidationHelper from '../helpers/validationHelper';
 
 /**
  *    @fileOverview Class to validate user input for order
@@ -23,34 +24,16 @@ class ValidateOrder {
       recipientAddress,
       items,
     } = request.body;
-
-    let errors = ValidateOrder.validateRecipient(recipient,
-      recipientEmail,
-      recipientPhoneNumber,
-      recipientAddress);
-
+    const userErrors = ValidationHelper.validateUser(recipient, recipientEmail);
     const itemErrors = ValidateOrder.validateItems(items);
-    errors = Object.assign(errors, itemErrors);
+    let errors = ValidateOrder.validateRecipient(recipientPhoneNumber, recipientAddress);
 
-    ValidateOrder.checkValidationErrors(response, errors, next);
+    errors = Object.assign(errors, itemErrors, userErrors);
+    ValidationHelper.checkValidationErrors(response, errors, next);
   }
 
-  static validateRecipient(recipient, recipientEmail, recipientPhoneNumber, recipientAddress) {
+  static validateRecipient(recipientPhoneNumber, recipientAddress) {
     const errors = {};
-    // recipient
-    if (!recipient || !rules.empty.test(recipient)) {
-      errors.recipientRequired = validationErrors.recipientRequired;
-    }
-
-    if (!rules.recipientLength.test(recipient)) {
-      errors.recipientLength = validationErrors.recipientLength;
-    }
-
-    if (!rules.validRecipient.test(recipient)) {
-      errors.validRecipient = validationErrors.validRecipient;
-    }
-
-    // recipient address
     if (!recipientAddress || !rules.empty.test(recipientAddress)) {
       errors.addressRequired = validationErrors.addressRequired;
     }
@@ -62,13 +45,6 @@ class ValidateOrder {
     if (!rules.validAddress.test(recipientAddress)) {
       errors.validAddress = validationErrors.validAddress;
     }
-
-    // recipient email
-    if (!recipientEmail || !rules.empty.test(recipientEmail)) {
-      errors.emailRequired = validationErrors.emailRequired;
-    }
-
-    if (!rules.validEmail.test(recipientEmail)) errors.validEmail = validationErrors.validEmail;
 
     // recipient phone number
     if (!recipientPhoneNumber || !rules.empty.test(recipientPhoneNumber)) {
@@ -109,12 +85,12 @@ class ValidateOrder {
     const errors = {};
     const validOrderStatus = ['Canceled', 'Declined', 'Accepted', 'Completed'];
     const { orderStatus } = request.body;
-    if (!ValidateOrder.checkValidId(request)) errors.validId = validationErrors.validId;
+    if (!ValidationHelper.checkValidId(request)) errors.validId = validationErrors.validId;
     if (!validOrderStatus.includes(orderStatus)) {
       errors.validStatus = validationErrors.validStatus;
     }
 
-    ValidateOrder.checkValidationErrors(response, errors, next);
+    ValidationHelper.checkValidationErrors(response, errors, next);
   }
 
   /**
@@ -127,41 +103,11 @@ class ValidateOrder {
    * @return {Object} json
    */
   static validateOrderId(request, response, next) {
-    if (!ValidateOrder.checkValidId(request)) {
+    if (!ValidationHelper.checkValidId(request)) {
       return response.status(406).json({
         statusCode: 406,
         success: false,
         error: validationErrors.validId,
-      });
-    }
-    return next();
-  }
-
-  /**
-   * check if id is valid
-   * @param {Object} request
-   * @return {boolean} true
-   */
-  static checkValidId(request) {
-    const { orderId } = request.params;
-    const validId = /^[1-9]{1,}/;
-    if (!validId.test(orderId)) {
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * check if data validation produces any errors
-   * @param {Object} request
-   * @return {boolean} false
-   */
-  static checkValidationErrors(response, errors, next) {
-    if (Object.keys(errors).length > 0) {
-      return response.status(406).json({
-        statusCode: 406,
-        success: false,
-        error: errors,
       });
     }
     return next();
