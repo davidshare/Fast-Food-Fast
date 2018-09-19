@@ -325,6 +325,43 @@ section.about{
 }
 
 /*-------------------------------------------------
+					GALLERY
+--------------------------------------------------*/
+.gallery{
+  padding: 0;
+  margin: 0;
+}
+
+.gallery-block{
+  list-style: none;
+  width: 100%;
+}
+
+.gallery-block li{
+  display: block;
+  float: left;
+  width: 25%;
+}
+
+.gallery-block li figure{
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-block li figure img{
+  opacity: 0.8;
+  width:100%;
+  height: auto;
+}
+
+.gallery-block li figure img:hover{
+  transform: scale(1.15);
+  transition: transform 0.5s;
+  opacity: 1;
+}
+
+
+/*-------------------------------------------------
 					MOBILE MENU
 --------------------------------------------------*/
 
