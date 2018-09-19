@@ -2,6 +2,7 @@ import chaiHttp from 'chai-http';
 import chai from 'chai';
 import app from '../../app';
 import testData from './testData';
+import validationErrors from '../helpers/validationErrors';
 
 const { expect } = chai;
 chai.use(chaiHttp);
@@ -64,7 +65,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
-          expect(response.body.error).to.equal('Please the orderId must be a number greater than zero');
+          expect(response.body.error).to.equal(validationErrors.validId);
           done();
         });
     });
@@ -75,7 +76,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body).to.be.an('object');
-          expect(response.body.error).to.equal('Sorry! Order not found.');
+          expect(response.body.error).to.equal(validationErrors.noOrder);
           done();
         });
     });
@@ -121,7 +122,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.recipientRequired).to.equal('Sorry! the full name field is required');
+          expect(response.body.error.nameRequired).to.equal(validationErrors.nameRequired);
           done();
         });
     });
@@ -148,7 +149,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.recipientLength).to.equal('Sorry your fullname cannot be less than 8 characters and must contain a space');
+          expect(response.body.error.nameLength).to.equal(validationErrors.nameLength);
           done();
         });
     });
@@ -175,7 +176,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.validRecipient).to.equal('Please enter a valid full name. Your full name can only contain letters and spaces');
+          expect(response.body.error.validName).to.equal(validationErrors.validName);
           done();
         });
     });
@@ -206,7 +207,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.addressRequired).to.equal('Sorry! the Address field is required');
+          expect(response.body.error.addressRequired).to.equal(validationErrors.addressRequired);
           done();
         });
     });
@@ -233,7 +234,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.addressLength).to.equal('Sorry your address cannot be less than 10 characters');
+          expect(response.body.error.addressLength).to.equal(validationErrors.addressLength);
           done();
         });
     });
@@ -260,7 +261,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.validAddress).to.equal('Please enter a valid Address');
+          expect(response.body.error.validAddress).to.equal(validationErrors.validAddress);
           done();
         });
     });
@@ -291,7 +292,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.emailRequired).to.equal('Sorry! the Email field is required');
+          expect(response.body.error.emailRequired).to.equal(validationErrors.emailRequired);
           done();
         });
     });
@@ -318,7 +319,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.validEmail).to.equal('Please enter a valid email address');
+          expect(response.body.error.validEmail).to.equal(validationErrors.validEmail);
           done();
         });
     });
@@ -349,7 +350,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.phoneRequired).to.equal('Sorry! the phone number field is required');
+          expect(response.body.error.phoneRequired).to.equal(validationErrors.phoneRequired);
           done();
         });
     });
@@ -376,7 +377,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.validNumber).to.equal('Please your phone number can only contain numbers and cannot be greater than 15 or less than 8 characters');
+          expect(response.body.error.validNumber).to.equal(validationErrors.validNumber);
           done();
         });
     });
@@ -400,7 +401,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.itemsEmpty).to.equal('Sorry! your order is invalid. You did not pick any items?');
+          expect(response.body.error.itemsEmpty).to.equal(validationErrors.itemsEmpty);
           done();
         });
     });
@@ -419,7 +420,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.validItems).to.equal('Sorry the items are invalid. Valid items must be objects.');
+          expect(response.body.error.validItems).to.equal(validationErrors.validItems);
           done();
         });
     });
@@ -446,7 +447,7 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.itemErrors[0]).to.equal('The quantity of an item must be a number greater than zero');
+          expect(response.body.error.itemErrors[0]).to.equal(validationErrors.quantityError);
           done();
         });
     });
@@ -477,7 +478,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
-          expect(response.body.error.validId).to.equal('Please the orderId must be a number greater than zero');
+          expect(response.body.error.validId).to.equal(validationErrors.validId);
           done();
         });
     });
@@ -505,7 +506,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
-          expect(response.body.error.validStatus).to.equal('Please enter a valid status. The status can only be Canceled or Declined or Accepted or Completed');
+          expect(response.body.error.validStatus).to.equal(validationErrors.validStatus);
           done();
         });
     });
