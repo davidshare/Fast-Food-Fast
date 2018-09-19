@@ -21,7 +21,9 @@ class ValidateUser {
 
   static validateSignup(request, response, next) {
     const {
-      fullname, email, password,
+      fullname,
+      email,
+      password,
     } = request.body;
     const userErrors = ValidationHelper.validateUser(fullname, email);
 

@@ -17,7 +17,10 @@ class UsersController {
    */
   static signup(request, response) {
     const {
-      fullname, email, password, role,
+      fullname,
+      email,
+      password,
+      role,
     } = request.body;
 
     const newUser = {
