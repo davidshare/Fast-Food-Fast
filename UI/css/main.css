@@ -360,6 +360,24 @@ section.about{
   opacity: 1;
 }
 
+/*-------------------------------------------------
+					HOW TO SECTION
+--------------------------------------------------*/
+.howto{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('../assets/images/meal6.jpg');
+}
+
+.howto-list{
+  padding-left: 40px;
+}
+
+.howto-list li{
+  width: 40%;
+  float: left;
+  margin-left: 40px;
+  padding-left: 15px;
+}
+
 
 /*-------------------------------------------------
 					MOBILE MENU
@@ -542,6 +560,13 @@ table .order-info{
 
   .new-meal-form{
     width: 50% !important;
+  }
+}
+
+@media only screen and (max-width: 900px){
+  .howto-list li{
+    width: 100%;
+    float: none;
   }
 }
 
