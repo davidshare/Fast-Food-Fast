@@ -7,7 +7,6 @@ client.connect();
 
 const dbQueries = `${destroyQuery}${createQuery}`;
 
-client.query(dbQueries, (error) => {
-  console.log(error);
+client.query(dbQueries, () => {
   client.end();
 });
