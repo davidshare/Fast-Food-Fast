@@ -1,6 +1,6 @@
 const createUsersTable = `
   CREATE TABLE IF NOT EXISTS users(
-    id INTEGER PRIMARY KEY NOT NULL,
+    id SERIAL PRIMARY KEY NOT NULL,
     fullname VARCHAR (100) NOT NULL,
     email VARCHAR(30) NOT NULL,
     phone INTEGER,
@@ -9,13 +9,13 @@ const createUsersTable = `
     address TEXT,
     status INTEGER DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
-    updated TIMESTAMP
+    updated TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
 `;
 
 const createOrdersTable = `
   CREATE TABLE IF NOT EXISTS orders(
-    id INTEGER PRIMARY KEY NOT NULL,
+    id SERIAL PRIMARY KEY NOT NULL,
     user_id INTEGER REFERENCES users(id),
     recipient_id INTEGER REFERENCES users(id),
     quantity INTEGER,
@@ -28,7 +28,7 @@ const createOrdersTable = `
 
 const createMealsTable = `
   CREATE TABLE IF NOT EXISTS meals(
-    id INTEGER PRIMARY KEY NOT NULL,
+    id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
     price INTEGER NOT NULL,
@@ -41,7 +41,7 @@ const createMealsTable = `
 
 const createOrderItemsTable = `
   CREATE TABLE IF NOT EXISTS items(
-    id INTEGER PRIMARY KEY NOT NULL,
+    id SERIAL PRIMARY KEY NOT NULL,
     quantity INTEGER NOT NULL,
     total_cost INTEGER NOT NULL,
     user_id INTEGER REFERENCES users(id),
