@@ -1,14 +1,12 @@
-import orders from './orders';
-import users from './users';
+import createQuery from './tables.create';
+import destroyQuery from './db.destroy';
+import connection from '../helpers/conn';
 
-/**
- * @fileOverview index file for models imports and exports dummy datat from other files
- * @exports data What is exported
- * @requires ./orders
- */
-const data = {
-  orders,
-  users,
-};
+const client = connection();
+client.connect();
 
-export default data;
+const dbQueries = `${destroyQuery}${createQuery}`;
+
+client.query(dbQueries, () => {
+  client.end();
+});

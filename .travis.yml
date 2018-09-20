@@ -4,6 +4,21 @@ node_js:
 
 cache: 
   directories: 
-    - "node_modules"    
+    - "node_modules"  
+
+addons:
+  apt:
+    update: true 
+
+services :
+  - postgresql
+
+postgres:
+  adapter: postgresql
+  database: DB_DATABASE
+  username: postgres
+
+before_script:
+  - psql -c 'create database fastfood;' -U postgres
 
 after_success: npm run coverage
