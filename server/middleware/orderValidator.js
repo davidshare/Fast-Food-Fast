@@ -1,3 +1,7 @@
+import rules from '../helpers/validationRules';
+import validationErrors from '../helpers/validationErrors';
+import ValidationHelper from '../helpers/validationHelper';
+
 /**
  *    @fileOverview Class to validate user input for order
  *    @class Orders validator
@@ -9,9 +13,7 @@ class ValidateOrder {
    * validate orders input validity
    * @param {Object} request
    * @param {Object} response
-   *
    * @callback {Function} next
-   *
    * @return {Object} json
    */
   static validateOrder(request, response, next) {
@@ -22,133 +24,90 @@ class ValidateOrder {
       recipientAddress,
       items,
     } = request.body;
+    const userErrors = ValidationHelper.validateUser(recipient, recipientEmail);
+    const itemErrors = ValidateOrder.validateItems(items);
+    let errors = ValidateOrder.validateRecipient(recipientPhoneNumber, recipientAddress);
 
+    errors = Object.assign(errors, itemErrors, userErrors);
+    ValidationHelper.checkValidationErrors(response, errors, next);
+  }
+
+  static validateRecipient(recipientPhoneNumber, recipientAddress) {
     const errors = {};
-    const itemErrors = [];
-
-    const rules = {
-      validRecipient: /^[a-zA-Z][a-zA-Z\s]+$/,
-      validAddress: /^[a-zA-Z][a-zA-Z0-9\s?.,:]+$/,
-      empty: /^(\S+)/,
-      addressLength: /^[a-zA-Z][a-zA-Z0-9\s?.,:]{10,150}$/,
-      validEmail: /^[A-Za-z]\w{3,15}@\w{2,15}[.]\w{2,15}$/,
-      recipientLength: /^[a-zA-Z][a-zA-Z\s]{8,}$/,
-      validNumber: /^[0-9]{8,15}/,
-      validId: /^[1-9]{1,}/,
-    };
-
-    // recipient
-    if (!recipient || !rules.empty.test(recipient)) {
-      errors.recipientRequired = 'Sorry! the full name field is required';
-    }
-
-    if (!rules.recipientLength.test(recipient)) {
-      errors.recipientLength = 'Sorry your fullname cannot be less than 8 characters and must contain a space';
-    }
-
-    if (!rules.validRecipient.test(recipient)) {
-      errors.validRecipient = 'Please enter a valid full name. Your full name can only contain letters and spaces';
-    }
-
-    // recipient address
     if (!recipientAddress || !rules.empty.test(recipientAddress)) {
-      errors.addressRequired = 'Sorry! the Address field is required';
+      errors.addressRequired = validationErrors.addressRequired;
     }
 
     if (!rules.addressLength.test(recipientAddress)) {
-      errors.addressLength = 'Sorry your address cannot be less than 10 characters';
+      errors.addressLength = validationErrors.addressLength;
     }
 
     if (!rules.validAddress.test(recipientAddress)) {
-      errors.validAddress = 'Please enter a valid Address';
-    }
-
-    // recipient email
-    if (!recipientEmail || !rules.empty.test(recipientEmail)) {
-      errors.emailRequired = 'Sorry! the Email field is required';
-    }
-
-    if (!rules.validEmail.test(recipientEmail)) {
-      errors.validEmail = 'Please enter a valid email address';
+      errors.validAddress = validationErrors.validAddress;
     }
 
     // recipient phone number
     if (!recipientPhoneNumber || !rules.empty.test(recipientPhoneNumber)) {
-      errors.phoneRequired = 'Sorry! the phone number field is required';
+      errors.phoneRequired = validationErrors.phoneRequired;
     }
 
     if (!rules.validNumber.test(recipientPhoneNumber)) {
-      errors.validNumber = 'Please your phone number can only contain numbers and cannot be greater than 15 or less than 8 characters';
+      errors.validNumber = validationErrors.validNumber;
     }
+    return errors;
+  }
 
+  static validateItems(items) {
+    const errors = {};
+    const itemErrors = [];
     // order quantity
-    if (!items || !rules.empty.test(items)) {
-      errors.itemsEmpty = 'Sorry! your order is invalid. You did not pick any items?';
-    }
+    if (!items || !rules.empty.test(items)) errors.itemsEmpty = validationErrors.itemsEmpty;
 
-    if (typeof items !== 'object') {
-      errors.validItems = 'Sorry the items are invalid. Enter valid items';
-    }
-
-    if (typeof items[0] !== 'object') {
-      errors.validItems = 'Sorry the items are invalid. Valid items must be objects.';
-    }
+    if (typeof items[0] !== 'object') errors.validItems = validationErrors.validItems;
 
     items.forEach((item) => {
       if (!Number.isInteger(item.quantity) || item.quantity < 1) {
-        itemErrors.push('The quantity of the an item must be a number greater than zero');
+        itemErrors.push(validationErrors.quantityError);
       }
     });
-    if (itemErrors.length > 0) {
-      errors.itemErrors = itemErrors;
-    }
-
-    if (Object.keys(errors).length > 0) {
-      return response.status(406).json({
-        statusCode: 406,
-        success: false,
-        error: errors,
-      });
-    }
-    return next();
+    if (itemErrors.length > 0) errors.itemErrors = itemErrors;
+    return errors;
   }
 
+  /**
+   * validate ordersId
+   * @param {Object} request
+   * @param {Object} response
+   * @callback {Function} next
+   * @return {function} next()
+   */
   static validateOrderStatus(request, response, next) {
     const errors = {};
-    const validId = /^[1-9]{1,}/;
-    let { orderStatus } = request.body;
-    const { orderId } = request.params;
-    orderStatus = orderStatus.toString();
-    if (!validId.test(orderId)) {
-      errors.validId = 'Please the orderId must be a number greater than zero';
+    const validOrderStatus = ['Canceled', 'Declined', 'Accepted', 'Completed'];
+    const { orderStatus } = request.body;
+    if (!ValidationHelper.checkValidId(request)) errors.validId = validationErrors.validId;
+    if (!validOrderStatus.includes(orderStatus)) {
+      errors.validStatus = validationErrors.validStatus;
     }
 
-    if (orderStatus) {
-      if (orderStatus !== 'Canceled' && orderStatus !== 'Declined' && orderStatus !== 'Accepted' && orderStatus !== 'Completed') {
-        errors.validStatus = 'Please enter a valid status. The status can only be Canceled or Declined or Accepted or Completed';
-      }
-    } else {
-      errors.emptyStatus = 'Sorry the status is required';
-    }
-
-    if (Object.keys(errors).length > 0) {
-      return response.status(406).json({
-        statusCode: 406,
-        success: false,
-        error: errors,
-      });
-    }
-    return next();
+    ValidationHelper.checkValidationErrors(response, errors, next);
   }
 
+  /**
+   * validate ordersId
+   * @param {Object} request
+   * @param {Object} response
+   *
+   * @callback {Function} next
+   *
+   * @return {Object} json
+   */
   static validateOrderId(request, response, next) {
-    const { orderId } = request.params;
-    const validId = /^[1-9]{1,}/;
-    if (!validId.test(orderId)) {
+    if (!ValidationHelper.checkValidId(request)) {
       return response.status(406).json({
         statusCode: 406,
         success: false,
-        error: 'Please the orderId must be a number greater than zero',
+        error: validationErrors.validId,
       });
     }
     return next();

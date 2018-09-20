@@ -1,4 +1,5 @@
 import orders from './orders';
+import users from './users';
 
 /**
  * @fileOverview index file for models imports and exports dummy datat from other files
@@ -7,6 +8,7 @@ import orders from './orders';
  */
 const data = {
   orders,
+  users,
 };
 
 export default data;

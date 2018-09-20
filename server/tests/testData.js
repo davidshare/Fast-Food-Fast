@@ -46,4 +46,26 @@ const newOrders = [
     ],
   },
 ];
-export default { newOrders };
+
+const newUsers = [
+  {
+    fullname: 'Faith Essien',
+    email: 'faithgem@gmail.com',
+    password: 'gemsharefaith',
+    role: 0,
+  },
+  {
+    fullname: 'Anastascia Demben',
+    email: 'annademben@gmail.com',
+    password: 'greatAnn',
+    role: 1,
+  },
+  {
+    fullname: 'Richard Demben',
+    email: 'richard@gmail.com',
+    password: 'richard4509',
+    role: 2,
+  },
+];
+
+export default { newUsers, newOrders };

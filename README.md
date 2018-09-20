@@ -1,9 +1,9 @@
 # Fast-Food-Fast
 
 [![Build Status](https://travis-ci.org/davidshare/Fast-Food-Fast.svg?branch=develop)](https://travis-ci.org/davidshare/Fast-Food-Fast)
-[![Coverage Status](https://coveralls.io/repos/github/davidshare/Fast-Food-Fast/badge.svg?branch=develop)](https://coveralls.io/github/davidshare/Fast-Food-Fast?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/davidshare/Fast-Food-Fast/badge.svg?branch=ft-server)](https://coveralls.io/github/davidshare/Fast-Food-Fast?branch=ft-server)
 [![Maintainability](https://api.codeclimate.com/v1/badges/bb0fb6c0ea6be7e66123/maintainability)](https://codeclimate.com/github/davidshare/Fast-Food-Fast/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/bb0fb6c0ea6be7e66123/test_coverage)](https://codeclimate.com/github/davidshare/Fast-Food-Fast/test_coverage)
+
 
 Fast-Food-Fast is a food delivery service app for a restaurant. A user can create an account, signin to the account and make orders for food items.
 
@@ -11,7 +11,7 @@ Fast-Food-Fast is a food delivery service app for a restaurant. A user can creat
 https://davidshare.github.io/fast-food-fast/UI/index.html
 
 ## Server side hosted on Heroku
-NA
+https://fast-food-fast-essien.herokuapp.com/
 
 ## Table of Content
  * [Getting Started](#getting-started)
