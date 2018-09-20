@@ -5,8 +5,13 @@ import config from '../config/config';
 dotenv.config();
 const { secretKey } = config;
 
-const expirationTime = 60 * 60 * 24;
+const expirationTime = 86400;
 
+/**
+* function to generate token
+* @param {Object} userObject
+* @returns {Object} generateToken
+ */
 const generateToken = userObject => jwt.sign({ user: userObject.user }, secretKey,
   {
     expiresIn: expirationTime,
