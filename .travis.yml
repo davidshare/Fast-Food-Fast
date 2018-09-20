@@ -19,6 +19,6 @@ postgres:
   username: postgres
 
 before_script:
-  - psql -c 'create database if not exists travis;' -U postgres
+  - psql -c 'create database if not fastfood;' -U postgres
 
 after_success: npm run coverage
