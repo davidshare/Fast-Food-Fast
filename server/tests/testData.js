@@ -68,4 +68,25 @@ const newUsers = [
   },
 ];
 
-export default { newUsers, newOrders };
+const newMeals = [
+  {
+    userId: 1,
+    name: 'Rice and pepper soup',
+    description: 'Rice and pepper soup consists of boiled rice and stew prepared with much paper and fish or meat with some spice',
+    price: 3000,
+  },
+  {
+    userId: 1,
+    name: 'Ekpang',
+    description: 'Ekpang Nkwukwo is one of the Nigerian cocoyam recipes made with grated cocoyam, water yam, cocoyam leaves and periwinkle.',
+    price: 2500,
+  },
+  {
+    userId: 1,
+    name: 'Ekpang',
+    description: 'Ekpang Nkwukwo is one of the Nigerian cocoyam recipes made with grated cocoyam, water yam, cocoyam leaves and periwinkle.',
+    price: 2500,
+  },
+];
+
+export default { newUsers, newOrders, newMeals };
