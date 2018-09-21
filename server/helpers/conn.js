@@ -8,7 +8,7 @@ const connection = () => {
   if (process.env.NODE_ENV === 'test') {
     config = setup.test.dbTestUrl;
   } else {
-    config = setup.production.dbUrl;
+    config = setup.development.dbUrl;
   }
   const client = new Client(config);
   return client;
