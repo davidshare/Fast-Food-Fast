@@ -10,9 +10,7 @@ client.connect();
  *    @exports UsersController.js
  *    @requires /..helpers/conn
  *    @requires /..helpers/password
- *    @requires /..helpers/token
- *    
- * 
+ *    @requires /..helpers/token 
  */
 class UsersController {
   /**
