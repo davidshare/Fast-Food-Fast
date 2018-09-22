@@ -30,10 +30,9 @@ class ValidateHelper {
    * @param {Object} request
    * @return {boolean} true
    */
-  static checkValidId(request) {
-    const { orderId } = request.params;
+  static checkValidId(request, id) {
     const validId = /^[1-9]{1,}/;
-    if (!validId.test(orderId)) {
+    if (!validId.test(id)) {
       return false;
     }
     return true;

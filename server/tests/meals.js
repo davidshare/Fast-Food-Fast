@@ -216,4 +216,29 @@ describe('MEALS CONTROLLER', () => {
         });
     });
   });
+
+  describe('GET /menu/:mealId endpoint', () => {
+    it('it should get a meal by its id', (done) => {
+      chai.request(app)
+        .get(`${mealsURL}/1`)
+        .end((error, response) => {
+          expect(response).to.have.status(200);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('meal');
+          expect(response.body.message).to.equal('Successfully got meal');
+          done();
+        });
+    });
+
+    it('it should return an error for invalid mealId', (done) => {
+      chai.request(app)
+        .get(`${mealsURL}/e`)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.validMealId);
+          done();
+        });
+    });
+  });
 });

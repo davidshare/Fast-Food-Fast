@@ -108,6 +108,35 @@ class MealsController {
   }
 
   /**
+   *  Get meal by id
+   *  @param {Object} request
+   *  @param {Object} response
+   *  @return {Object} json
+   */
+  static getMealById(request, response) {
+    const { mealId } = request.params;
+    const query = `SELECT * from meals WHERE id=${mealId}`;
+    client.query(query)
+      .then((dbResult) => {
+        if (!dbResult.rows[0]) {
+          return response.status(404).json({
+            status: 404,
+            success: false,
+            error: validationErrors.noMeal,
+          });
+        }
+        return MealsController.oneMealSuccess(response, dbResult);
+      })
+      .catch((error) => {
+        response.status(500).send({
+          status: 500,
+          success: false,
+          error: error.stack,
+        });
+      });
+  }
+
+  /**
    *  Return menu success response
    *  @param {Object} response
    *  @param {Object} dbResult
@@ -120,6 +149,22 @@ class MealsController {
       message: 'Menu gotten successfuly',
       success: true,
       menu: dbResult.rows,
+    });
+  }
+
+  /**
+   *  Return one meal success response
+   *  @param {Object} response
+   *  @param {Object} dbResult
+   *  @return {Object} json
+   *
+   */
+  static oneMealSuccess(response, dbResult) {
+    return response.status(200).json({
+      status: 200,
+      success: true,
+      message: 'Successfully got meal',
+      meal: dbResult.rows[0],
     });
   }
 }

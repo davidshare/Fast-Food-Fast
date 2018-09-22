@@ -436,7 +436,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
-          expect(response.body.error).to.equal(validationErrors.validId);
+          expect(response.body.error).to.equal(validationErrors.validOrderId);
           done();
         });
     });
@@ -478,7 +478,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
-          expect(response.body.error.validId).to.equal(validationErrors.validId);
+          expect(response.body.error.validOrderId).to.equal(validationErrors.validOrderId);
           done();
         });
     });

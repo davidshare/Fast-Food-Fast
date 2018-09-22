@@ -37,6 +37,26 @@ class ValidateMeals {
     }
     ValidationHelper.checkValidationErrors(response, errors, next);
   }
+
+  /**
+   * validate ordersId
+   * @param {Object} request
+   * @param {Object} response
+   *
+   * @callback {Function} next
+   *
+   * @return {Object} json
+   */
+  static validateMealId(request, response, next) {
+    if (!ValidationHelper.checkValidId(request, request.params.mealId)) {
+      return response.status(406).json({
+        statusCode: 406,
+        success: false,
+        error: validationErrors.validMealId,
+      });
+    }
+    return next();
+  }
 }
 
 export default ValidateMeals;
