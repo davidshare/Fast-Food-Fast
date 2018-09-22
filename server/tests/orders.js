@@ -19,69 +19,19 @@ describe('HOME ROUTE', () => {
         done();
       });
   });
+
+  it('it should return an error for invalid url', (done) => {
+    chai.request(app)
+      .get('/api/v1/fakeorders')
+      .end((error, response) => {
+        expect(response).to.have.status(404);
+        expect(response.body).to.be.an('object');
+        done();
+      });
+  });
 });
 
 describe('ORDERS CONTROLLER ', () => {
-  describe('GET /orders endpoint', () => {
-    it('it should get all orders', (done) => {
-      chai.request(app)
-        .get(`${ordersURL}`)
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body).to.be.an('object');
-          expect(response.body).to.have.property('orders');
-          expect(response.body.message).to.equal('Successfully got all orders');
-          done();
-        });
-    });
-
-    it('it should return an error for invalid url', (done) => {
-      chai.request(app)
-        .get('/api/v1/fakeorders')
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body).to.be.an('object');
-          done();
-        });
-    });
-  });
-
-  describe('GET /orders/:orderId endpoint', () => {
-    it('it should get an order by its id', (done) => {
-      chai.request(app)
-        .get(`${ordersURL}/1`)
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body).to.be.an('object');
-          expect(response.body).to.have.property('order');
-          expect(response.body.message).to.equal('Successfully got order');
-          done();
-        });
-    });
-
-    it('it should return an error for invalid orderId', (done) => {
-      chai.request(app)
-        .get(`${ordersURL}/e`)
-        .end((error, response) => {
-          expect(response).to.have.status(406);
-          expect(response.body).to.be.an('object');
-          expect(response.body.error).to.equal(validationErrors.validId);
-          done();
-        });
-    });
-
-    it('it should return an error for order an order not found', (done) => {
-      chai.request(app)
-        .get(`${ordersURL}/10`)
-        .end((error, response) => {
-          expect(response).to.have.status(404);
-          expect(response.body).to.be.an('object');
-          expect(response.body.error).to.equal(validationErrors.noOrder);
-          done();
-        });
-    });
-  });
-
   describe('POST /orders endpoint', () => {
     it('it should place a valid order', (done) => {
       chai.request(app)
@@ -453,6 +403,56 @@ describe('ORDERS CONTROLLER ', () => {
     });
   });
 
+  describe('GET /orders endpoint', () => {
+    it('it should get all orders', (done) => {
+      chai.request(app)
+        .get(`${ordersURL}`)
+        .end((error, response) => {
+          expect(response).to.have.status(200);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('orders');
+          expect(response.body.message).to.equal('Successfully got all orders');
+          done();
+        });
+    });
+  });
+
+  describe('GET /orders/:orderId endpoint', () => {
+    it('it should get an order by its id', (done) => {
+      chai.request(app)
+        .get(`${ordersURL}/1`)
+        .end((error, response) => {
+          expect(response).to.have.status(200);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('order');
+          expect(response.body.message).to.equal('Successfully got order');
+          done();
+        });
+    });
+
+    it('it should return an error for invalid orderId', (done) => {
+      chai.request(app)
+        .get(`${ordersURL}/e`)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.validId);
+          done();
+        });
+    });
+
+    it('it should return an error for order an order not found', (done) => {
+      chai.request(app)
+        .get(`${ordersURL}/10`)
+        .end((error, response) => {
+          expect(response).to.have.status(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.noOrder);
+          done();
+        });
+    });
+  });
+
   describe('PUT /orders/:orderId endpoint', () => {
     it('it should update the status of an order', (done) => {
       chai.request(app)
@@ -463,7 +463,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(202);
           expect(response.body).to.be.an('object');
-          expect(response.body).to.have.property('currentOrder');
+          expect(response.body).to.have.property('order');
           expect(response.body.message).to.equal('Order updated successfully');
           done();
         });

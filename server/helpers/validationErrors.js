@@ -21,6 +21,15 @@ const validationErrors = {
   validRole: 'Invalid user role. The role can only be the values: 0, 1 or 2 ',
   emailExists: 'Sorry, this email address has already been registered',
   noOrder: 'Sorry! Order not found.',
+  mealRequired: 'Sorry the name of the meal is required',
+  validMeal: 'Please enter a valid meal name. It can only contain letters and spaces',
+  mealLength: 'Sorry the meal name must not be less than 5 characters or more than 50',
+  descRequired: 'Sorry the meal description is required',
+  validDesc: 'Sorry, your description must be a string of alphanumeric, and special characters and must start with a letter',
+  descLength: 'Sorry your description must not be less than 30 or more than 255 characters',
+  priceRequired: 'Sorry the price is required',
+  validPrice: 'Sorry, the price can only be positive numbers greater than 0',
+  mealExists: 'Sorry either the name or description of this meal exists. They cannot be duplicates',
 };
 
 export default validationErrors;

@@ -7,7 +7,7 @@ export default {
   test: {
     dbTestUrl: process.env.DB_TEST_URL,
   },
-  production: {
+  development: {
     dbUrl: process.env.DB_URL,
   },
 };

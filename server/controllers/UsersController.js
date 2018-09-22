@@ -8,7 +8,9 @@ client.connect();
  *    @fileOverview Class to manage users
  *    @class Users Controller
  *    @exports UsersController.js
- *    @requires ../models/index.js
+ *    @requires /..helpers/conn
+ *    @requires /..helpers/password
+ *    @requires /..helpers/token 
  */
 class UsersController {
   /**
@@ -32,7 +34,7 @@ class UsersController {
     password = passwordHelper.passwordHash(password.trim());
 
     const query = {
-      text: 'INSERT INTO users(fullname, email, role, password) VALUES ($1, $2, $3, $4)',
+      text: 'INSERT INTO users(fullname, email, role, password) VALUES ($1, $2, $3, $4) RETURNING *',
       values: [fullname, email, role, password],
     };
     UsersController.runSignupQuery(request, response, query);
@@ -56,12 +58,12 @@ class UsersController {
             error: 'Could not create account!',
           });
         }
-        const currentToken = generateToken(request.body);
+        const currentToken = generateToken(dbResult.rows[0]);
         return UsersController.signupSuccess(response, dbResult, currentToken);
       })
       .catch((error) => {
-        response.status(406).send({
-          status: 406,
+        response.status(500).send({
+          status: 500,
           success: false,
           error: error.stack,
         });
@@ -81,7 +83,6 @@ class UsersController {
       status: 201,
       message: 'Account created successfully',
       success: true,
-      newUser: dbResult.rows[0],
       token: currentToken,
     });
   }

@@ -12,7 +12,7 @@ const expirationTime = 86400;
 * @param {Object} userObject
 * @returns {Object} generateToken
  */
-const generateToken = userObject => jwt.sign({ user: userObject.user }, secretKey,
+const generateToken = userObject => jwt.sign({ user: userObject }, secretKey,
   {
     expiresIn: expirationTime,
   });

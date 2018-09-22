@@ -10,7 +10,7 @@ import ValidationHelper from '../helpers/validationHelper';
 
 class ValidateOrder {
   /**
-   * validate orders input validity
+   * validate orders input
    * @param {Object} request
    * @param {Object} response
    * @callback {Function} next
