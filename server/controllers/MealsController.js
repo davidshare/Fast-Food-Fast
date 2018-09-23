@@ -42,19 +42,10 @@ class MealsController {
    */
   static runAddMealQuery(response, query) {
     client.query(query)
-      .then((dbResult) => {
-        if (dbResult.rowCount === 0) {
-          return response.status(406).json({
-            statusCode: 406,
-            success: false,
-            error: 'Could not add the meal!',
-          });
-        }
-        return MealsController.mealsSuccess(response, dbResult);
-      })
+      .then(dbResult => MealsController.mealsSuccess(response, dbResult))
       .catch((error) => {
         response.status(406).send({
-          status: 400,
+          status: 406,
           success: false,
           error: validationErrors.mealExists,
           dbError: error.stack,
@@ -98,13 +89,7 @@ class MealsController {
         }
         return MealsController.menuSuccess(response, dbResult);
       })
-      .catch((error) => {
-        response.status(500).send({
-          statusCode: 500,
-          success: false,
-          error: error.stack,
-        });
-      });
+      .catch();
   }
 
   /**
@@ -127,13 +112,7 @@ class MealsController {
         }
         return MealsController.oneMealSuccess(response, dbResult);
       })
-      .catch((error) => {
-        response.status(500).send({
-          status: 500,
-          success: false,
-          error: error.stack,
-        });
-      });
+      .catch();
   }
 
   /**

@@ -65,9 +65,7 @@ class ValidateUser {
             });
         }
         return next();
-      }).catch((error) => {
-        response.status(500).send(error.message);
-      });
+      }).catch();
   }
 }
 

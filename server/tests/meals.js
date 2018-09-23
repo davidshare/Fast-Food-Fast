@@ -9,6 +9,19 @@ chai.use(chaiHttp);
 const mealsURL = '/api/v1/menu';
 
 describe('MEALS CONTROLLER', () => {
+  describe('GET /menu endpoint', () => {
+    it('It should return an error if no meal is found', (done) => {
+      chai.request(app)
+        .get(`${mealsURL}`)
+        .end((error, response) => {
+          expect(response).to.have.status(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal('Could not get menu');
+          done();
+        });
+    });
+  });
+
   describe('POST /menu endpoint', () => {
     it('It should add a meal', (done) => {
       chai.request(app)
@@ -237,6 +250,17 @@ describe('MEALS CONTROLLER', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body.error).to.equal(validationErrors.validMealId);
+          done();
+        });
+    });
+
+    it('it should return an error if mealId does not exist', (done) => {
+      chai.request(app)
+        .get(`${mealsURL}/10`)
+        .end((error, response) => {
+          expect(response).to.have.status(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.noMeal);
           done();
         });
     });

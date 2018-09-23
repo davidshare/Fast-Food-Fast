@@ -51,40 +51,15 @@ class UsersController {
   static runSignupQuery(request, response, query) {
     client.query(query)
       .then((dbResult) => {
-        if (dbResult.rowCount === 0) {
-          return response.status(406).json({
-            statusCode: 406,
-            success: false,
-            error: 'Could not create account!',
-          });
-        }
         const currentToken = generateToken(dbResult.rows[0]);
-        return UsersController.signupSuccess(response, dbResult, currentToken);
-      })
-      .catch((error) => {
-        response.status(500).send({
-          status: 500,
-          success: false,
-          error: error.stack,
+        return response.status(201).json({
+          status: 201,
+          message: 'Account created successfully',
+          success: true,
+          token: currentToken,
         });
-      });
-  }
-
-  /**
-   *  Return user signup response
-   *  @param {Object} response
-   *  @param {Object} dbResult
-   *  @param {String} currentToken
-   *  @return {Object} json
-   *
-   */
-  static signupSuccess(response, dbResult, currentToken) {
-    return response.status(201).json({
-      status: 201,
-      message: 'Account created successfully',
-      success: true,
-      token: currentToken,
-    });
+      })
+      .catch();
   }
 }
 
