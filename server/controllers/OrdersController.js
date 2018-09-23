@@ -31,13 +31,7 @@ class OrdersController {
         }
         return OrdersController.allOrdersSuccess(response, dbResult);
       })
-      .catch((error) => {
-        response.status(500).send({
-          status: 500,
-          success: false,
-          error: error.stack,
-        });
-      });
+      .catch();
   }
 
   /**
@@ -76,13 +70,7 @@ class OrdersController {
         }
         return OrdersController.oneOrdersSuccess(response, dbResult);
       })
-      .catch((error) => {
-        response.status(500).send({
-          status: 500,
-          success: false,
-          error: error.stack,
-        });
-      });
+      .catch();
   }
 
   /**
@@ -148,39 +136,13 @@ class OrdersController {
    */
   static runPlaceOrderQuery(response, query) {
     client.query(query)
-      .then((dbResult) => {
-        if (dbResult.rowCount === 0) {
-          return response.status(406).json({
-            statusCode: 406,
-            success: false,
-            error: 'Could not place the order!',
-          });
-        }
-        return OrdersController.placeOrderSuccess(response, dbResult);
-      })
-      .catch((error) => {
-        response.status(500).send({
-          status: 500,
-          success: false,
-          error: error.stack,
-        });
-      });
-  }
-
-  /**
-   *  Return meal success response
-   *  @param {Object} response
-   *  @param {Object} dbResult
-   *  @return {Object} json
-   *
-   */
-  static placeOrderSuccess(response, dbResult) {
-    return response.status(201).json({
-      status: 201,
-      message: 'Order placed successfully',
-      success: true,
-      order: dbResult.rows[0],
-    });
+      .then(dbResult => response.status(201).json({
+        status: 201,
+        message: 'Order placed successfully',
+        success: true,
+        order: dbResult.rows[0],
+      }))
+      .catch();
   }
 
 
@@ -209,13 +171,7 @@ class OrdersController {
         }
         return OrdersController.updateOrderSuccess(response, dbResult);
       })
-      .catch((error) => {
-        response.status(500).send({
-          status: 500,
-          success: false,
-          error: error.stack,
-        });
-      });
+      .catch();
   }
 
   /**

@@ -13,11 +13,11 @@ const validationErrors = {
   validStatus: 'Please enter a valid status. The status can only be Canceled or Declined or Accepted or Completed',
   itemsEmpty: 'Sorry! your order is invalid. You did not pick any items?',
   validItems: 'Sorry the items are invalid. Valid items must be objects.',
-  validId: 'Please the orderId must be a number greater than zero',
+  validOrderId: 'Please the orderId must be a number greater than zero',
   emptyStatus: 'Sorry the status is required',
   passwordEmpty: 'Your password is required',
   validPassword: 'Sorry, your password cannot contain spaces.',
-  passwordLength: 'Sorry your password must not be less than 8 characters',
+  passwordLength: 'Sorry noOrderyour password must not be less than 8 characters',
   validRole: 'Invalid user role. The role can only be the values: 0, 1 or 2 ',
   emailExists: 'Sorry, this email address has already been registered',
   noOrder: 'Sorry! Order not found.',
@@ -30,6 +30,8 @@ const validationErrors = {
   priceRequired: 'Sorry the price is required',
   validPrice: 'Sorry, the price can only be positive numbers greater than 0',
   mealExists: 'Sorry either the name or description of this meal exists. They cannot be duplicates',
+  validMealId: 'Please the mealId must be a number greater than zero',
+  noMeal: 'Sorry! Meal not found.',
 };
 
 export default validationErrors;

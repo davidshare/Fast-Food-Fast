@@ -11,8 +11,9 @@
     "test": "set NODE_ENV=test&& nyc --reporter=html --reporter=text mocha --compilers js:babel-register ./server/tests/ --timeout 10000 --exit",
     "coveralls": "nyc npm test&& nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "migrate": "set NODE_ENV=development&& babel-node server/models/index.js",
-    "db-migrate": "set NODE_ENV=test&&babel-node server/models/index.js"
+    "migrate": "set NODE_ENV=production&& babel-node server/models/index.js",
+    "db-migrate": "set NODE_ENV=test&&babel-node server/models/index.js",
+    "heroku-postbuild": "npm run migrate --env production"
   },
   "repository": {
     "type": "git",

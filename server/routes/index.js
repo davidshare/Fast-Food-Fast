@@ -26,6 +26,7 @@ const routes = (app) => {
 
   app.get('/api/v1/orders', OrdersController.getAllOrders);
   app.get('/api/v1/orders/:orderId', ValidateOrder.validateOrderId, OrdersController.getOrderById);
+  app.get('/api/v1/menu/:mealId', ValidateMeals.validateMealId, MealsController.getMealById);
   app.get('/api/v1/menu', MealsController.getMenu);
 
   app.post('/api/v1/auth/signup', ValidateUser.validateSignup, ValidateUser.checkDuplicateEmail, UsersController.signup);

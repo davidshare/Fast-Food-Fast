@@ -85,7 +85,9 @@ class ValidateOrder {
     const errors = {};
     const validOrderStatus = ['Canceled', 'Declined', 'Accepted', 'Completed'];
     const { orderStatus } = request.body;
-    if (!ValidationHelper.checkValidId(request)) errors.validId = validationErrors.validId;
+    if (!ValidationHelper.checkValidId(request, request.params.orderId)) {
+      errors.validOrderId = validationErrors.validOrderId;
+    }
     if (!validOrderStatus.includes(orderStatus)) {
       errors.validStatus = validationErrors.validStatus;
     }
@@ -103,11 +105,11 @@ class ValidateOrder {
    * @return {Object} json
    */
   static validateOrderId(request, response, next) {
-    if (!ValidationHelper.checkValidId(request)) {
+    if (!ValidationHelper.checkValidId(request, request.params.orderId)) {
       return response.status(406).json({
         statusCode: 406,
         success: false,
-        error: validationErrors.validId,
+        error: validationErrors.validOrderId,
       });
     }
     return next();

@@ -30,7 +30,18 @@ describe('HOME ROUTE', () => {
       });
   });
 });
-
+describe('GET /menu endpoint', () => {
+  it('It should return an error if no order is found', (done) => {
+    chai.request(app)
+      .get(`${ordersURL}`)
+      .end((error, response) => {
+        expect(response).to.have.status(404);
+        expect(response.body).to.be.an('object');
+        expect(response.body.error).to.equal(validationErrors.noOrder);
+        done();
+      });
+  });
+});
 describe('ORDERS CONTROLLER ', () => {
   describe('POST /orders endpoint', () => {
     it('it should place a valid order', (done) => {
@@ -436,7 +447,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
-          expect(response.body.error).to.equal(validationErrors.validId);
+          expect(response.body.error).to.equal(validationErrors.validOrderId);
           done();
         });
     });
@@ -478,7 +489,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
-          expect(response.body.error.validId).to.equal(validationErrors.validId);
+          expect(response.body.error.validOrderId).to.equal(validationErrors.validOrderId);
           done();
         });
     });
