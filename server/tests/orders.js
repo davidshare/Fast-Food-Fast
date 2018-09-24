@@ -508,6 +508,45 @@ describe('ORDERS CONTROLLER ', () => {
     });
   });
 
+  describe('GET /api/v1/users/<userId>/orders endpoint', () => {
+    it('it should get all others for a particular user', (done) => {
+      chai.request(app)
+        .get('/api/v1/users/1/orders')
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(200);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('orders');
+          expect(response.body.message).to.equal('Successfully got orders');
+          done();
+        });
+    });
+
+    it('it should return an error for invalid id', (done) => {
+      chai.request(app)
+        .get('/api/v1/users/e/orders')
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.validUserId);
+          done();
+        });
+    });
+
+    it('it should return an error for order an order not found', (done) => {
+      chai.request(app)
+        .get('/api/v1/users/10/orders')
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.noOrder);
+          done();
+        });
+    });
+  });
+
   describe('PUT /orders/:orderId endpoint', () => {
     it('it should update the status of an order', (done) => {
       chai.request(app)

@@ -83,6 +83,9 @@ run test using 'npm test'.
 <tr><td>GET</td> <td>/api/v1/orders</td>  <td>Gets all orders</td></tr>
 
 <tr><td>GET</td> <td>/api/v1/orders/:orderId</td>  <td>Gets an order by orderId</td></tr>
+
+<tr><td>GET</td> <td>/api/v1/users/<userId>/orders</td>  <td>Gets a user's order history</td></tr>
+ 
 </table>
 
 ### Coding Style
