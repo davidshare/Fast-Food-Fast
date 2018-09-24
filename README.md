@@ -38,7 +38,6 @@ https://fast-food-fast-essien.herokuapp.com/
 
 ## Getting Started
 
-
 ### Prerequisites for installation
 1. Node js
 2. Express
