@@ -7,6 +7,10 @@ import validationErrors from '../helpers/validationErrors';
 const { expect } = chai;
 chai.use(chaiHttp);
 const mealsURL = '/api/v1/menu';
+const signinURL = '/api/v1/auth/signin';
+const signupURL = '/api/v1/auth/signup';
+
+let currentToken;
 
 describe('MEALS CONTROLLER', () => {
   describe('GET /menu endpoint', () => {
@@ -23,15 +27,39 @@ describe('MEALS CONTROLLER', () => {
   });
 
   describe('POST /menu endpoint', () => {
+    before((done) => {
+      chai.request(app)
+        .post(`${signinURL}`)
+        .send(testData.newUsers[0])
+        .end((error, response) => {
+          currentToken = response.body.token;
+          done();
+        });
+    });
+
     it('It should add a meal', (done) => {
       chai.request(app)
         .post(`${mealsURL}`)
         .send(testData.newMeals[0])
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(201);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('newMeal');
           expect(response.body.message).to.equal('Meal added successfully');
+          done();
+        });
+    });
+
+    it('It should not add a meal if user is unauthenticated', (done) => {
+      chai.request(app)
+        .post(`${mealsURL}`)
+        .send(testData.newMeals[0])
+        .end((error, response) => {
+          expect(response).to.have.status(401);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error).to.equal(validationErrors.notAuthenticated);
           done();
         });
     });
@@ -45,6 +73,7 @@ describe('MEALS CONTROLLER', () => {
           description: testData.newMeals[0].description,
           price: testData.newMeals[0].price,
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -63,6 +92,7 @@ describe('MEALS CONTROLLER', () => {
           description: testData.newMeals[0].description,
           price: testData.newMeals[0].price,
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -81,6 +111,7 @@ describe('MEALS CONTROLLER', () => {
           description: testData.newMeals[0].description,
           price: testData.newMeals[0].price,
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -99,6 +130,7 @@ describe('MEALS CONTROLLER', () => {
           description: '',
           price: testData.newMeals[0].price,
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -117,6 +149,7 @@ describe('MEALS CONTROLLER', () => {
           description: '##$$3443',
           price: testData.newMeals[0].price,
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -135,6 +168,7 @@ describe('MEALS CONTROLLER', () => {
           description: 'description',
           price: testData.newMeals[0].price,
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -153,6 +187,7 @@ describe('MEALS CONTROLLER', () => {
           description: testData.newMeals[0].description,
           price: '',
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -171,6 +206,7 @@ describe('MEALS CONTROLLER', () => {
           description: testData.newMeals[0].description,
           price: 'e',
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -189,6 +225,7 @@ describe('MEALS CONTROLLER', () => {
           description: testData.newMeals[1].description,
           price: 5000,
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -207,6 +244,7 @@ describe('MEALS CONTROLLER', () => {
           description: testData.newMeals[0].description,
           price: testData.newMeals[1].price,
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -234,6 +272,7 @@ describe('MEALS CONTROLLER', () => {
     it('it should get a meal by its id', (done) => {
       chai.request(app)
         .get(`${mealsURL}/1`)
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(200);
           expect(response.body).to.be.an('object');
@@ -246,6 +285,7 @@ describe('MEALS CONTROLLER', () => {
     it('it should return an error for invalid mealId', (done) => {
       chai.request(app)
         .get(`${mealsURL}/e`)
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -257,10 +297,37 @@ describe('MEALS CONTROLLER', () => {
     it('it should return an error if mealId does not exist', (done) => {
       chai.request(app)
         .get(`${mealsURL}/10`)
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body).to.be.an('object');
           expect(response.body.error).to.equal(validationErrors.noMeal);
+          done();
+        });
+    });
+  });
+
+  describe('', () => {
+    before((done) => {
+      chai.request(app)
+        .post(`${signupURL}`)
+        .send(testData.newUsers[2])
+        .end((error, response) => {
+          currentToken = response.body.token;
+          done();
+        });
+    });
+
+    it('It should not add a meal if user is not an admin', (done) => {
+      chai.request(app)
+        .post(`${mealsURL}`)
+        .send(testData.newMeals[0])
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(403);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error).to.equal(validationErrors.notAllowed);
           done();
         });
     });

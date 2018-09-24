@@ -67,9 +67,19 @@ run test using 'npm test'.
 <table>
 <tr><th>HTTP VERB</th><th>ENDPOINT</th><th>FUNCTIONALITY</th></tr>
 
+<tr><td>POST</td> <td>/api/v1/auth/signup</td>  <td>User signup</td></tr>
+
+<tr><td>POST</td> <td>/api/v1/auth/login</td>  <td>User signin</td></tr>
+
+<tr><td>POST</td> <td>/api/v1/menu</td>  <td>Add a meal</td></tr>
+
 <tr><td>POST</td> <td>/api/v1/orders</td>  <td>Posts a order</td></tr>
 
 <tr><td>PUT</td> <td>/api/v1/orders/:orderId</td>  <td>Updates the status of an order</td></tr>
+
+<tr><td>GET</td> <td>/api/v1/menu</td>  <td>Get menu</td></tr>
+
+<tr><td>GET</td> <td>/api/v1/menu/:mealId</td>  <td>Get a meal by mealId</td></tr>
 
 <tr><td>GET</td> <td>/api/v1/orders</td>  <td>Gets all orders</td></tr>
 
