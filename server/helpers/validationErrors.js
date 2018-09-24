@@ -32,6 +32,11 @@ const validationErrors = {
   mealExists: 'Sorry either the name or description of this meal exists. They cannot be duplicates',
   validMealId: 'Please the mealId must be a number greater than zero',
   noMeal: 'Sorry! Meal not found.',
+  noEmail: 'Sorry this email address has not been registed. Click the link below to register',
+  loginFailure: 'Could not login. The email and password do not match',
+  loginRequired: 'Sorry! both your username and password are required',
+  notAllowed: 'Sorry! You are not supposed to be here',
+  notAuthenticated: 'Authentication failed',
 };
 
 export default validationErrors;

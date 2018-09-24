@@ -7,6 +7,9 @@ import validationErrors from '../helpers/validationErrors';
 const { expect } = chai;
 chai.use(chaiHttp);
 const ordersURL = '/api/v1/orders';
+const signinURL = '/api/v1/auth/signin';
+
+let currentToken;
 
 describe('HOME ROUTE', () => {
   it('it should take users to the landing page', (done) => {
@@ -43,11 +46,22 @@ describe('GET /menu endpoint', () => {
   });
 });
 describe('ORDERS CONTROLLER ', () => {
+  before((done) => {
+    chai.request(app)
+      .post(`${signinURL}`)
+      .send(testData.newUsers[0])
+      .end((error, response) => {
+        currentToken = response.body.token;
+        done();
+      });
+  });
+
   describe('POST /orders endpoint', () => {
     it('it should place a valid order', (done) => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send(testData.newOrders[1])
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(201);
           expect(response.body).to.be.an('object');
@@ -79,6 +93,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -106,6 +121,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -133,6 +149,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -164,6 +181,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -191,6 +209,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -218,6 +237,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -249,6 +269,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -276,6 +297,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -307,6 +329,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -334,6 +357,7 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -358,6 +382,7 @@ describe('ORDERS CONTROLLER ', () => {
           recipientAddress: 'Andela Epic Tower',
           items: [],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -377,6 +402,7 @@ describe('ORDERS CONTROLLER ', () => {
           recipientAddress: 'Andela Epic Tower',
           items: ['david'],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -404,11 +430,26 @@ describe('ORDERS CONTROLLER ', () => {
             },
           ],
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
           expect(response.body.error.itemErrors[0]).to.equal(validationErrors.quantityError);
+          done();
+        });
+    });
+
+    it('It should not place an order if the user is not authenticated', (done) => {
+      chai.request(app)
+        .post(`${ordersURL}`)
+        .send(testData.newOrders[1])
+        .set('token', 'currentToken')
+        .end((error, response) => {
+          expect(response).to.have.status(401);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error).to.equal(validationErrors.notAuthenticated);
           done();
         });
     });
@@ -432,6 +473,7 @@ describe('ORDERS CONTROLLER ', () => {
     it('it should get an order by its id', (done) => {
       chai.request(app)
         .get(`${ordersURL}/1`)
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(200);
           expect(response.body).to.be.an('object');
@@ -444,6 +486,7 @@ describe('ORDERS CONTROLLER ', () => {
     it('it should return an error for invalid orderId', (done) => {
       chai.request(app)
         .get(`${ordersURL}/e`)
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -455,6 +498,7 @@ describe('ORDERS CONTROLLER ', () => {
     it('it should return an error for order an order not found', (done) => {
       chai.request(app)
         .get(`${ordersURL}/10`)
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body).to.be.an('object');
@@ -471,6 +515,7 @@ describe('ORDERS CONTROLLER ', () => {
         .send({
           orderStatus: 'Canceled',
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(202);
           expect(response.body).to.be.an('object');
@@ -486,6 +531,7 @@ describe('ORDERS CONTROLLER ', () => {
         .send({
           orderStatus: 'Canceled',
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
@@ -500,6 +546,7 @@ describe('ORDERS CONTROLLER ', () => {
         .send({
           orderStatus: 'Canceled',
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body).to.be.an('object');
@@ -514,6 +561,7 @@ describe('ORDERS CONTROLLER ', () => {
         .send({
           orderStatus: 'any status',
         })
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
