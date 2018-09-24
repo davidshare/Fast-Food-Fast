@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Cart: Fast-Food-Fast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+</head>
+
+<body>
+  <header class="short-header text-white">
+    <div id="navbar" class="navbar container clearfix">
+      <div class="brand left-float">
+        <h2>Fast-Food-Fast</h2>
+      </div>
+      <div class="menu-icon right-float display-hide" onclick="toggleNavDisplay(this)">
+        <span class="bar1"></span>
+        <span class="bar2"></span>
+        <span class="bar3"></span>
+      </div>
+      <div class="nav">
+        <ul class="main-nav right-float">
+          <li class="nav-item welcome">Welcome David!</li>
+          <li class="nav-item"><a href="index.html">Home</a></li>
+          <li class="nav-item"><a href="meals.html">Meals</a></li>
+          <li class="nav-item"><a href="order_history.html">Order History</a></li>
+          <li class="nav-item"><a href="signup.html">Signup</a></li>
+          <li class="nav-item"><a href="signin.html">Signin</a></li>
+          <li class="nav-item"><a href="logout.html">Signout</a></li>
+        </ul>
+      </div>
+    </div>
+    <h1 class="section-title margin-top-4 text-center">Cart</h1>
+    </div>
+  </header>
+  <section class="cart-list container clearfix table-responsive">
+    <table class="cart-table center-float margin-bottom-4 margin-top-4">
+      <tr>
+        <th>S/N</th>
+        <th class="item">Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total price</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td class="item">Pampers</td>
+        <td>15,000</td>
+        <td><input type="number" class="cart-quantity" value=1></td>
+        <td>15,000</td>
+        <td><button class="btn btn-danger">X</button></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="item">Pampers</td>
+        <td>15,000</td>
+        <td><input type="number" class="cart-quantity" value=1></td>
+        <td>15,000</td>
+        <td><button class="btn btn-danger">X</button></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="item">Pampers</td>
+        <td>15,000</td>
+        <td><input type="number" class="cart-quantity" value=1></td>
+        <td>15,000</td>
+        <td><button class="btn btn-danger">X</button></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="item">Pampers</td>
+        <td>15,000</td>
+        <td><input type="number" class="cart-quantity" value=1></td>
+        <td>15,000</td>
+        <td><button class="btn btn-danger">X</button></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="item">Pampers</td>
+        <td>15,000</td>
+        <td><input type="number" class="cart-quantity" value=1></td>
+        <td>15,000</td>
+        <td><button class="btn btn-danger">X</button></td>
+      </tr>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td class="item"></td>
+        <td></td>
+        <td><strong>5</strong></td>
+        <td><strong>75,000</strong></td>
+        <td><button class="btn btn-dark">Clear cart</button></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="item"></td>
+        <td></td>
+        <td></td>
+        <td><button class="btn btn-primary">Continue shopping</button></td>
+        <td><button class="btn btn-success"><a class="order-btn" href="checkout.html">Checkout</a></button></td>
+      </tr>
+    </table>
+
+  </section>
+  <footer class="bg-dark text-white text-center">
+    <p>Developed by Essien, David Itam - for Andela 21</p>
+    Copyright &copy 2018
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

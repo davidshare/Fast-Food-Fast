@@ -1,4 +1,4 @@
 node_modules
+.nyc_output/
 .env
-.nyc_output
-/coverage/
+coverage/

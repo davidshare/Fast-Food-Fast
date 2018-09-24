@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Signup: Fast-Food-Fast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/forms.css" />
+</head>
+<body>
+  <section class="page-container">
+    <div class="page-content left-float">
+        <div id="navbar" class="navbar container">
+            <div class="brand">
+              <h2>Fast-Food-Fast</h2>
+            </div>
+            <div class="menu-icon right-float display-hide" onclick="toggleNavDisplay(this)">
+              <span class="bar1"></span>
+              <span class="bar2"></span>
+              <span class="bar3"></span>
+            </div>
+            <div class="nav">
+              <ul class="main-nav">
+                <li class="nav-item active"><a href="index.html">Home</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="text-white container signup-call">
+            <h2>
+              You can't go hungry <br/>when we've got you covered
+            </h2>
+            <p>Hurry up and signup! Your delicious food is waiting.</p>
+          </div>
+    </div>
+    <div class="form-container right-float bg-white">
+      <h2>Signup</h2>
+      <p>Create an account now.</p>
+      <form method="post" name="signup-form" class="signup-form">
+        <p class="form-control">
+          <label for="fullname">Fulllname</label>
+          <input type="text" name="fullname" id="fullname" placeholder="Enter your fullname">
+        </p>
+        <p class="form-control">
+          <label for="fullname">Email</label>
+          <input type="email" name="email" id="email" placeholder="Enter your email address">
+        </p>
+        <p class="form-control">
+          <label for="fullname">Password</label>
+          <input type="password" name="password" id="password" placeholder="Enter your password">
+        </p>
+        <p class="form-control">
+          <button class="btn btn-danger" id="signup-btn">Signup</button>
+        </p>
+      </form>
+      <p>Already have an account? <a href="signin.html">Signin</a></p>
+    </div>
+  </section>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,740 @@
+/* ----------------------------------------------- */
+/* BASIC STYLES */
+/* ----------------------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #F3F3F1;
+  color:#343A40;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+.clearfix {zoom: 1;}
+.clearfix:after {
+  content: '.';
+  clear: both;
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+/* ----------------------------------------------- 
+ GENERAL CLASSES 
+/* ----------------------------------------------- */
+.container{
+  width:85%;
+  margin:0 auto;
+}
+
+.container-max{
+  width: 100%;
+  margin:0;
+}
+
+h1,
+h2 {
+  text-transform: uppercase;
+}
+
+section, footer {
+  padding: 60px 0;
+}
+
+/* width */
+.w3{
+  width:30%;
+  margin:1.6%;
+}
+
+.w4{
+  width:40%;
+}
+
+.w6{
+  width:60%;
+}
+
+/* Display*/
+.display-hide{
+	display:none;
+}
+
+.display-show{
+	display:block !important;
+}
+
+/* ----------------------------------------------- 
+ ALIGNMENT AND FLOATS 
+/* ----------------------------------------------- */
+.right-float{
+  float: right;
+}
+
+.left-float{
+  float: left;
+}
+
+.center-float{
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-justify{
+  text-align: justify;
+}
+
+/* ----------------------------------------------- 
+ COLORS 
+/* ----------------------------------------------- */
+
+.text-white{
+  color: #fff;
+}
+
+.bg-white{
+  background-color: #fff;
+}
+
+.bg-dark{
+  background: #1d1d20;
+}
+
+/* ----------------------------------------------- 
+ MARGIN AND PADDING 
+/* ----------------------------------------------- */
+
+.margin-top-4{
+  margin-top: 40px;
+}
+
+.margin-bottom-4{
+  margin-bottom: 40px;
+}
+
+.margin-top-bottom-1{
+  margin: 10px 0;
+}
+
+/* ----------------------------------------------- 
+ CARDS 
+/* ----------------------------------------------- */
+.card{
+  background: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-img img{
+  width: 100%;
+  height: 200px;
+}
+
+.card-body{
+  padding:30px;
+}
+
+.card-body{
+  font-size: 0.9em;
+}
+
+.card .btn{
+  padding: 10px 15px;
+}
+
+.card input, input.cart-quantity{
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  width: 100px;
+}
+
+.card .delivery-form input{
+  width: 250px !important;
+  margin: 5px 3px;
+}
+
+.card .delivery-form input[type=number]{
+  width: 150px !important;
+}
+
+.card .delivery-form textarea{
+  font-size: 1em;
+  border: 1px solid #ddd;
+  width: 100% !important;
+}
+
+.checkout-section .card{
+  padding: 30px 40px;
+  min-height: 60vh;
+}
+
+
+/* ----------------------------------------------- 
+ BUTTONS 
+/* ----------------------------------------------- */
+.btn{
+  padding:5px 15px;
+  margin-top:15px;
+  font-size: 1em;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn-danger{
+  background: rgb(158, 26, 6);
+  color: #fff;
+}
+
+.btn-success{
+  background: rgb(2, 92, 17);
+  color: #fff;
+}
+
+.btn-dark{
+  background: rgb(52, 54, 52);
+  color: #fff;
+}
+
+.btn-primary{
+background: #007acc;
+color: #fff;
+}
+
+.order-btn, .cart-btn{
+  text-decoration: none;
+  color: #fff;
+  padding:5px;
+}
+
+
+/* ----------------------------------------------- */
+/* HEADER */
+/* ----------------------------------------------- */
+header{
+  width:100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/images/food photo.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.main-header{
+  min-height: 100vh;
+}
+
+.short-header{
+  height: 40vh;
+}
+
+.welcome{
+  margin-right: 30px;
+}
+
+/* Hero */
+.hero{
+  margin-top: 25vh;
+}
+
+.hero-title{
+  margin:10px 0;
+}
+
+.hero-search{
+  font-size:1.1em;
+  width: 60%;
+  margin-top:30px;
+  padding: 15px 15px 15px 50px;
+  border: 0;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  background: #fff url(../assets/images/searchicon.png) no-repeat;
+  background-position: 15px 15px; 
+}
+
+.hero-search-small{
+  padding: 10px 10px 10px 50px;
+  width: 40%;
+  font-size: 1em;
+  background-position: 15px 10px;
+}
+
+/* ----------------------------------------------- 
+ NAV 
+/* ----------------------------------------------- */
+.navbar{
+  padding:20px;
+}
+
+.nav-item{
+  display: inline;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.nav-item a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-item a:hover, .active{
+  color: #d6b640;
+  font-weight: 600;
+  border-bottom: 1px solid #d6b640;
+}
+
+.main-nav .welcome, .brand{
+  font-weight: 800;
+  color: #d6b640;
+}
+
+/*-------------------------------------------------
+    ABOUT SECTION
+  ---------------------------------------------------*/
+section.about{
+  padding:0;
+  overflow: hidden;
+}
+.about-image img{
+  width:100%;
+}
+
+.about-text{
+  padding:40px;
+}
+
+.about-text h1{
+  margin-top: 100px;
+}
+
+.about-text p{
+  margin:20px 0;
+}
+
+/*-------------------------------------------------
+					GALLERY
+--------------------------------------------------*/
+.gallery{
+  padding: 0;
+  margin: 0;
+}
+
+.gallery-block{
+  list-style: none;
+  width: 100%;
+}
+
+.gallery-block li{
+  display: block;
+  float: left;
+  width: 25%;
+}
+
+.gallery-block li figure{
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-block li figure img{
+  opacity: 0.8;
+  width:100%;
+  height: auto;
+}
+
+.gallery-block li figure img:hover{
+  transform: scale(1.15);
+  transition: transform 0.5s;
+  opacity: 1;
+}
+
+/*-------------------------------------------------
+					HOW TO SECTION
+--------------------------------------------------*/
+.howto{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('../assets/images/meal6.jpg');
+}
+
+.howto-list{
+  padding-left: 40px;
+}
+
+.howto-list li{
+  width: 40%;
+  float: left;
+  margin-left: 40px;
+  padding-left: 15px;
+}
+
+
+/*-------------------------------------------------
+					MOBILE MENU
+--------------------------------------------------*/
+
+.menu-icon{
+	width:40px;
+	overflow: hidden;
+	border-radius: 5px;
+	border:1px solid #d6b640;
+	margin: 20px;
+	cursor:pointer;
+	padding:5px;
+}
+
+.menu-icon span{
+	display: block;
+	width:90%;
+	height: 2px;
+	margin: 5px auto;
+	background:#d6b640;
+}
+
+.menu-icon:hover{
+	border: 1px solid #fff;
+}
+
+.menu-icon:hover span{
+	background:#fff;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-4px, 5px) ;
+    transform: rotate(-45deg) translate(-4px, 5px);
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-4px, -7px) ;
+    transform: rotate(45deg) translate(-4px, -7px) ;
+}
+
+/* ----------------------------------------------- */
+/* FOOTER SECTION */
+/* ----------------------------------------------- */
+.footer-bottom{
+  min-height: 40vh;
+}
+
+/* ----------------------------------------------- */
+/* PAGINATION */
+/* ----------------------------------------------- */
+.pagination{
+	border-top:1px solid #cdcdcd;
+  padding: 40px 0;
+  margin-top: 20px;
+}
+
+ /* Pagination links */
+.pagination a {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #1d1d20;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active{
+  border: 1px solid #1d1d20;
+}
+
+.pagination a:hover:not(.active){
+  border-bottom: 1px solid #1d1d20;
+}
+
+/* ----------------------------------------------- 
+ TABLES 
+/* ----------------------------------------------- */
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px 15px;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.table-responsive{
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.order-table tr,
+.cart-table tr,
+.order-summary table tr{
+  border-bottom: 1px solid #ddd;
+}
+
+.order-summary table tr th{
+  padding-left: 5px;
+  padding-right: 15px;
+}
+
+.order-table tr:last-child, .cart-table tr:last-child{
+  border-bottom: 0;
+}
+
+.cart-table tr td.item{
+  width: 40%;
+}
+
+table .order-info{
+  border: 0 !important;
+}
+
+.order-summary{
+  border-right: 1px solid #ddd;
+  padding: 10px 5px;
+}
+
+.order-summary table tr td{
+  padding: 5px;
+}
+
+.order-summary .user-details tr td{
+  width: 150px !important ;
+}
+
+.card .order-summary table{
+  margin: 0 !important;
+}
+
+.delivery-form .info{
+  font-size: 0.9em;
+}
+
+.delivery-details{
+  padding-left: 100px;
+  margin-bottom: 20px;
+}
+
+
+/*-------------------------------------------------
+					MEDIA QUERIES
+--------------------------------------------------*/
+
+@media only screen and (max-width: 1024px) {
+  .about-text{
+    width: 70%;
+    padding: 10px;
+  }
+
+  .about-text h1{
+    margin-top: 0;
+  }
+
+  .about-image{
+    width: 30%;
+    height: 300px;
+    background: #1d1d20;
+    background-size: contain;
+  }
+
+	.form-container{
+    padding: 150px 40px !important;
+  }
+
+  .signup-form input,
+  .signup-form .btn,
+  .signin-form input,
+  .signin-form .btn{
+    width: 80% !important;
+  }
+
+  .new-meal-form{
+    width: 50% !important;
+  }
+}
+
+@media only screen and (max-width: 900px){
+  .howto-list li{
+    width: 100%;
+    float: none;
+  }
+}
+
+@media only screen and (max-width: 820px){
+  .about-text{
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .about-image{
+    width: 100%;
+    height: auto;
+    background: none;
+  }
+
+  .about-text h1{
+   margin-top: 10px;
+  }
+
+
+  .w3{
+    width: 46%;
+  }
+
+  .order-summary,
+  .delivery-details{
+    display: block;
+    float: none;
+    width: 80%;
+    margin: auto;
+  }
+
+  .order-summary{
+    border-right: 0 !important;
+    margin-bottom: 40px;
+  }
+
+  .delivery-details{
+    padding-left: 0px !important;
+  }
+
+  .w4.order-card{
+    width: 50% !important;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+	.short-header{
+    min-height: 50vh;
+    height: auto;
+    padding-bottom: 40px;
+  }
+
+   .brand{
+   		display: inline-block;
+	   	margin:15px;
+	   	float:none;
+   }
+
+   .main-nav{
+   		float: none;
+   		padding:0;
+   		display: none;
+   }
+
+   .nav-item{
+		display: block;
+		border-bottom: 1px solid #ddd;
+		padding:15px 15px;
+   }
+
+  .menu-icon{
+		display: inline-block !important;
+	}
+
+	.hero{
+    margin-top: 10vh;
+		overflow: auto;
+		padding:20px;
+		clear:both;
+	}
+
+	.hero-title{
+		font-size: 1.8em;
+		line-height: 1;
+		clear:both;
+	}
+
+	.hero-search{
+    width:80%;
+    font-size: 0.8em;
+	}
+
+	.search{
+		padding:30px 50px;
+  }
+  
+  footer{
+    padding:40px;
+  }
+
+
+  /*-------------------------------------------------
+    Signup and Signin pages
+  ---------------------------------------------------*/
+  .page-container{
+    min-height: 100vh;
+  }
+
+  .page-content,
+  .form-container{
+    float: none;
+    display:block;
+    margin-left: auto;
+    margin-right:auto;
+  }
+
+  .form-container{
+    padding: 20px 10px 10px 40px !important;
+  }
+
+  .page-content{
+    width:90% !important;
+  }
+
+  .form-container{
+    width: 80% !important;
+  }
+
+  .page-content h2{
+    font-size: 1.2em;
+  }
+
+  .signup-call,
+  .signin-call{
+    margin-top: 2vh !important;
+  }
+}
+
+@media only screen and (max-width: 540px){
+  .w3{
+    width: 90%;
+    margin-left: 3%;
+    margin-right: 1%;
+  }
+
+  .new-meal-form{
+    width: 70% !important;
+  }
+}
+
+@media only screen and (max-width: 439px) {
+	.navbar{
+    padding: 0;
+  }
+
+  .menu-icon{
+    margin:20px 0;
+  }
+
+  .brand{
+    font-size: 0.8em;
+  }
+
+  .signup-form input,
+  .signup-form .btn,
+  .signin-form input,
+  .signin-form .btn{
+    width: 95% !important;
+  }
+}

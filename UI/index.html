@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Home : Fast-Food-Fast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+</head>
+
+<body>
+  <header class=" main-header text-white">
+    <div id="navbar" class="navbar container clearfix">
+      <div class="brand left-float">
+        <h2>Fast-Food-Fast</h2>
+      </div>
+      <div class="menu-icon right-float display-hide" onclick="toggleNavDisplay(this)">
+        <span class="bar1"></span>
+        <span class="bar2"></span>
+        <span class="bar3"></span>
+      </div>
+      <div class="nav">
+        <ul class="main-nav right-float">
+          <li class="nav-item welcome">Welcome David!</li>
+          <li class="nav-item active"><a href="index.html">Home</a></li>
+          <li class="nav-item"><a href="#about">About</a></li>
+          <li class="nav-item"><a href="#howto">How to order</a></li>
+          <li class="nav-item"><a href="meals.html">Meals</a></li>
+          <li class="nav-item"><a href="order_history.html">Order History</a></li>
+          <li class="nav-item"><a href="signup.html">Signup</a></li>
+          <li class="nav-item"><a href="signin.html">Signin</a></li>
+          <li class="nav-item"><a href="logout.html">Signout</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero container-max text-center">
+      <div class="hero-text">
+        <h1 class="hero-title">Discover the new definition of delicious</h1>
+        <p class="hero-subtitle">Every meal will be your favourite</p>
+      </div>
+      <form name="search" method="post" class="hero-form">
+        <input type="search" name="search" id="search" placeholder="I would love to have..." class="hero-search">
+      </form>
+    </div>
+  </header>
+  <section class="about containter-max clearfix" id="about">
+    <div class="about-image right-float w6">
+      <img src="assets/images/chef.jpg">
+    </div>
+    <div class="about-text left-float text-center w4">
+      <h1 class="text-center">About</h1>
+      <p>
+        Fast-Food-Fast is your best friend when it comes to taking care of your stomach. We are an online delivery
+        service that takes away the stress of having to worry about what to eat.
+      </p>
+      <p>
+        With Fast-Food-Fast, you don't have to repeat a meal. However, every meal will be your favourite. We deliver to
+        you at your doorstep anytime of the day and anywhere.
+      </p>
+
+    </div>
+  </section>
+  <section class="gallery container-max">
+    <ul class="gallery-block clearfix">
+      <li>
+        <figure class="meal-photo">
+          <img src="assets/images/meal8.jpg" alt="food image">
+        </figure>
+      </li>
+      <li>
+        <figure class="meal-photo">
+          <img src="assets/images/meal7.jpg" alt="food image">
+        </figure>
+      </li>
+      <li>
+        <figure class="meal-photo">
+          <img src="assets/images/meal9.jpg" alt="food image">
+        </figure>
+      </li>
+      <li>
+        <figure class="meal-photo">
+          <img src="assets/images/meal10.jpg" alt="food image">
+        </figure>
+      </li>
+    </ul>
+    <ul class="gallery-block clearfix">
+      <li>
+        <figure class="meal-photo">
+          <img src="assets/images/meal11.jpg" alt="food image">
+        </figure>
+      </li>
+      <li>
+        <figure class="meal-photo">
+          <img src="assets/images/meal12.jpg" alt="food image">
+        </figure>
+      </li>
+      <li>
+        <figure class="meal-photo">
+          <img src="assets/images/meal13.jpg" alt="food image">
+        </figure>
+      </li>
+      <li>
+        <figure class="meal-photo">
+          <img src="assets/images/meal14.jpg" alt="food image">
+        </figure>
+      </li>
+    </ul>
+  </section>
+  <section class="howto bg-dark text-white clearfix" id="howto">
+    <h1 class="text-center margin-bottom-4">How to order</h1>
+    <div class="container">
+      <ol class="howto-list">
+        <li>Signup to create an account</li>
+        <li>Click on the meals link</li>
+        <li>On any meal of your choice, click on the order button</li>
+        <li>Select the quantity you want to order</li>
+        <li>Fill in the recipient details</li>
+        <li>Make your payment</li>
+        <li>Just like magic, we deliver to you</li>
+      </ol>
+    </div>
+  </section>
+  <section class="meals-section clearfix">
+    <div class="container text-center">
+      <h1 class="section-title margin-bottom-4">Meals</h1>
+      <p>We offer you the best of not just mouth watering meals. We provide you with meals that will keep you healthy
+        and happy.</p>
+    </div>
+    <div class="container margin-top-4">
+      <div class="card w3 left-float">
+        <div class="card-img">
+          <img src="assets/images/meal1.jpg" alt="meal one image">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title margin-top-bottom-1">Roasted Chicken</h3>
+          <p class="card-content text-justify margin-top-bottom-1">
+            Roast chicken is chicken prepared as food by roasting whether in a home kitchen, over a fire, or with a
+            professional rotisserie.
+          </p>
+          <div class="card-footer text-justify margin-top-bottom-1">
+            <p><strong>Price:</strong> N3000</p>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card w3 left-float">
+        <div class="card-img">
+          <img src="assets/images/meal2.jpg" alt="meal two image">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title margin-top-bottom-1">Roasted Chicken</h3>
+          <p class="card-content text-justify margin-top-bottom-1">
+            Roast chicken is chicken prepared as food by roasting whether in a home kitchen, over a fire, or with a
+            professional rotisserie.
+          </p>
+          <div class="card-footer text-justify margin-top-bottom-1">
+            <p><strong>Price:</strong> N3000</p>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card w3 left-float">
+        <div class="card-img">
+          <img src="assets/images/meal3.jpg" alt="meal three image">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title margin-top-bottom-1">Roasted Chicken</h3>
+          <p class="card-content text-justify margin-top-bottom-1">
+            Roast chicken is chicken prepared as food by roasting whether in a home kitchen, over a fire, or with a
+            professional rotisserie.
+          </p>
+          <div class="card-footer text-justify margin-top-bottom-1">
+            <p><strong>Price:</strong> N3000</p>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card w3 left-float">
+        <div class="card-img">
+          <img src="assets/images/meal4.jpg" alt="meal four image">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title margin-top-bottom-1">Roasted Chicken</h3>
+          <p class="card-content text-justify margin-top-bottom-1">
+            Roast chicken is chicken prepared as food by roasting whether in a home kitchen, over a fire, or with a
+            professional rotisserie.
+          </p>
+          <div class="card-footer text-justify margin-top-bottom-1">
+            <p><strong>Price:</strong> N3000</p>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card w3 left-float">
+        <div class="card-img">
+          <img src="assets/images/meal5.jpg" alt="meal five image">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title margin-top-bottom-1">Roasted Chicken</h3>
+          <p class="card-content text-justify margin-top-bottom-1">
+            Roast chicken is chicken prepared as food by roasting whether in a home kitchen, over a fire, or with a
+            professional rotisserie.
+          </p>
+          <div class="card-footer text-justify margin-top-bottom-1">
+            <p><strong>Price:</strong> N3000</p>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card w3 left-float">
+        <div class="card-img">
+          <img src="assets/images/meal6.jpg" alt="meal six image">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title margin-top-bottom-1">Roasted Chicken</h3>
+          <p class="card-content text-justify margin-top-bottom-1">
+            Roast chicken is chicken prepared as food by roasting whether in a home kitchen, over a fire, or with a
+            professional rotisserie.
+          </p>
+          <div class="card-footer text-justify margin-top-bottom-1">
+            <p><strong>Price:</strong> N3000</p>
+            <button class="btn btn-danger"><a href="user_order.html" class="order-btn">Order now</a></p></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-dark text-white text-center">
+    <p>Developed by Essien, David Itam - for Andela 21</p>
+    Copyright &copy 2018
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
