@@ -30,7 +30,7 @@ class UsersController {
       role,
       password,
     } = request.body;
-    role = role || 0;
+    role = parseInt(role, 10) || 0;
     password = passwordHelper.passwordHash(password.trim());
 
     const query = {
