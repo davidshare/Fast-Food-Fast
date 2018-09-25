@@ -29,7 +29,6 @@ class ValidateUser {
     } = request.body;
     const userErrors = ValidationHelper.validateUser(fullname, email);
 
-    let { role } = request.body;
     let errors = {};
 
     if (!password || !rules.empty.test(password)) {
@@ -39,9 +38,6 @@ class ValidateUser {
     if (!rules.passwordLength.test(password)) {
       errors.passwordLength = validationErrors.passwordLength;
     }
-
-    role = parseInt(role, 10);
-    if (role !== 0 && role !== 1 && role !== 2) errors.validRole = validationErrors.validRole;
 
     errors = Object.assign(errors, userErrors);
     ValidationHelper.checkValidationErrors(response, errors, next);
