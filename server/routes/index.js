@@ -26,8 +26,9 @@ const routes = (app) => {
     message: 'Welcome to Fast-Food-Fast',
   }));
 
-  app.get('/api/v1/orders', OrdersController.getAllOrders);
+  app.get('/api/v1/orders', UserAuthentication.authenticateAdmin, OrdersController.getAllOrders);
   app.get('/api/v1/orders/:orderId', UserAuthentication.authenticateUser, ValidateOrder.validateOrderId, OrdersController.getOrderById);
+  app.get('/api/v1/users/:userId/orders', UserAuthentication.authenticateUser, ValidateUser.validateUserId, OrdersController.getOrdersHistory);
   app.get('/api/v1/menu/:mealId', UserAuthentication.authenticateAdmin, ValidateMeals.validateMealId, MealsController.getMealById);
   app.get('/api/v1/menu', MealsController.getMenu);
 

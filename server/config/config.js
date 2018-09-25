@@ -10,4 +10,7 @@ export default {
   development: {
     dbUrl: process.env.DB_URL,
   },
+  production: {
+    DATABASE_URL: process.env.DATABASE_URL,
+  },
 };

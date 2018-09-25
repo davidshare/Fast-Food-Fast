@@ -107,6 +107,26 @@ class ValidateUser {
         return next();
       }).catch();
   }
+
+  /**
+   * validate userId
+   * @param {Object} request
+   * @param {Object} response
+   *
+   * @callback {Function} next
+   *
+   * @return {Object} json
+   */
+  static validateUserId(request, response, next) {
+    if (!ValidationHelper.checkValidId(request, request.params.userId)) {
+      return response.status(406).json({
+        statusCode: 406,
+        success: false,
+        error: validationErrors.validUserId,
+      });
+    }
+    return next();
+  }
 }
 
 export default ValidateUser;

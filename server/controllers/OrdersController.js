@@ -190,6 +190,42 @@ class OrdersController {
     });
   }
 
+  /**
+   *  get order history for specific user
+   *  @param {Object} requestuest
+   *  @param {Object} response
+   *  @return {Object} json
+   */
+  static getOrdersHistory(request, response) {
+    const { userId } = request.params;
+    const query = `SELECT * FROM orders WHERE user_id = ${userId}`;
+    client.query(query)
+      .then((dbResult) => {
+        if (dbResult.rowCount === 0) {
+          return response.status(404).json({
+            status: 404,
+            success: false,
+            error: validationErrors.noOrder,
+          });
+        }
+        return OrdersController.historySuccessResponse(response, dbResult);
+      }).catch();
+  }
+
+  /**
+   *  return message for successful order history
+   *  @param {Object} response
+   *  @return {Object} json
+   */
+  static historySuccessResponse(response, dbResult) {
+    return response.status(200).json({
+      status: 200,
+      success: true,
+      message: 'Successfully got orders',
+      orders: dbResult.rows,
+    });
+  }
+
   static generateItemsQuery(items) {
     const queryArray = [];
     let totalQuantity = 0;

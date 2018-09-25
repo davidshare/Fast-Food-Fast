@@ -14,6 +14,7 @@ const validationErrors = {
   itemsEmpty: 'Sorry! your order is invalid. You did not pick any items?',
   validItems: 'Sorry the items are invalid. Valid items must be objects.',
   validOrderId: 'Please the orderId must be a number greater than zero',
+  validOrderId: 'Please the userId must be a number greater than zero',
   emptyStatus: 'Sorry the status is required',
   passwordEmpty: 'Your password is required',
   validPassword: 'Sorry, your password cannot contain spaces.',
