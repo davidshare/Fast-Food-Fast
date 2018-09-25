@@ -119,7 +119,6 @@ class ValidateUser {
    */
   static validateUserId(request, response, next) {
     if (!ValidationHelper.checkValidId(request, request.params.userId)) {
-      console.log('here+++++++++++++++++++++++++++++++++++++++++++++');
       return response.status(406).json({
         statusCode: 406,
         success: false,

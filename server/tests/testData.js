@@ -52,7 +52,7 @@ const newUsers = [
     fullname: 'Faith Essien',
     email: 'faithgem@gmail.com',
     password: 'gemsharefaith',
-    role: 1,
+    role: 0,
   },
   {
     fullname: 'Anastascia Demben',
@@ -65,6 +65,12 @@ const newUsers = [
     email: 'richard@gmail.com',
     password: 'richard4509',
     role: 0,
+  },
+  {
+    fullname: 'Sharerudite Essien',
+    email: 'sharerudite@gmail.com',
+    password: 'gemshare,php1989@',
+    role: 1,
   },
 ];
 

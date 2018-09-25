@@ -30,7 +30,7 @@ describe('MEALS CONTROLLER', () => {
     before((done) => {
       chai.request(app)
         .post(`${signinURL}`)
-        .send(testData.newUsers[0])
+        .send(testData.newUsers[3])
         .end((error, response) => {
           currentToken = response.body.token;
           done();

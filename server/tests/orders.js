@@ -33,10 +33,20 @@ describe('HOME ROUTE', () => {
       });
   });
 });
-describe('GET /menu endpoint', () => {
+describe('GET /orders endpoint', () => {
+  before((done) => {
+    chai.request(app)
+      .post(`${signinURL}`)
+      .send(testData.newUsers[3])
+      .end((error, response) => {
+        currentToken = response.body.token;
+        done();
+      });
+  });
   it('It should return an error if no order is found', (done) => {
     chai.request(app)
       .get(`${ordersURL}`)
+      .set('token', currentToken)
       .end((error, response) => {
         expect(response).to.have.status(404);
         expect(response.body).to.be.an('object');
@@ -456,9 +466,20 @@ describe('ORDERS CONTROLLER ', () => {
   });
 
   describe('GET /orders endpoint', () => {
+    before((done) => {
+      chai.request(app)
+        .post(`${signinURL}`)
+        .send(testData.newUsers[3])
+        .end((error, response) => {
+          currentToken = response.body.token;
+          done();
+        });
+    });
+
     it('it should get all orders', (done) => {
       chai.request(app)
         .get(`${ordersURL}`)
+        .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(200);
           expect(response.body).to.be.an('object');
