@@ -2,6 +2,8 @@
 import Express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './fast.json';
 import routes from './server/routes';
 
 dotenv.config();
@@ -15,6 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 routes(app);
 
