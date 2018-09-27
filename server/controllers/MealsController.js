@@ -133,7 +133,6 @@ class MealsController {
             error: validationErrors.noMeal,
           });
         }
-        console.log('**************', response.body);
         return MealsController.deleteMealSuccess(response);
       })
       .catch();
