@@ -13,10 +13,10 @@ const app = new Express();
 const port = process.env.PORT || 3000;
 
 // declare middleware
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
+app.use(bodyParser.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 routes(app);
