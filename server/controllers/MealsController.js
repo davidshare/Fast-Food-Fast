@@ -116,6 +116,29 @@ class MealsController {
   }
 
   /**
+   *  Delete meal by id
+   *  @param {Object} request
+   *  @param {Object} response
+   *  @return {Object} json
+   */
+  static deleteMeal(request, response) {
+    const { mealId } = request.params;
+    const query = `DELETE from meals WHERE id=${mealId}`;
+    client.query(query)
+      .then((dbResult) => {
+        if (!dbResult.rowCount) {
+          return response.status(404).json({
+            status: 404,
+            success: false,
+            error: validationErrors.noMeal,
+          });
+        }
+        return MealsController.deleteMealSuccess(response);
+      })
+      .catch();
+  }
+
+  /**
    *  Return menu success response
    *  @param {Object} response
    *  @param {Object} dbResult
@@ -144,6 +167,21 @@ class MealsController {
       success: true,
       message: 'Successfully got meal',
       meal: dbResult.rows[0],
+    });
+  }
+
+  /**
+   *  Return delete meal success response
+   *  @param {Object} response
+   *  @param {Object} dbResult
+   *  @return {Object} json
+   *
+   */
+  static deleteMealSuccess(response) {
+    return response.status(202).json({
+      status: 202,
+      success: true,
+      message: 'Meal deleted successfully',
     });
   }
 }

@@ -117,8 +117,8 @@ class OrdersController {
       returning id as recipient_id
     ),    
     new_order AS(
-      insert into orders(user_id, recipient_id, quantity, total_cost, status)
-      values(${userId}, (select * from new_recipient), ${totalQuantity}, ${totalPrice}, 'pending')
+      insert into orders(user_id, recipient_id, items, quantity, total_cost, status)
+      values(${userId}, (select * from new_recipient), ${items.length}, ${totalQuantity}, ${totalPrice}, 'pending')
       returning id as order_id
     )
     ${baseQuery}`;
@@ -233,7 +233,7 @@ class OrdersController {
     let baseQuery = 'insert into items(order_id, item, quantity, price, total) values';
     items.forEach((item) => {
       totalQuantity += item.quantity;
-      totalPrice += item.price;
+      totalPrice += item.total;
       const query = `((select * from new_order), '${item.item}', ${item.quantity}, ${item.price}, ${item.total})`;
       queryArray.push(query);
     });

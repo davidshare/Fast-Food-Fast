@@ -18,6 +18,7 @@ const createOrdersTable = `
     id SERIAL PRIMARY KEY NOT NULL,
     user_id INTEGER REFERENCES users(id),
     recipient_id INTEGER REFERENCES users(id),
+    items INTEGER NOT NULL,
     quantity INTEGER,
     total_cost INTEGER,
     status VARCHAR(10) DEFAULT 'Pending', 

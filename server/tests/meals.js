@@ -332,4 +332,52 @@ describe('MEALS CONTROLLER', () => {
         });
     });
   });
+
+  describe('DELETE /MENU/:mealId endpoint', () => {
+    before((done) => {
+      chai.request(app)
+        .post(`${signinURL}`)
+        .send(testData.newUsers[3])
+        .end((error, response) => {
+          currentToken = response.body.token;
+          done();
+        });
+    });
+
+    it('it should delete a meal', (done) => {
+      chai.request(app)
+        .delete(`${mealsURL}/1`)
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(202);
+          expect(response.body).to.be.an('object');
+          expect(response.body.message).to.equal('Meal deleted successfully');
+          done();
+        });
+    });
+
+    it('it should not delete a meal with invalid id', (done) => {
+      chai.request(app)
+        .delete(`${mealsURL}/e`)
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.validMealId);
+          done();
+        });
+    });
+
+    it('it should return an error for non existent meal', (done) => {
+      chai.request(app)
+        .delete(`${mealsURL}/10`)
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.noMeal);
+          done();
+        });
+    });
+  });
 });
