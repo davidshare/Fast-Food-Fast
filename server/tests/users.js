@@ -7,6 +7,8 @@ import validationErrors from '../helpers/validationErrors';
 const { expect } = chai;
 const signupURL = '/api/v1/auth/signup';
 const loginURL = '/api/v1/auth/login';
+const usersURL = '/api/v1/users';
+let currentToken;
 
 chai.use(chaiHttp);
 
@@ -255,6 +257,71 @@ describe('USER CONTROLLER ', () => {
           expect(response.body).to.be.an('object');
           expect(response.body.error).to.equal(validationErrors.noEmail);
           expect(response.body.success).to.equal(false);
+          done();
+        });
+    });
+  });
+
+  describe('GET /users endpoint', () => {
+    before((done) => {
+      chai.request(app)
+        .post(`${loginURL}`)
+        .send(testData.newUsers[3])
+        .end((error, response) => {
+          currentToken = response.body.token;
+          done();
+        });
+    });
+
+    it('it should get all users', (done) => {
+      chai.request(app)
+        .get(`${usersURL}`)
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(200);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('users');
+          expect(response.body.message).to.equal('Successfully got all users');
+          done();
+        });
+    });
+  });
+
+  describe('DELETE /users endpoint', () => {
+    it('it should delete all users that are not admin', (done) => {
+      chai.request(app)
+        .delete(`${usersURL}`)
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(202);
+          expect(response.body).to.be.an('object');
+          expect(response.body.message).to.equal('Users deleted successfully');
+          done();
+        });
+    });
+
+    it('it should return an error if there are no users to delete', (done) => {
+      chai.request(app)
+        .delete(`${usersURL}`)
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.noUsers);
+          done();
+        });
+    });
+  });
+
+  describe('GET /users endpoint', () => {
+    it('It should return an error if no users have been registered', (done) => {
+      chai.request(app)
+        .get(`${usersURL}`)
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error).to.equal(validationErrors.noUsers);
           done();
         });
     });

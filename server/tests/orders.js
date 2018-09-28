@@ -8,6 +8,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 const ordersURL = '/api/v1/orders';
 const loginURL = '/api/v1/auth/login';
+const signupURL = '/api/v1/auth/signup';
 
 let currentToken;
 
@@ -58,7 +59,7 @@ describe('GET /orders endpoint', () => {
 describe('ORDERS CONTROLLER ', () => {
   before((done) => {
     chai.request(app)
-      .post(`${loginURL}`)
+      .post(`${signupURL}`)
       .send(testData.newUsers[0])
       .end((error, response) => {
         currentToken = response.body.token;
@@ -532,7 +533,7 @@ describe('ORDERS CONTROLLER ', () => {
   describe('GET /api/v1/users/<userId>/orders endpoint', () => {
     it('it should get all orders for a particular user', (done) => {
       chai.request(app)
-        .get('/api/v1/users/2/orders')
+        .get('/api/v1/users/3/orders')
         .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(200);
