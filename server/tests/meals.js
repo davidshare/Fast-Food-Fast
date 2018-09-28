@@ -7,7 +7,7 @@ import validationErrors from '../helpers/validationErrors';
 const { expect } = chai;
 chai.use(chaiHttp);
 const mealsURL = '/api/v1/menu';
-const signinURL = '/api/v1/auth/signin';
+const loginURL = '/api/v1/auth/login';
 const signupURL = '/api/v1/auth/signup';
 
 let currentToken;
@@ -20,7 +20,7 @@ describe('MEALS CONTROLLER', () => {
         .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body).to.be.an('object');
-          expect(response.body.error).to.equal('Could not get menu');
+          expect(response.body.error).to.equal(validationErrors.noMenu);
           done();
         });
     });
@@ -29,7 +29,7 @@ describe('MEALS CONTROLLER', () => {
   describe('POST /menu endpoint', () => {
     before((done) => {
       chai.request(app)
-        .post(`${signinURL}`)
+        .post(`${loginURL}`)
         .send(testData.newUsers[3])
         .end((error, response) => {
           currentToken = response.body.token;
@@ -336,7 +336,7 @@ describe('MEALS CONTROLLER', () => {
   describe('DELETE /MENU/:mealId endpoint', () => {
     before((done) => {
       chai.request(app)
-        .post(`${signinURL}`)
+        .post(`${loginURL}`)
         .send(testData.newUsers[3])
         .end((error, response) => {
           currentToken = response.body.token;
@@ -368,7 +368,7 @@ describe('MEALS CONTROLLER', () => {
         });
     });
 
-    it('it should return an error for non existent meal', (done) => {
+    it('it should return an error for trying to delete a non existent meal', (done) => {
       chai.request(app)
         .delete(`${mealsURL}/10`)
         .set('token', currentToken)

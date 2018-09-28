@@ -19,11 +19,12 @@ class MealsController {
    */
   static addMeal(request, response) {
     const {
-      userId,
       name,
       description,
       price,
     } = request.body;
+
+    const userId = request.token.user.id;
 
     const query = {
       text: 'INSERT INTO meals(name, description, price, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
@@ -84,7 +85,7 @@ class MealsController {
           return response.status(404).json({
             statusCode: 404,
             success: false,
-            error: 'Could not get menu',
+            error: validationErrors.noMenu,
           });
         }
         return MealsController.menuSuccess(response, dbResult);

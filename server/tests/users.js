@@ -6,7 +6,7 @@ import validationErrors from '../helpers/validationErrors';
 
 const { expect } = chai;
 const signupURL = '/api/v1/auth/signup';
-const signinURL = '/api/v1/auth/signin';
+const loginURL = '/api/v1/auth/login';
 
 chai.use(chaiHttp);
 
@@ -167,7 +167,7 @@ describe('USER CONTROLLER ', () => {
   describe('POST /api/v1/auth/signin', () => {
     it('it should signin a user with correct and complete information', (done) => {
       chai.request(app)
-        .post(`${signinURL}`)
+        .post(`${loginURL}`)
         .send({
           email: testData.newUsers[0].email,
           password: testData.newUsers[0].password,
@@ -181,7 +181,7 @@ describe('USER CONTROLLER ', () => {
     });
     it('should not signin a user with an invalid email address', (done) => {
       chai.request(app)
-        .post(`${signinURL}`)
+        .post(`${loginURL}`)
         .send({
           email: '@kspeed',
           password: testData.newUsers[0].password,
@@ -197,7 +197,7 @@ describe('USER CONTROLLER ', () => {
 
     it('should not signin a user without an email address', (done) => {
       chai.request(app)
-        .post(`${signinURL}`)
+        .post(`${loginURL}`)
         .send({
           email: '',
           password: testData.newUsers[0].password,
@@ -213,7 +213,7 @@ describe('USER CONTROLLER ', () => {
 
     it('should not signin a user with an empty password field', (done) => {
       chai.request(app)
-        .post(`${signinURL}`)
+        .post(`${loginURL}`)
         .send({
           email: testData.newUsers[0].email,
           password: '',
@@ -229,7 +229,7 @@ describe('USER CONTROLLER ', () => {
 
     it('should not signin a user where email and password do not match', (done) => {
       chai.request(app)
-        .post(`${signinURL}`)
+        .post(`${loginURL}`)
         .send({
           email: testData.newUsers[0].email,
           password: 'sorrywhatisthis',
@@ -245,7 +245,7 @@ describe('USER CONTROLLER ', () => {
 
     it('should not signin a user where email does not exist in the database', (done) => {
       chai.request(app)
-        .post(`${signinURL}`)
+        .post(`${loginURL}`)
         .send({
           email: 'ebamnjar@gmail.com',
           password: testData.newUsers[1].password,

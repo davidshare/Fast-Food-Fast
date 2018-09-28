@@ -30,7 +30,7 @@ class UserAuthentication {
       return response.status(401).json({
         status: 401,
         success: false,
-        error: 'Authentication failed',
+        error: validationErrors.notAuthenticated,
       });
     }
   }
