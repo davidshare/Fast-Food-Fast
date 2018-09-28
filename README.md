@@ -79,6 +79,8 @@ run test using 'npm test'.
 
 <tr><td>PUT</td> <td>/api/v1/orders/:orderId</td>  <td>Updates the status of an order</td></tr>
 
+<tr><td>PUT</td> <td>/api/v1/menu/:mealId</td>  <td>Updates a meal</td></tr>
+
 <tr><td>GET</td> <td>/api/v1/menu</td>  <td>Get menu</td></tr>
 
 <tr><td>GET</td> <td>/api/v1/menu/:mealId</td>  <td>Get a meal by mealId</td></tr>
