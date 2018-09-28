@@ -103,7 +103,7 @@ class OrdersController {
       recipientAddress,
       items,
     } = request.body;
-    const userId = 1;
+    const userId = request.token.user.id;
 
     const {
       baseQuery,
@@ -166,7 +166,7 @@ class OrdersController {
           return response.status(404).json({
             status: 404,
             success: false,
-            error: validationErrors.noOrder,
+            error: validationErrors.noOrderId,
           });
         }
         return OrdersController.updateOrderSuccess(response, dbResult);
@@ -205,7 +205,7 @@ class OrdersController {
           return response.status(404).json({
             status: 404,
             success: false,
-            error: validationErrors.noOrder,
+            error: validationErrors.noUserOrder,
           });
         }
         return OrdersController.historySuccessResponse(response, dbResult);

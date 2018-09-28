@@ -7,7 +7,7 @@ import validationErrors from '../helpers/validationErrors';
 const { expect } = chai;
 chai.use(chaiHttp);
 const ordersURL = '/api/v1/orders';
-const signinURL = '/api/v1/auth/signin';
+const loginURL = '/api/v1/auth/login';
 
 let currentToken;
 
@@ -36,7 +36,7 @@ describe('HOME ROUTE', () => {
 describe('GET /orders endpoint', () => {
   before((done) => {
     chai.request(app)
-      .post(`${signinURL}`)
+      .post(`${loginURL}`)
       .send(testData.newUsers[3])
       .end((error, response) => {
         currentToken = response.body.token;
@@ -58,7 +58,7 @@ describe('GET /orders endpoint', () => {
 describe('ORDERS CONTROLLER ', () => {
   before((done) => {
     chai.request(app)
-      .post(`${signinURL}`)
+      .post(`${loginURL}`)
       .send(testData.newUsers[0])
       .end((error, response) => {
         currentToken = response.body.token;
@@ -468,7 +468,7 @@ describe('ORDERS CONTROLLER ', () => {
   describe('GET /orders endpoint', () => {
     before((done) => {
       chai.request(app)
-        .post(`${signinURL}`)
+        .post(`${loginURL}`)
         .send(testData.newUsers[3])
         .end((error, response) => {
           currentToken = response.body.token;
@@ -530,9 +530,9 @@ describe('ORDERS CONTROLLER ', () => {
   });
 
   describe('GET /api/v1/users/<userId>/orders endpoint', () => {
-    it('it should get all others for a particular user', (done) => {
+    it('it should get all orders for a particular user', (done) => {
       chai.request(app)
-        .get('/api/v1/users/1/orders')
+        .get('/api/v1/users/2/orders')
         .set('token', currentToken)
         .end((error, response) => {
           expect(response).to.have.status(200);
@@ -562,7 +562,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body).to.be.an('object');
-          expect(response.body.error).to.equal(validationErrors.noOrder);
+          expect(response.body.error).to.equal(validationErrors.noUserOrder);
           done();
         });
     });
@@ -600,7 +600,7 @@ describe('ORDERS CONTROLLER ', () => {
         });
     });
 
-    it('it should return an error for non existent orders', (done) => {
+    it('it should return an error for update of non existent orders', (done) => {
       chai.request(app)
         .put(`${ordersURL}/10`)
         .send({
@@ -610,7 +610,7 @@ describe('ORDERS CONTROLLER ', () => {
         .end((error, response) => {
           expect(response).to.have.status(404);
           expect(response.body).to.be.an('object');
-          expect(response.body.error).to.equal('Sorry! Order not found.');
+          expect(response.body.error).to.equal(validationErrors.noOrderId);
           done();
         });
     });

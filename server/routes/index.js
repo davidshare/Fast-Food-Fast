@@ -33,7 +33,7 @@ const routes = (app) => {
   app.get('/api/v1/menu', MealsController.getMenu);
 
   app.post('/api/v1/auth/signup', ValidateUser.validateSignup, ValidateUser.checkDuplicateEmail, UsersController.signup);
-  app.post('/api/v1/auth/signin', ValidateUser.validateSignin, UsersController.signIn);
+  app.post('/api/v1/auth/login', ValidateUser.validateSignin, UsersController.signIn);
   app.post('/api/v1/menu', UserAuthentication.authenticateAdmin, ValidateMeals.validateMeal, MealsController.addMeal);
   app.post('/api/v1/orders', UserAuthentication.authenticateUser, ValidateOrder.validateOrder, OrdersController.postOrder);
 
