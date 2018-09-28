@@ -38,6 +38,7 @@ const routes = (app) => {
   app.post('/api/v1/orders', UserAuthentication.authenticateUser, ValidateOrder.validateOrder, OrdersController.postOrder);
 
   app.put('/api/v1/orders/:orderId', UserAuthentication.authenticateUser, ValidateOrder.validateOrderStatus, OrdersController.updateOrderStatus);
+  app.put('/api/v1/menu/:mealId', UserAuthentication.authenticateAdmin, ValidateMeals.validateMealId, ValidateMeals.validateMeal, MealsController.editMeal);
 
   app.delete('/api/v1/menu/:mealId', UserAuthentication.authenticateAdmin, ValidateMeals.validateMealId, MealsController.deleteMeal);
 };

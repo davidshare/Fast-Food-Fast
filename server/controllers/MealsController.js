@@ -43,7 +43,7 @@ class MealsController {
    */
   static runAddMealQuery(response, query) {
     client.query(query)
-      .then(dbResult => MealsController.mealsSuccess(response, dbResult))
+      .then((dbResult) => MealsController.mealsSuccess(response, dbResult))
       .catch((error) => {
         response.status(406).send({
           status: 406,
@@ -117,6 +117,34 @@ class MealsController {
   }
 
   /**
+   *  edit a meal
+   *  @param {Object} request
+   *  @param {Object} response
+   *
+   *
+   *  @return {Object} json
+   */
+
+  static editMeal(request, response) {
+    const { mealId } = request.params;
+    const { name, description, price } = request.body;
+    const query = `UPDATE meals set name = '${name}', description = '${description}', price = ${price} WHERE id=${mealId} RETURNING *`;
+
+    client.query(query)
+      .then((dbResult) => {
+        if (!dbResult.rows[0]) {
+          return response.status(404).json({
+            status: 404,
+            success: false,
+            error: validationErrors.noMeal,
+          });
+        }
+        return MealsController.editMealSuccess(response, dbResult);
+      })
+      .catch(error => MealsController.duplicateEditMeal(response, error));
+  }
+
+  /**
    *  Delete meal by id
    *  @param {Object} request
    *  @param {Object} response
@@ -168,6 +196,38 @@ class MealsController {
       success: true,
       message: 'Successfully got meal',
       meal: dbResult.rows[0],
+    });
+  }
+
+  /**
+   *  Return edit meal success response
+   *  @param {Object} response
+   *  @param {Object} dbResult
+   *  @return {Object} json
+   *
+   */
+  static editMealSuccess(response, dbResult) {
+    return response.status(202).json({
+      status: 202,
+      success: true,
+      message: 'Meal updated successfully',
+      meal: dbResult.rows[0],
+    });
+  }
+
+  /**
+   *  Return error for duplicate meal during edit
+   *  @param {Object} response
+   *  @param {Object} dbResult
+   *  @return {Object} json
+   *
+   */
+  static duplicateEditMeal(response, error) {
+    return response.status(406).send({
+      status: 406,
+      success: false,
+      error: validationErrors.duplicateEditMeal,
+      dbError: error.stack,
     });
   }
 
