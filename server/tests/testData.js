@@ -89,8 +89,8 @@ const newMeals = [
   },
   {
     userId: 1,
-    name: 'Ekpang',
-    description: 'Ekpang Nkwukwo is one of the Nigerian cocoyam recipes made with grated cocoyam, water yam, cocoyam leaves and periwinkle.',
+    name: 'Affang and Pounded yam',
+    description: 'Affang is a native soup of the calabar people. The leaf is mostly gotten from forest areas. It is prepared with waterleaves and lots of dry fish and animal hide that has been soaked in water',
     price: 2500,
   },
 ];

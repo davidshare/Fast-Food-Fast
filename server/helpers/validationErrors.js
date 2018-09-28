@@ -42,6 +42,7 @@ const validationErrors = {
   noMenu: 'Sorry no meal has been added to the menu yet.',
   noOrderId: 'Sorry, There is no order for the orderId you supplied.',
   noUserOrder: 'Sorry, this user has not placed any order',
+  duplicateEditMeal: 'Sorry, the meal could not be updated. Either the description or name you supplied for the meal already exists in the database or you did not change anything.'
 };
 
 export default validationErrors;
