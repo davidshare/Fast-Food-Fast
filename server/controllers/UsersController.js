@@ -81,7 +81,7 @@ class UsersController {
         const token = generateToken(dbResult.rows[0]);
         process.env.CURRENT_TOKEN = token;
         return UsersController.loginSuccessResponse(response, token);
-      }).catch();
+      }).catch((error) => { response.status(500).send(error); });
   }
 
   /**
@@ -105,7 +105,7 @@ class UsersController {
         }
         return UsersController.usersSuccess(response, dbResult);
       })
-      .catch();
+      .catch((error) => { response.status(500).send(error); });
   }
 
   /**
@@ -127,7 +127,7 @@ class UsersController {
         }
         return UsersController.deleteUsersSuccess(response);
       })
-      .catch();
+      .catch((error) => { response.status(500).send(error); });
   }
 
   /**
