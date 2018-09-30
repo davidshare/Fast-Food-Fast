@@ -43,7 +43,7 @@ class MealsController {
    */
   static runAddMealQuery(response, query) {
     client.query(query)
-      .then((dbResult) => MealsController.mealsSuccess(response, dbResult))
+      .then(dbResult => MealsController.mealsSuccess(response, dbResult))
       .catch((error) => {
         response.status(406).send({
           status: 406,
@@ -90,7 +90,7 @@ class MealsController {
         }
         return MealsController.menuSuccess(response, dbResult);
       })
-      .catch();
+      .catch((error) => { response.status(500).send(error); });
   }
 
   /**
@@ -113,7 +113,7 @@ class MealsController {
         }
         return MealsController.oneMealSuccess(response, dbResult);
       })
-      .catch();
+      .catch((error) => { response.status(500).send(error); });
   }
 
   /**
@@ -164,7 +164,7 @@ class MealsController {
         }
         return MealsController.deleteMealSuccess(response);
       })
-      .catch();
+      .catch((error) => { response.status(500).send(error); });
   }
 
   /**

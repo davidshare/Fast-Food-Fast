@@ -22,7 +22,7 @@ const validationErrors = {
   validRole: 'Invalid user role. The role can only be the values: 0, 1 or 2 ',
   emailExists: 'Sorry, this email address has already been registered',
   noOrder: 'Sorry, no order has been placed yet.',
-  noOrders: 'Sorry, no orders has been placed yet.',
+  noOrders: 'Sorry, no orders have been placed yet.',
   mealRequired: 'Sorry, the name of the meal is required',
   validMeal: 'Please enter a valid meal name. It can only contain letters and spaces',
   mealLength: 'Sorry, the name of the meal must not be less than 5 characters or more than 50',
@@ -42,7 +42,8 @@ const validationErrors = {
   noMenu: 'Sorry no meal has been added to the menu yet.',
   noOrderId: 'Sorry, There is no order for the orderId you supplied.',
   noUserOrder: 'Sorry, this user has not placed any order',
-  duplicateEditMeal: 'Sorry, the meal could not be updated. Either the description or name you supplied for the meal already exists in the database or you did not change anything.'
+  duplicateEditMeal: 'Sorry, the meal could not be updated. Either the description or name you supplied for the meal already exists in the database or you did not change anything.',
+  noUsers: 'Sorry, no users have been registered yet',
 };
 
 export default validationErrors;

@@ -31,6 +31,7 @@ const routes = (app) => {
   app.get('/api/v1/users/:userId/orders', UserAuthentication.authenticateUser, ValidateUser.validateUserId, OrdersController.getOrdersHistory);
   app.get('/api/v1/menu/:mealId', UserAuthentication.authenticateAdmin, ValidateMeals.validateMealId, MealsController.getMealById);
   app.get('/api/v1/menu', MealsController.getMenu);
+  app.get('/api/v1/users', UserAuthentication.authenticateAdmin, UsersController.getUsers);
 
   app.post('/api/v1/auth/signup', ValidateUser.validateSignup, ValidateUser.checkDuplicateEmail, UsersController.signup);
   app.post('/api/v1/auth/login', ValidateUser.validateSignin, UsersController.signIn);
@@ -41,5 +42,6 @@ const routes = (app) => {
   app.put('/api/v1/menu/:mealId', UserAuthentication.authenticateAdmin, ValidateMeals.validateMealId, ValidateMeals.validateMeal, MealsController.editMeal);
 
   app.delete('/api/v1/menu/:mealId', UserAuthentication.authenticateAdmin, ValidateMeals.validateMealId, MealsController.deleteMeal);
+  app.delete('/api/v1/users', UserAuthentication.authenticateAdmin, UsersController.deleteUsers);
 };
 export default routes;

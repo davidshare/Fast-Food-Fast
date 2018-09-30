@@ -31,7 +31,7 @@ class OrdersController {
         }
         return OrdersController.allOrdersSuccess(response, dbResult);
       })
-      .catch();
+      .catch((error) => { response.status(500).send(error); });
   }
 
   /**
@@ -70,7 +70,7 @@ class OrdersController {
         }
         return OrdersController.oneOrdersSuccess(response, dbResult);
       })
-      .catch();
+      .catch((error) => { response.status(500).send(error); });
   }
 
   /**
@@ -142,7 +142,7 @@ class OrdersController {
         success: true,
         order: dbResult.rows[0],
       }))
-      .catch();
+      .catch((error) => { response.status(500).send(error); });
   }
 
 
@@ -171,7 +171,7 @@ class OrdersController {
         }
         return OrdersController.updateOrderSuccess(response, dbResult);
       })
-      .catch();
+      .catch((error) => { response.status(500).send(error); });
   }
 
   /**
@@ -209,7 +209,7 @@ class OrdersController {
           });
         }
         return OrdersController.historySuccessResponse(response, dbResult);
-      }).catch();
+      }).catch((error) => { response.status(500).send(error); });
   }
 
   /**

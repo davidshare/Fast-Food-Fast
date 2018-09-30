@@ -81,7 +81,84 @@ class UsersController {
         const token = generateToken(dbResult.rows[0]);
         process.env.CURRENT_TOKEN = token;
         return UsersController.loginSuccessResponse(response, token);
-      }).catch();
+      }).catch((error) => { response.status(500).send(error); });
+  }
+
+  /**
+   *  Get all users
+   *  @param {Object} request
+   *  @param {Object} response
+   *  @return {Object} json
+   */
+  static getUsers(request, response) {
+    const userId = request.token.user.id;
+    const query = `SELECT * from users where id != ${userId} AND status = 1`;
+
+    client.query(query)
+      .then((dbResult) => {
+        if (!dbResult.rows[0]) {
+          return response.status(404).json({
+            status: 404,
+            success: false,
+            error: validationErrors.noUsers,
+          });
+        }
+        return UsersController.usersSuccess(response, dbResult);
+      })
+      .catch((error) => { response.status(500).send(error); });
+  }
+
+  /**
+   *  Delete users that are not admin
+   *  @param {Object} request
+   *  @param {Object} response
+   *  @return {Object} json
+   */
+  static deleteUsers(request, response) {
+    const query = 'DELETE from users WHERE role = 0';
+    client.query(query)
+      .then((dbResult) => {
+        if (!dbResult.rowCount) {
+          return response.status(404).json({
+            status: 404,
+            success: false,
+            error: validationErrors.noUsers,
+          });
+        }
+        return UsersController.deleteUsersSuccess(response);
+      })
+      .catch((error) => { response.status(500).send(error); });
+  }
+
+  /**
+   *  Return delete users success response
+   *  @param {Object} response
+   *  @param {Object} dbResult
+   *  @return {Object} json
+   *
+   */
+  static deleteUsersSuccess(response) {
+    return response.status(202).json({
+      status: 202,
+      success: true,
+      message: 'Users deleted successfully',
+    });
+  }
+
+  /**
+   *  Return users success response
+   *  @param {Object} response
+   *  @param {Object} dbResult
+   *  @return {Object} json
+   *
+   */
+  static usersSuccess(response, dbResult) {
+    return response.status(200).json({
+      status: 200,
+      success: true,
+      message: 'Successfully got all users',
+      users: dbResult.rows,
+    });
   }
 
   /**

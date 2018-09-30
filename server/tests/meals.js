@@ -8,7 +8,6 @@ const { expect } = chai;
 chai.use(chaiHttp);
 const mealsURL = '/api/v1/menu';
 const loginURL = '/api/v1/auth/login';
-const signupURL = '/api/v1/auth/signup';
 
 let currentToken;
 
@@ -310,8 +309,8 @@ describe('MEALS CONTROLLER', () => {
   describe('', () => {
     before((done) => {
       chai.request(app)
-        .post(`${signupURL}`)
-        .send(testData.newUsers[2])
+        .post(`${loginURL}`)
+        .send(testData.newUsers[0])
         .end((error, response) => {
           currentToken = response.body.token;
           done();
@@ -349,9 +348,7 @@ describe('MEALS CONTROLLER', () => {
         .post(`${mealsURL}`)
         .send(testData.newMeals[1])
         .set('token', currentToken)
-        .end((error, response) => {
-          done();
-        });
+        .end(() => done());
     });
 
     it('It should update a meal', (done) => {
