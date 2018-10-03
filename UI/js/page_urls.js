@@ -1,8 +1,10 @@
 /* API endpoints */
 const signupURL = 'http://localhost:3000/api/v1/auth/signup';
 const loginURL = 'http://localhost:3000/api/v1/auth/login';
+const menuUrl = 'http://localhost:3000/api/v1/menu';
 
 /* HTML PAGES*/
-const landingPage = 'http://localhost:3000/public/index.html';
-const adminSignUpPage = 'http://localhost:3000/public/new_admin.html';
-const loginPage = 'http://localhost:3000/public/signin.html';
+const landingPage = 'index.html';
+const adminSignUpPage = 'new_admin.html';
+const loginPage = 'signin.html';
+const menuPage = 'meals.html';

@@ -68,13 +68,19 @@ const authenticateUser = (url) => {
     setMessage('auth', 'Sorry you are not authorized to access this section.\nKindly login into your account');
     redirect(url);
   }
-}
+};
 
 const setAuthentication = (userData) => {
   setMessage('userToken', userData.token);
-}
+};
 
 const logout = () => {
   localStorage.removeItem('userToken');
   redirect('http://localhost:3000/public/index.html');
-}
+};
+
+const getDecodedUser = () => {
+  if(localStorage.getItem('userToken')) {
+    return jwt_decode(localStorage.getItem('userToken'));
+  }  
+};
