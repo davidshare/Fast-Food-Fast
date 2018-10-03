@@ -10,26 +10,62 @@ const getSignupInput = () => {
 
 const signup = (event) => {
   event.preventDefault();
-  fetch(signupURL, {
-    method: 'POST',
-    mode: 'cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(getSignupInput()),
-  })
-    .then((response) => {
-      return response.json()
-        .then((signupResponse) => {
-          if (response.ok) return signupResponse;
-          throw signupResponse;
-        })
-        .then((data) => {
-          setMessage('fff_signup', `${data.message} Please login to access your account`);
-          redirect(loginPage);
-        })     
+  if (validateUser(getSignupInput())) {
+    fetch(signupURL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(getSignupInput()),
     })
-    .catch((error) => {
-      if (error.status === 409 || error.status === 406) showMessage(formatErrors(error.error));
-    });
+      .then((response) => {
+        return response.json()
+          .then((signupResponse) => {
+            if (response.ok) return signupResponse;
+            throw signupResponse;
+          })
+          .then((data) => {
+            setMessage('fff_signup', `${data.message} Please login to access your account`);
+            redirect(loginPage);
+          })
+      })
+      .catch((error) => {
+        if (error.status === 409 || error.status === 406) {
+          showMessage(formatErrors(error.error), 'error-text');
+        }
+      });
+  }
 };
 
 document.getElementById('signup-btn').addEventListener('click', signup);
+
+const validateUser = (userObject) => {
+  let errorFlag = true;
+  const { fullname, email, password } = userObject;
+  if (fullname === '' || email === '' || password === '') {
+    showMessage('Sorry all the fields are required', 'error-text');
+    return false;
+  }
+
+  if (!rules.validName.test(fullname)) {
+    errorFlag = false;
+    document.getElementById('name_msg').innerHTML = errorsMessages.invalidFullname;
+  } else {
+    document.getElementById('name_msg').innerHTML = '';
+  }
+
+  if (!rules.validEmail.test(email)) {
+    errorFlag = false;
+    document.getElementById('email_msg').innerHTML = errorsMessages.invalidEmail;
+  } else {
+    document.getElementById('email_msg').innerHTML = '';
+  }
+
+  if (!rules.validPassword.test(password) || !rules.passwordLength.test(password)) {
+    errorFlag = false;
+    document.getElementById('paswd_msg').innerHTML = errorsMessages.invalidPassword;
+  } else {
+    document.getElementById('paswd_msg').innerHTML = '';
+  }
+
+  return errorFlag;
+};

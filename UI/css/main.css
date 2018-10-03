@@ -113,6 +113,16 @@ section, footer {
   background: #1d1d20;
 }
 
+.error-text{
+  color: #f00;
+  font-size: 0.7em;
+}
+
+.success-text{
+  color: #f00;
+  font-size: 0.7em;
+}
+
 /* ----------------------------------------------- 
  MARGIN AND PADDING 
 /* ----------------------------------------------- */
