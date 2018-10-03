@@ -27,7 +27,7 @@
           <li class="nav-item active"><a href="new_meal.html">New Meal</a></li>
           <li class="nav-item"><a href="orders.html">Orders</a></li>
           <li class="nav-item"><a href="new_admin.html">New admin</a></li>
-          <li class="nav-item"><a href="../logout.html">Signout</a></li>
+          <li class="nav-item no-auth"><a href="#">Signout</a></li>
         </ul>
       </div>
     </div>
@@ -35,22 +35,31 @@
     </div>
   </header>
   <section class="meals-section container clearfix new-meal-container">
+      <p id="message" class="text-center"></p>
       <h2 class="text-center">Add a new meal</h2>
-      <form method="post" name="new-meal-form" class="new-meal-form center-float">
+      <form method="post" action ="#" name="new-meal-form" class="new-meal-form center-float">
         <p class="form-control">
           <label for="meal-name">Meal name</label>
-          <input type="text" name="meal-name" id="meal-name" placeholder="Enter the name of the meal">
+          <input type="text" name="meal-name" id="meal-name" placeholder="Enter the name of the meal" required>
+          <p id="meal_msg" class="error-text"></p>
         </p>
         <p class="form-control">
           <label for="meal-description">Meal description</label>
-          <textarea rows="4" name="meal-description"></textarea>
+          <textarea rows="4" name="meal-description" id="meal-description"></textarea>
+          <p id="desc_msg" class="error-text"></p>
         </p>
         <p class="form-control">
           <label for="meal-price">Meal price</label>
-          <input type="text" name="meal-price" id="meal-price" placeholder="Enter the price of the meal">
+          <input type="number" name="meal-price" id="meal-price" placeholder="Enter the price of the meal" required>
+          <p id="price_msg" class="error-text"></p>
         </p>
         <p class="form-control">
-          <button class="btn btn-danger" id="signin-btn">Signin</button>
+          <label for="meal-img">Meal Image</label>
+          <input type="url" name="meal-img" id="meal-img" placeholder="Enter the url for the image" required>
+          <p id="pic_msg" class="error-text"></p>
+        </p>
+        <p class="form-control">
+          <button class="btn btn-danger" id="add-meal-btn">Add meal</button>
         </p>
       </form>
   </section>
@@ -58,6 +67,12 @@
       <p>Developed by Essien, David Itam - for Andela 21</p>
       Copyright &copy 2018
   </footer>
+  <script src="../js/jwt-decode.min.js"></script>
+  <script src="../js/validation_rules.js"></script>
+  <script src="../js/page_urls.js"></script>
+  <script src="../js/functions.js"></script>
+  <script src="../js/authenticate.js"></script>
+  <script src="../js/meals.js"></script>
   <script src="../js/main.js"></script>
 </body>
 
