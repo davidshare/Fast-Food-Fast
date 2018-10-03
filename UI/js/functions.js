@@ -27,8 +27,10 @@ const getMessage = (key) => {
   }
   return currentMessage;
 };
-const showMessage = (message) => {
-  document.getElementById('message').innerHTML = message;
+const showMessage = (message, type) => {
+  const messageObj = document.getElementById('message');
+  messageObj.innerHTML = message;
+  messageObj.classList.add(type);
 };
 
 const getUserRole = () => {

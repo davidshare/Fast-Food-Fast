@@ -40,15 +40,18 @@
       <form method="post" name="signup-form" class="signup-form">
         <p class="form-control">
           <label for="fullname">Fulllname</label>
-          <input type="text" name="fullname" id="fullname" placeholder="Enter your fullname">
+          <input type="text" name="fullname" minlength="8" id="fullname" placeholder="Enter your fullname" required>
+          <p id="name_msg" class="error-text"></p>
         </p>
         <p class="form-control">
-          <label for="fullname">Email</label>
-          <input type="email" name="email" id="email" placeholder="Enter your email address">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" minlength="8" placeholder="Enter your email address" required>
+          <p id="email_msg" class="error-text"></p>
         </p>
         <p class="form-control">
-          <label for="fullname">Password</label>
-          <input type="password" name="password" id="password" placeholder="Enter your password">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" minlength="8" placeholder="Enter your password" required>
+          <p id="paswd_msg" class="error-text"></p>
         </p>
         <p class="form-control">
           <button class="btn btn-danger" id="signup-btn">Signup</button>
@@ -57,6 +60,7 @@
       <p>Already have an account? <a href="signin.html">Signin</a></p>
     </div>
   </section>
+  <script src="js/validation_rules.js"></script>
   <script src="js/page_urls.js"></script>
   <script src="js/functions.js"></script>
   <script src="js/signup.js"></script>

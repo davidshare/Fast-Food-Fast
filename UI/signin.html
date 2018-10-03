@@ -40,11 +40,13 @@
       <form method="post" name="signin-form" class="signin-form">
         <p class="form-control">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="Enter your email address">
+          <input type="email" name="email" id="email" placeholder="Enter your email address" required>
+          <p id="email_msg" class="error-text"></p>
         </p>
         <p class="form-control">
           <label for="fullname">Password</label>
-          <input type="password" name="password" id="password" placeholder="Enter your password">
+          <input type="password" name="password" id="password" placeholder="Enter your password" required>
+          <p id="paswd_msg" class="error-text"></p>
         </p>
         <p class="form-control">
           <button class="btn btn-danger" id="login-btn">Signin</button>
@@ -54,6 +56,7 @@
       <p>No account yet? <a href="signup.html">Signup for free</a></p>
     </div>
   </section>
+  <script src="js/validation_rules.js"></script>
   <script src="js/page_urls.js"></script>
   <script src="js/functions.js"></script>
   <script src="js/login.js"></script>
