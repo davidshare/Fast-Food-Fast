@@ -21,6 +21,7 @@ class ValidateMeals {
       name,
       description,
       price,
+      picture,
     } = request.body;
     const errors = {};
     if (!name || !rules.empty.test(name)) errors.mealRequired = validationErrors.mealRequired;
@@ -35,6 +36,10 @@ class ValidateMeals {
     if (!rules.validId.test(price) || price < 1) {
       errors.validPrice = validationErrors.validPrice;
     }
+
+    if (!picture || !rules.empty.test(picture)) errors.picRequired = validationErrors.picRequired;
+    if (!rules.validUrl.test(picture)) errors.validPic = validationErrors.validPic;
+
     ValidationHelper.checkValidationErrors(response, errors, next);
   }
 

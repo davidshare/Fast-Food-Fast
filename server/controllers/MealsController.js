@@ -22,13 +22,14 @@ class MealsController {
       name,
       description,
       price,
+      picture,
     } = request.body;
 
     const userId = request.token.user.id;
 
     const query = {
-      text: 'INSERT INTO meals(name, description, price, user_id) VALUES ($1, $2, $3, $4) RETURNING *',
-      values: [name, description, price, userId],
+      text: 'INSERT INTO meals(name, description, price, picture, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      values: [name, description, price, picture, userId],
     };
     MealsController.runAddMealQuery(response, query);
   }

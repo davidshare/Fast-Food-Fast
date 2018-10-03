@@ -44,6 +44,8 @@ const validationErrors = {
   noUserOrder: 'Sorry, this user has not placed any order',
   duplicateEditMeal: 'Sorry, the meal could not be updated. Either the description or name you supplied for the meal already exists in the database or you did not change anything.',
   noUsers: 'Sorry, no users have been registered yet',
+  picRequired: 'Sorry! the url to for the meal image is required',
+  validPic: 'Please enter a valid url for the meal image',
 };
 
 export default validationErrors;

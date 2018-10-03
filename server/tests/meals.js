@@ -223,6 +223,7 @@ describe('MEALS CONTROLLER', () => {
           name: testData.newMeals[0].name,
           description: testData.newMeals[1].description,
           price: 5000,
+          picture: testData.newMeals[1].picture,
         })
         .set('token', currentToken)
         .end((error, response) => {
@@ -242,6 +243,7 @@ describe('MEALS CONTROLLER', () => {
           name: testData.newMeals[1].name,
           description: testData.newMeals[0].description,
           price: testData.newMeals[1].price,
+          picture: testData.newMeals[1].picture,
         })
         .set('token', currentToken)
         .end((error, response) => {
@@ -249,6 +251,46 @@ describe('MEALS CONTROLLER', () => {
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
           expect(response.body.error).to.equal(validationErrors.mealExists);
+          done();
+        });
+    });
+
+    it('it should not add a meal without an image url', (done) => {
+      chai.request(app)
+        .post(`${mealsURL}`)
+        .send({
+          userId: testData.newMeals[0].useId,
+          name: testData.newMeals[0].name,
+          description: testData.newMeals[0].description,
+          price: testData.newMeals[0].price,
+          picture: '',
+        })
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error.picRequired).to.equal(validationErrors.picRequired);
+          done();
+        });
+    });
+
+    it('it should not add a meal with an invalid image url', (done) => {
+      chai.request(app)
+        .post(`${mealsURL}`)
+        .send({
+          userId: testData.newMeals[0].useId,
+          name: testData.newMeals[0].name,
+          description: testData.newMeals[0].description,
+          price: testData.newMeals[0].price,
+          picture: '444',
+        })
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error.validPic).to.equal(validationErrors.validPic);
           done();
         });
     });
@@ -551,6 +593,7 @@ describe('MEALS CONTROLLER', () => {
           name: testData.newMeals[1].name,
           description: testData.newMeals[2].description,
           price: testData.newMeals[2].price,
+          picture: testData.newMeals[2].picture,
         })
         .set('token', currentToken)
         .end((error, response) => {
@@ -570,6 +613,7 @@ describe('MEALS CONTROLLER', () => {
           name: testData.newMeals[2].name,
           description: testData.newMeals[1].description,
           price: testData.newMeals[1].price,
+          picture: testData.newMeals[2].picture,
         })
         .set('token', currentToken)
         .end((error, response) => {
@@ -577,6 +621,46 @@ describe('MEALS CONTROLLER', () => {
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
           expect(response.body.error).to.equal(validationErrors.duplicateEditMeal);
+          done();
+        });
+    });
+
+    it('it should not update a meal with an empty picture', (done) => {
+      chai.request(app)
+        .put(`${mealsURL}/1`)
+        .send({
+          userId: testData.newMeals[0].useId,
+          name: testData.newMeals[0].name,
+          description: testData.newMeals[0].description,
+          price: testData.newMeals[0].price,
+          picture: '',
+        })
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error.picRequired).to.equal(validationErrors.picRequired);
+          done();
+        });
+    });
+
+    it('it should not update a meal with an invalid image url', (done) => {
+      chai.request(app)
+        .put(`${mealsURL}/1`)
+        .send({
+          userId: testData.newMeals[0].useId,
+          name: testData.newMeals[0].name,
+          description: testData.newMeals[0].description,
+          price: testData.newMeals[0].price,
+          picture: '$$',
+        })
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error.validPic).to.equal(validationErrors.validPic);
           done();
         });
     });
