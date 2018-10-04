@@ -18,7 +18,7 @@ const getMeal = () => {
         })
     })
     .catch((error) => {
-      if (error.statusCode === 404) {
+      if (error.status === 404) {
         showMessage(formatErrors(error.error), 'error-text');
       }
     });
