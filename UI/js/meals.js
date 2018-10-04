@@ -82,5 +82,5 @@ const validateMeal = (mealObject) => {
   return errorFlag;
 };
 
+authenticateAdmin(appUrl);
 document.getElementById('add-meal-btn').addEventListener('click', addMeal);
-
