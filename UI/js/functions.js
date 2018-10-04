@@ -64,8 +64,19 @@ const removeLogoutLink = () => {
 const authenticateUser = (url) => {
   if (getUserToken()) {
     removeAuthLinks();
-  } else if (window.location.href !== 'http://localhost:3000/public/index.html') {
+    removeLogoutLink();
+  } else if (window.location.href !== `${appUrl}/index.html`) {
     setMessage('auth', 'Sorry you are not authorized to access this section.\nKindly login into your account');
+    redirect(url);
+  }
+};
+
+const authenticateAdmin = (url) => {
+  if (getUserToken()) {
+    removeAuthLinks();
+    removeLogoutLink();
+    const user = getDecodedUser(getUserToken());
+    if(user.user.role !== 1 && user.user.role !== 2)
     redirect(url);
   }
 };
@@ -83,4 +94,30 @@ const getDecodedUser = () => {
   if(localStorage.getItem('userToken')) {
     return jwt_decode(localStorage.getItem('userToken'));
   }  
+};
+
+const formatMeal = (meal) => {
+  const card = document.createElement('div');
+  card.classList.add('card', 'w3', 'left-float');
+  card.innerHTML = 
+  `<div class="card-img">
+    <img src="${meal.picture}" alt="${meal.name} image">
+  </div>
+  <div class="card-body">
+      <h3 class="card-title margin-top-bottom-1">${meal.name}</h3>
+      <p class="card-content text-justify margin-top-bottom-1">${meal.description}</p>
+      <div class="card-footer text-justify margin-top-bottom-1">
+        <p><strong>Price:</strong>${meal.price}</p>
+        <button class="btn btn-danger"><a href="user_order.html?mealId=${meal.id}" class="order-btn">Order now</a></p></button>
+    </div>
+  </div>
+  `;
+  return card;
+};
+
+const displayMeals = (meals, containterClass) => {
+  const container = document.getElementById(containterClass);
+  meals.forEach((meal) => {
+    container.appendChild(formatMeal(meal));
+  });
 };

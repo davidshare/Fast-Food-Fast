@@ -1,5 +1,7 @@
 const baseUrl = 'https://fast-food-fast-essien.herokuapp.com/api/v1/';
-// const testUrl = 'http://localhost:3000/api/v1/';
+const appUrl = 'https://fast-food-fast-essien.herokuapp.com/public';
+// const appUrl = 'http://localhost:3000/public';
+// const baseUrl = 'http://localhost:3000/api/v1/';
 /* API endpoints */
 const signupURL = `${baseUrl}auth/signup`;
 const loginURL = `${baseUrl}auth/login`;
