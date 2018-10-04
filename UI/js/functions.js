@@ -87,7 +87,7 @@ const setAuthentication = (userData) => {
 
 const logout = () => {
   localStorage.removeItem('userToken');
-  redirect('http://localhost:3000/public/index.html');
+  redirect(`${appUrl}`);
 };
 
 const getDecodedUser = () => {
@@ -120,4 +120,25 @@ const displayMeals = (meals, containterClass) => {
   meals.forEach((meal) => {
     container.appendChild(formatMeal(meal));
   });
+};
+
+const displayMeal = (meal, containterClass) => {
+  const card = document.createElement('div');
+  card.classList.add('card', 'w4', 'order-card', 'center-float');
+  card.innerHTML = `<div class="card-img">
+  <img src="${meal.picture}" alt="${meal.name} image">
+</div>
+<div class="card-body">
+  <h3 class="card-title margin-top-bottom-1">Roasted Chicken</h3>
+  <p class="card-content text-justify margin-top-bottom-1">
+  ${meal.description}
+  </p>
+  <div class="card-footer text-justify margin-top-bottom-1">
+    <p><strong>Price:</strong> N<span class="card-price">${meal.price}</span></p>
+    <p><strong>Quantity:</strong> <input type="number" class="card-quantity" name="quantity" value=0 required></p>
+    <p><strong>Total:</strong> <span class="card-total"></span></p>
+    <button class="btn btn-danger"><a href="cart.html" class="cart-btn">Add to cart</a></p></button>
+  </div>
+</div>`;
+  document.getElementById(containterClass).appendChild(card);
 };
