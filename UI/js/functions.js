@@ -129,7 +129,7 @@ const displayMeal = (meal, containterClass) => {
   <img src="${meal.picture}" alt="${meal.name} image">
 </div>
 <div class="card-body">
-  <h3 class="card-title margin-top-bottom-1">Roasted Chicken</h3>
+  <h3 class="card-title margin-top-bottom-1">${meal.name}</h3>
   <p class="card-content text-justify margin-top-bottom-1">
   ${meal.description}
   </p>
