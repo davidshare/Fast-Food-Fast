@@ -33,7 +33,7 @@ const createMealsTable = `
     name VARCHAR(255) NOT NULL UNIQUE,
     description VARCHAR(255) NOT NULL UNIQUE,
     price INTEGER NOT NULL,
-    picture VARCHAR(255),
+    picture TEXT,
     user_id INTEGER REFERENCES users(id) NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated TIMESTAMP WITH TIME ZONE DEFAULT now()
