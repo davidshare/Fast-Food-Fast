@@ -1,4 +1,4 @@
-showMessage(getMessage('ff_signup'));
+showMessage(getMessage('login-message'), 'success-text', true);
 
 const getLoginInput = () => {
   const email = document.getElementById('email').value.trim();
@@ -27,7 +27,7 @@ const login = (event) => {
           })
       })
       .catch((error) => {
-        if (error.status === 404 || error.status === 406 || error.status === 401) {
+        if (error.statusCode === 404 || error.statusCode === 406 || error.statusCode === 401) {
           showMessage(formatErrors(error.error), 'error-text');
         }
         return error;
@@ -38,6 +38,11 @@ const login = (event) => {
 const validateLogin = (userObject) => {
   let errorFlag = true;
   const { email, password } = userObject;
+
+  document.getElementById('paswd_msg').innerHTML = '';
+  document.getElementById('email_msg').innerHTML = '';
+  document.getElementById('message').innerHTML = '';
+
   if (email === '' || password === '') {
     showMessage('Sorry all the fields are required', 'error-text');
     return false;
@@ -46,15 +51,11 @@ const validateLogin = (userObject) => {
   if (!rules.validEmail.test(email)) {
     errorFlag = false;
     document.getElementById('email_msg').innerHTML = errorsMessages.invalidEmail;
-  } else {
-    document.getElementById('email_msg').innerHTML = '';
   }
 
   if (!rules.validPassword.test(password) || !rules.passwordLength.test(password)) {
     errorFlag = false;
     document.getElementById('paswd_msg').innerHTML = errorsMessages.invalidPassword;
-  } else {
-    document.getElementById('paswd_msg').innerHTML = '';
   }
 
   return errorFlag;
