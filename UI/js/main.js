@@ -4,5 +4,4 @@ const toggleNavDisplay = (x) => {
   const mainNav = document.querySelector('.main-nav');
   mainNav.classList.toggle('display-show');
 };
-
 removeLogoutLink();

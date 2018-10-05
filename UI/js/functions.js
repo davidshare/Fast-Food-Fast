@@ -38,7 +38,7 @@ const getUserRole = () => {
   return role;
 };
 
-const removeAuthLinks = () =>{
+const removeAuthLinks = () => {
   const adminAuth = document.querySelectorAll('.admin-auth');
   const userAuth = document.querySelectorAll('.auth');
   if (adminAuth) {
@@ -55,7 +55,7 @@ const removeAuthLinks = () =>{
 };
 
 const removeLogoutLink = () => {
-  const logoutLink = document.querySelector('.no-auth');
+  const logoutLink = document.querySelector('#no-auth');
   if (!getUserToken() && logoutLink) {
     logoutLink.className = 'display-hide';
   }
@@ -64,8 +64,7 @@ const removeLogoutLink = () => {
 const authenticateUser = (url) => {
   if (getUserToken()) {
     removeAuthLinks();
-    removeLogoutLink();
-  } else if (window.location.href !== `${appUrl}/index.html`) {
+  } else if (window.location.href !== `${appUrl}index.html` && window.location.href !== appUrl) {
     setMessage('auth', 'Sorry you are not authorized to access this section.\nKindly login into your account');
     redirect(url);
   }
@@ -74,10 +73,8 @@ const authenticateUser = (url) => {
 const authenticateAdmin = (url) => {
   if (getUserToken()) {
     removeAuthLinks();
-    removeLogoutLink();
     const user = getDecodedUser(getUserToken());
-    if(user.user.role !== 1 && user.user.role !== 2)
-    redirect(url);
+    if (user.user.role !== 1 && user.user.role !== 2) redirect(url);
   }
 };
 
