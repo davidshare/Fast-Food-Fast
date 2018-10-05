@@ -22,7 +22,4 @@ const getMenu = () => {
       }
     });
 };
-document.querySelector('.no-auth').addEventListener('click', logout);
 getMenu();
-removeLogoutLink();
-removeAuthLinks();
