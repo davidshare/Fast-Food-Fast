@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/public', Express.static('UI'));
+app.use('/', Express.static('UI'));
 
 routes(app);
 
