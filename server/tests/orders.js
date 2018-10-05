@@ -19,7 +19,8 @@ describe('HOME ROUTE', () => {
       .end((error, response) => {
         expect(response).to.have.status(200);
         expect(response.body).to.be.an('object');
-        expect(response.body.message).to.equal('Welcome to Fast-Food-Fast');
+        expect(response.ok).to.equal(true);
+        expect(response.type).to.equal('text/html');
         done();
       });
   });
