@@ -18,7 +18,7 @@ const rules = {
 const errorsMessages = {
   invalidPassword: 'Please enter a valid password. Your password cannot contain spaces and must be more than 8 characters',
   invalidEmail: 'Please enter a valid email addresss.',
-  invalidFullname: 'Please enter a valid fullanem. Your fullname can only contain spaces and words',
+  invalidFullname: 'Please enter a valid fullname. Your fullname can only contain spaces and words',
   invalidDesc: 'Sorry, the description of the meal must be a string of alphanumeric, and special characters and must start with a letter',
   invalidPrice: 'Sorry, the price can only be positive numbers greater than 0',
   invalidPic: 'Please enter a valid url for the meal image',

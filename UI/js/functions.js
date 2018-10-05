@@ -22,15 +22,15 @@ const getUserToken = () => localStorage.getItem('userToken') || null;
 const getMessage = (key) => {
   let currentMessage;
   if (window.localStorage) {
-    currentMessage = localStorage.getItem(key);
-    localStorage.removeItem(key);
+    currentMessage = window.localStorage.getItem(key);
+    window.localStorage.removeItem(key);
   }
   return currentMessage;
 };
 const showMessage = (message, type) => {
   const messageObj = document.getElementById('message');
   messageObj.innerHTML = message;
-  messageObj.classList.add(type);
+  messageObj.classList = type;
 };
 
 const getUserRole = () => {
@@ -147,7 +147,6 @@ const itemExists = (cart, item) => {
   let exists = 'e';
   cart.forEach((currentItem, index) => {
     if (currentItem.mealName === item.mealName) exists = index;
-    console.log(currentItem.mealName, ',', item.mealName);
   });
   return exists;
 };
@@ -158,8 +157,6 @@ const  addToCart = (item) => {
     cart = getCart();
     const exists = itemExists(cart, item);
     if (exists >= 0) {
-      console.log(exists);
-      console.log(cart);
       cart[exists].quantity = parseInt(cart[exists].quantity, 10) + parseInt(item.quantity, 10);
     } else {
       cart.push(item);
