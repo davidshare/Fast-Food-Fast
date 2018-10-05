@@ -54,16 +54,26 @@ cartTable.addEventListener('change', (event) => {
     cart[itemIndex].quantity = mealQuantity;
     updateCart(cart);  
     rowElements[4].textContent = mealPrice * mealQuantity;
+    let totalPrices;
+    let totalQuantity;
 
     const allPrices = [...document.querySelectorAll('.price-total')];
-    const totalPrices = allPrices.reduce((prev, next) => {
-      return parseInt(prev.textContent, 10) + parseInt(next.textContent, 10);
-    });
+    if (allPrices.length<=1) {
+      totalPrices = allPrices[0].textContent;
+    } else {
+      totalPrices = allPrices.reduce((prev, next) => {
+        return parseInt(prev.textContent, 10) + parseInt(next.textContent, 10);
+      });
+    }
 
     const itemQuantity = [...document.querySelectorAll('.cart-quantity')];
-    const totalQuantity = itemQuantity.reduce((prev, next) => {
-      return parseInt(prev.value, 10) + parseInt(next.value, 10);
-    });
+    if(itemQuantity.length <= 1) {
+      totalQuantity = itemQuantity[0].value;
+    }else{
+      totalQuantity = itemQuantity.reduce((prev, next) => {
+        return parseInt(prev.value, 10) + parseInt(next.value, 10);
+      });
+    }
     displayTotalPrice(totalPrices);
     displayTotalQuantity(totalQuantity);
   }
