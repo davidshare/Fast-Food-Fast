@@ -56,8 +56,7 @@ const removeAuthLinks = () => {
 
 const removeLogoutLink = () => {
   const logoutLink = document.querySelector('#no-auth');
-  if (!getUserToken()) {
-    alert('I got here');
+  if (!getUserToken() && logoutLink) {
     logoutLink.className = 'display-hide';
   }
 };
