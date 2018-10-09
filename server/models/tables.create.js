@@ -3,11 +3,21 @@ const createUsersTable = `
     id SERIAL PRIMARY KEY NOT NULL,
     fullname VARCHAR (100) NOT NULL,
     email VARCHAR(30) NOT NULL,
-    phone BIGINT,
     password VARCHAR(255),
     role INTEGER DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
+    updated TIMESTAMP WITH TIME ZONE DEFAULT now()
+  );
+`;
+
+const createRecipientTable = `
+  CREATE TABLE IF NOT EXISTS recipient(
+    id SERIAL PRIMARY KEY NOT NULL,
+    fullname VARCHAR (100) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    phone BIGINT,
     address TEXT,
-    status INTEGER DEFAULT 1,
+    user_id INTEGER REFERENCES users(id),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
@@ -52,5 +62,5 @@ const createOrderItemsTable = `
     updated TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
 `;
-const createQuery = `${createUsersTable}${createOrdersTable}${createMealsTable}${createOrderItemsTable}`;
+const createQuery = `${createUsersTable}${createRecipientTable}${createOrdersTable}${createMealsTable}${createOrderItemsTable}`;
 export default createQuery;

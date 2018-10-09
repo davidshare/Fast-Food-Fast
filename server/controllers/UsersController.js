@@ -92,7 +92,7 @@ class UsersController {
    */
   static getUsers(request, response) {
     const userId = request.token.user.id;
-    const query = `SELECT * from users where id != ${userId} AND status = 1`;
+    const query = `SELECT * from users where id != ${userId}`;
 
     client.query(query)
       .then((dbResult) => {
