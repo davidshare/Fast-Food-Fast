@@ -112,8 +112,8 @@ class OrdersController {
     } = OrdersController.generateItemsQuery(items);
 
     const query = `WITH new_recipient AS (
-      insert into users (fullname, email, phone, address, status) 
-      values ('${recipient}', '${recipientEmail}', ${recipientPhoneNumber}, '${recipientAddress}', 0)
+      insert into recipient (fullname, email, phone, address) 
+      values ('${recipient}', '${recipientEmail}', ${recipientPhoneNumber}, '${recipientAddress}')
       returning id as recipient_id
     ),    
     new_order AS(
