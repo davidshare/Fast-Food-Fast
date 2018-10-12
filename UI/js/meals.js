@@ -2,39 +2,36 @@ const getMealInput = () => {
   const name = document.getElementById('meal-name').value.trim();
   const description = document.getElementById('meal-description').value.trim();
   const price = document.getElementById('meal-price').value.trim();
-  const picture = document.getElementById('meal-img').value.trim();
+  const pictureObject = document.getElementById('meal-img').files[0];
+  const picture = pictureObject.name;
   return {
-    name, description, price, picture,
+    name, description, price, picture, pictureObject,
   };
 };
 
 const addMeal = (event) => {
   event.preventDefault();
-  if (validateMeal(getMealInput())) {
-    fetch(menuUrl, {
-      method: 'POST',
-      mode: 'cors',
-      headers: { 
-        'Content-Type': 'application/json',
-        'x-access': getUserToken(),
-      },      
-      body: JSON.stringify(getMealInput()),
+  const mealInput = getMealInput();
+  if (validateMeal(mealInput)) {
+    const imageData = new FormData();
+    imageData.append('file', mealInput.pictureObject);
+    imageData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    fetch(CLOUDINARY_UPLOAD_PATH, {
+      method: 'POST',   
+      body: imageData,
     })
       .then((response) => {
         return response.json()
-          .then((newMealResponse) => {
-            if (response.ok) return newMealResponse;
-            throw newMealResponse;
-          })
-          .then((data) => {
-            setMessage('fff_signup', data.message);
-            redirect(`../${menuPage}`);
+          .then((imageResponse) => {
+            if (response.ok) {
+              mealInput.picture = imageResponse.secure_url;
+              saveMeal(mealInput);
+            }
+            throw imageResponse;
           })
       })
       .catch((error) => {
-        if (error.status === 403 || error.status === 401 || error.status === 406) {
-          showMessage(formatErrors(error.error), 'error-text');
-        }
+        return error;
       });
   }
 };
@@ -74,7 +71,7 @@ const validateMeal = (mealObject) => {
     document.getElementById('price_msg').innerHTML = errorsMessages.invalidPrice;
   } 
 
-  if (!rules.validUrl.test(picture)) {
+  if (!rules.validPic.test(picture)) {
     errorFlag = false;
     document.getElementById('pic_msg').innerHTML = errorsMessages.invalidPic;
   }
@@ -84,3 +81,31 @@ const validateMeal = (mealObject) => {
 
 authenticateAdmin(appUrl);
 document.getElementById('add-meal-btn').addEventListener('click', addMeal);
+
+const  saveMeal = (mealInput) => {
+  fetch(menuUrl, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 
+      'Content-Type': 'application/json',
+      'x-access': getUserToken(),
+    },      
+    body: JSON.stringify(mealInput),
+  })
+    .then((response) => {
+      return response.json()
+        .then((newMealResponse) => {
+          if (response.ok) return newMealResponse;
+          throw newMealResponse;
+        })
+        .then((data) => {
+          setMessage('fff_signup', data.message);
+          redirect(`../${menuPage}`);
+        })
+    })
+    .catch((error) => {
+      if (error.status === 403 || error.status === 401 || error.status === 406) {
+        showMessage(formatErrors(error.error), 'error-text');
+      }
+    });
+};
