@@ -87,11 +87,12 @@ describe('ORDERS CONTROLLER ', () => {
      * Test for recipent fullname
      */
 
-    it('it should not place an order with  empty recipient', (done) => {
+    it('it should not place an order with  empty firstname', (done) => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: '',
+          firstname: '',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail.com',
           recipientPhoneNumber: '08138463582',
           recipientAddress: 'Andela Epic tower Lagos',
@@ -110,16 +111,17 @@ describe('ORDERS CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
-          expect(response.body.error.nameRequired).to.equal(validationErrors.nameRequired);
+          expect(response.body.error.fnameRequired).to.equal(validationErrors.fnameRequired);
           done();
         });
     });
 
-    it('it should not place an order with recipient fullname less than 8 characters', (done) => {
+    it('it should not place an order with recipient first name less than 2 characters', (done) => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: 'David',
+          firstName: 'A',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail.com',
           recipientPhoneNumber: '08138463582',
           recipientAddress: 'Andela Epic tower Lagos',
@@ -143,11 +145,12 @@ describe('ORDERS CONTROLLER ', () => {
         });
     });
 
-    it('it should not place an order with invalid recipient', (done) => {
+    it('it should not place an order with invalid first name', (done) => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: '2 David korfi',
+          firstName: '234',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail.com',
           recipientPhoneNumber: '08138463582',
           recipientAddress: 'Andela Epic tower Lagos',
@@ -171,6 +174,93 @@ describe('ORDERS CONTROLLER ', () => {
         });
     });
 
+    it('it should not place an order with  empty last name', (done) => {
+      chai.request(app)
+        .post(`${ordersURL}`)
+        .send({
+          firstname: 'Emmanuel',
+          lastName: '',
+          recipientEmail: 'faithgem@gmail.com',
+          recipientPhoneNumber: '08138463582',
+          recipientAddress: 'Andela Epic tower Lagos',
+          items: [
+            {
+              itemId: 1,
+              item: 'Abak soup and semovita',
+              price: 3500,
+              quantity: 2,
+              total: 700,
+            },
+          ],
+        })
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error.lnameRequired).to.equal(validationErrors.lnameRequired);
+          done();
+        });
+    });
+
+    it('it should not place an order with recipient last name less than 2 characters', (done) => {
+      chai.request(app)
+        .post(`${ordersURL}`)
+        .send({
+          firstname: 'Emmanuel',
+          lastName: 'A',
+          recipientEmail: 'faithgem@gmail.com',
+          recipientPhoneNumber: '08138463582',
+          recipientAddress: 'Andela Epic tower Lagos',
+          items: [
+            {
+              itemId: 1,
+              item: 'Abak soup and semovita',
+              price: 3500,
+              quantity: 2,
+              total: 700,
+            },
+          ],
+        })
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error.lnameLength).to.equal(validationErrors.lnameLength);
+          done();
+        });
+    });
+
+    it('it should not place an order with invalid last name', (done) => {
+      chai.request(app)
+        .post(`${ordersURL}`)
+        .send({
+          firstname: 'Emmanuel',
+          lastName: '234',
+          recipientEmail: 'faithgem@gmail.com',
+          recipientPhoneNumber: '08138463582',
+          recipientAddress: 'Andela Epic tower Lagos',
+          items: [
+            {
+              itemId: 1,
+              item: 'Abak soup and semovita',
+              price: 3500,
+              quantity: 2,
+              total: 700,
+            },
+          ],
+        })
+        .set('token', currentToken)
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error.validLName).to.equal(validationErrors.validLName);
+          done();
+        });
+    });
+
     /**
      * Test for recipent address
      */
@@ -179,7 +269,8 @@ describe('ORDERS CONTROLLER ', () => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: 'David Essien',
+          firstName: 'Essien',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail.com',
           recipientPhoneNumber: '08138463582',
           recipientAddress: '',
@@ -207,7 +298,8 @@ describe('ORDERS CONTROLLER ', () => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: 'David Essien',
+          firstName: 'Essien',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail.com',
           recipientPhoneNumber: '08138463582',
           recipientAddress: 'Andela',
@@ -235,7 +327,8 @@ describe('ORDERS CONTROLLER ', () => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: 'David Essien',
+          firstName: 'Essien',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail.com',
           recipientPhoneNumber: '08138463582',
           recipientAddress: '9999999999999$%##',
@@ -262,40 +355,12 @@ describe('ORDERS CONTROLLER ', () => {
     /**
      * Test for recipent email address
      */
-
-    it('it should not place an order with  empty email address', (done) => {
-      chai.request(app)
-        .post(`${ordersURL}`)
-        .send({
-          recipient: 'David Essien',
-          recipientEmail: '',
-          recipientPhoneNumber: '08138463582',
-          recipientAddress: 'Andela Epic Tower',
-          items: [
-            {
-              itemId: 1,
-              item: 'Abak soup and semovita',
-              price: 3500,
-              quantity: 2,
-              total: 700,
-            },
-          ],
-        })
-        .set('token', currentToken)
-        .end((error, response) => {
-          expect(response).to.have.status(406);
-          expect(response.body).to.be.an('object');
-          expect(response.body).to.have.property('error');
-          expect(response.body.error.emailRequired).to.equal(validationErrors.emailRequired);
-          done();
-        });
-    });
-
     it('it should not place an order with invalid email address', (done) => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: 'David Essien',
+          firstName: 'Essien',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail',
           recipientPhoneNumber: '08138463582',
           recipientAddress: 'Andela Epic Tower',
@@ -311,6 +376,7 @@ describe('ORDERS CONTROLLER ', () => {
         })
         .set('token', currentToken)
         .end((error, response) => {
+          console.log(response.body);
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
@@ -323,11 +389,12 @@ describe('ORDERS CONTROLLER ', () => {
      * Test for recipent phone number
      */
 
-    it('it should not place an order with  empty phone number', (done) => {
+    it('it should not place an order with empty phone number', (done) => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: 'David Essien',
+          firstName: 'Essien',
+          lastName: 'Emmanuel',
           recipientEmail: 'davidessienshare@gmail.com',
           recipientPhoneNumber: '',
           recipientAddress: 'Andela Epic Tower',
@@ -355,7 +422,8 @@ describe('ORDERS CONTROLLER ', () => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: 'David Essien',
+          firstName: 'Essien',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail',
           recipientPhoneNumber: '6358bbc2',
           recipientAddress: 'Andela Epic Tower',
@@ -408,7 +476,8 @@ describe('ORDERS CONTROLLER ', () => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: 'David Essien',
+          firstName: 'Essien',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail',
           recipientPhoneNumber: '08138463582',
           recipientAddress: 'Andela Epic Tower',
@@ -428,7 +497,8 @@ describe('ORDERS CONTROLLER ', () => {
       chai.request(app)
         .post(`${ordersURL}`)
         .send({
-          recipient: 'David Essien',
+          firstName: 'Essien',
+          lastName: 'Emmanuel',
           recipientEmail: 'faithgem@gmail',
           recipientPhoneNumber: '6358bbc2',
           recipientAddress: 'Andela Epic Tower',

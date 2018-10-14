@@ -2,7 +2,8 @@ const newOrders = [
   {
   },
   {
-    recipient: 'Mine Essien',
+    firstName: 'Mine',
+    lastName: 'Essien',
     recipientEmail: 'davidessienshare@gmail.com',
     recipientPhoneNumber: '08167462431',
     recipientAddress: 'Andela Epic tower Lagos',
@@ -31,7 +32,8 @@ const newOrders = [
     ],
   },
   {
-    recipient: 'Faith Obeten',
+    firstName: 'Faith',
+    lastName: 'Obeten',
     recipientEmail: 'faithgem@gmail.com',
     recipientPhoneNumber: '08138463582',
     recipientAddress: 'Andela Epic tower Lagos',
@@ -49,25 +51,29 @@ const newOrders = [
 
 const newUsers = [
   {
-    fullname: 'Faith Essien',
+    firstName: 'Faith',
+    lastName: 'Essien',
     email: 'faithgem@gmail.com',
     password: 'gemsharefaith',
     role: 0,
   },
   {
-    fullname: 'Anastascia Demben',
+    firstName: 'Annastascia',
+    lastName: 'Demben',
     email: 'annademben@gmail.com',
     password: 'greatAnn',
     role: 1,
   },
   {
-    fullname: 'Richard Demben',
+    firstName: 'Richard',
+    lastName: 'Obeten',
     email: 'richard@gmail.com',
     password: 'richard4509',
     role: 0,
   },
   {
-    fullname: 'Sharerudite Essien',
+    firstName: 'Sharerudite',
+    lastName: 'Essien',
     email: 'sharerudite@gmail.com',
     password: 'gemshare,php1989@',
     role: 1,

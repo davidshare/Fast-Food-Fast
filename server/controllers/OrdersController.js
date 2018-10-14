@@ -97,7 +97,8 @@ class OrdersController {
    */
   static postOrder(request, response) {
     const {
-      recipient,
+      firstName,
+      lastName,
       recipientEmail,
       recipientPhoneNumber,
       recipientAddress,
@@ -112,8 +113,8 @@ class OrdersController {
     } = OrdersController.generateItemsQuery(items);
 
     const query = `WITH new_recipient AS (
-      insert into recipient (fullname, email, phone, address) 
-      values ('${recipient}', '${recipientEmail}', ${recipientPhoneNumber}, '${recipientAddress}')
+      insert into recipient (firstname, lastname, email, phone, address) 
+      values ('${firstName}', '${lastName}', '${recipientEmail}', ${recipientPhoneNumber}, '${recipientAddress}')
       returning id as recipient_id
     ),    
     new_order AS(
@@ -142,7 +143,7 @@ class OrdersController {
         success: true,
         order: dbResult.rows[0],
       }))
-      .catch((error) => { response.status(500).send(error); });
+      .catch((error) => { response.status(500).json(error); });
   }
 
 
@@ -209,7 +210,7 @@ class OrdersController {
           });
         }
         return OrdersController.historySuccessResponse(response, dbResult);
-      }).catch((error) => { response.status(500).send(error); });
+      }).catch((error) => { response.status(500).json(error); });
   }
 
   /**

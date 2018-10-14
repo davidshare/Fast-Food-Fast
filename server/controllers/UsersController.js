@@ -22,7 +22,8 @@ class UsersController {
    */
   static signup(request, response) {
     const {
-      fullname,
+      firstName,
+      lastName,
       email,
     } = request.body;
 
@@ -34,8 +35,8 @@ class UsersController {
     password = passwordHelper.passwordHash(password.trim());
 
     const query = {
-      text: 'INSERT INTO users(fullname, email, role, password) VALUES ($1, $2, $3, $4) RETURNING *',
-      values: [fullname, email, role, password],
+      text: 'INSERT INTO users(firstname, lastname, email, role, password) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+      values: [firstName, lastName, email, role, password],
     };
     UsersController.runSignupQuery(request, response, query);
   }

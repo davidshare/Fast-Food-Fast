@@ -23,11 +23,12 @@ class ValidateUser {
 
   static validateSignup(request, response, next) {
     const {
-      fullname,
+      firstName,
+      lastName,
       email,
       password,
     } = request.body;
-    const userErrors = ValidationHelper.validateUser(fullname, email);
+    const userErrors = ValidationHelper.validateUser(firstName, lastName, email, true);
 
     let errors = {};
 

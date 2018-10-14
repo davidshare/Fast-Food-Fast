@@ -1,7 +1,8 @@
 const createUsersTable = `
   CREATE TABLE IF NOT EXISTS users(
     id SERIAL PRIMARY KEY NOT NULL,
-    fullname VARCHAR (100) NOT NULL,
+    firstname VARCHAR (40) NOT NULL,
+    lastname VARCHAR (40) NOT NULL,
     email VARCHAR(30) NOT NULL,
     password VARCHAR(255),
     role INTEGER DEFAULT 0,
@@ -13,7 +14,8 @@ const createUsersTable = `
 const createRecipientTable = `
   CREATE TABLE IF NOT EXISTS recipient(
     id SERIAL PRIMARY KEY NOT NULL,
-    fullname VARCHAR (100) NOT NULL,
+    firstname VARCHAR (40) NOT NULL,
+    lastname VARCHAR (40) NOT NULL,
     email VARCHAR(30) NOT NULL,
     phone BIGINT,
     address TEXT,
