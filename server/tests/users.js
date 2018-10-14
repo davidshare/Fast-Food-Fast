@@ -26,11 +26,12 @@ describe('USER CONTROLLER ', () => {
         });
     });
 
-    it('should not register a user with an empty full name field', (done) => {
+    it('it should not register a user with an empty first name field', (done) => {
       chai.request(app)
         .post(`${signupURL}`)
         .send({
-          fullname: '',
+          firstName: '',
+          lastName: 'Emmanuel',
           email: 'kspeedo@gmail.com',
           role: 0,
           password: 'kspeed230',
@@ -44,11 +45,12 @@ describe('USER CONTROLLER ', () => {
         });
     });
 
-    it('should not register a user with fullname less than 10 characters', (done) => {
+    it('it should not register a user with firstname less than 2 characters', (done) => {
       chai.request(app)
         .post(`${signupURL}`)
         .send({
-          fullname: 'Korfi',
+          firstName: 'A',
+          lastName: 'Emmanuel',
           email: 'kspeeded@gm.com',
           role: 0,
           password: 'kspeed230',
@@ -62,11 +64,12 @@ describe('USER CONTROLLER ', () => {
         });
     });
 
-    it('should not register a user with an invalid full name', (done) => {
+    it('it should not register a user with an invalid first name', (done) => {
       chai.request(app)
         .post(`${signupURL}`)
         .send({
-          fullname: '2Korfi #Essien',
+          firstName: '2#KD',
+          lastName: 'Emmanuel',
           username: 'kspeed',
           email: 'kspeed@gmail.com',
           password: 'kspeed230',
@@ -75,6 +78,63 @@ describe('USER CONTROLLER ', () => {
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body.error.validName).to.equal(validationErrors.validName);
+          expect(response.body.success).to.equal(false);
+          done();
+        });
+    });
+
+    it('it should not register a user with an empty last name field', (done) => {
+      chai.request(app)
+        .post(`${signupURL}`)
+        .send({
+          firstName: 'Emmanuel',
+          lastName: '',
+          email: 'kspeedo@gmail.com',
+          role: 0,
+          password: 'kspeed230',
+        })
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error.lnameRequired).to.equal(validationErrors.lnameRequired);
+          expect(response.body.success).to.equal(false);
+          done();
+        });
+    });
+
+    it('it should not register a user with last less than 2 characters', (done) => {
+      chai.request(app)
+        .post(`${signupURL}`)
+        .send({
+          firstName: 'Emmanuel',
+          lastName: 'A',
+          email: 'kspeeded@gm.com',
+          role: 0,
+          password: 'kspeed230',
+        })
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body.error).to.be.an('object');
+          expect(response.body.error.lnameLength).to.equal(validationErrors.lnameLength);
+          expect(response.body.success).to.equal(false);
+          done();
+        });
+    });
+
+    it('it should not register a user with an invalid last name', (done) => {
+      chai.request(app)
+        .post(`${signupURL}`)
+        .send({
+          firstName: 'Emmanuel',
+          lastName: '2#KD',
+          username: 'kspeed',
+          email: 'kspeed@gmail.com',
+          password: 'kspeed230',
+        })
+        .end((error, response) => {
+          expect(response).to.have.status(406);
+          expect(response.body).to.be.an('object');
+          expect(response.body.error.validLName).to.equal(validationErrors.validLName);
           expect(response.body.success).to.equal(false);
           done();
         });

@@ -6,7 +6,8 @@
 const orders = [
   {
     orderStatus: 'canceled',
-    recipient: 'Sunday Essien',
+    firstName: 'Sunday',
+    lastName: 'Essien',
     recipientEmail: 'sundaNelson@gmail.com',
     recipientPhoneNumber: '08167462431',
     recipientAddress: 'Andela Epic tower Lagos',
@@ -29,7 +30,8 @@ const orders = [
   },
   {
     orderStatus: 'Completed',
-    recipient: 'Njesua Essien',
+    firstName: 'Njesua',
+    lastName: 'Essien',
     recipientEmail: 'sundaNelson@gmail.com',
     recipientPhoneNumber: '08167462431',
     recipientAddress: 'Andela Epic tower Lagos',

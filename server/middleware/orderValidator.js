@@ -18,13 +18,14 @@ class ValidateOrder {
    */
   static validateOrder(request, response, next) {
     const {
-      recipient,
+      firstName,
+      lastName,
       recipientEmail,
       recipientPhoneNumber,
       recipientAddress,
       items,
     } = request.body;
-    const userErrors = ValidationHelper.validateUser(recipient, recipientEmail);
+    const userErrors = ValidationHelper.validateUser(firstName, lastName, recipientEmail, false);
     const itemErrors = ValidateOrder.validateItems(items);
     let errors = ValidateOrder.validateRecipient(recipientPhoneNumber, recipientAddress);
 
