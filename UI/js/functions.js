@@ -102,10 +102,14 @@ const formatMeal = (meal) => {
   </div>
   <div class="card-body">
       <h3 class="card-title margin-top-bottom-1">${meal.name}</h3>
-      <p class="card-content text-justify margin-top-bottom-1">${meal.description}</p>
+      <p class="card-content text-justify margin-top-bottom-1">${meal.description}
+      </p>
       <div class="card-footer text-justify margin-top-bottom-1">
         <p><strong>Price:</strong>${meal.price}</p>
-        <button class="btn btn-danger"><a href="user_order.html?mealId=${meal.id}" class="order-btn">Order now</a></p></button>
+        <p class="text-center">
+        <button class="btn btn-danger">Add to cart</button> 
+        <button class="btn btn-success"><a href="user_order.html?mealId=${meal.id}" class="order-btn">View meal</a></button>
+        </p>
     </div>
   </div>
   `;
@@ -164,6 +168,7 @@ const  addToCart = (item) => {
   } else {
     cart.push(item);
     localStorage.setItem('cart', JSON.stringify(cart));
+    getCartCount();
   }
 };
 
@@ -239,6 +244,7 @@ const displayCart = () => {
 const clearCart = () => {
   if (getCart()) {
     localStorage.removeItem('cart');
+    getCartCount();
     redirect('cart.html');
   }
 };
@@ -276,3 +282,9 @@ const calculateItemsTotal = (items) => {
   });
   return items;
 };
+
+const getCartCount = () => {
+  const cartDisplay = document.querySelector('.cart-items');
+  const cart = getCart();
+  cartDisplay.innerHTML = cart.length || 0;
+}

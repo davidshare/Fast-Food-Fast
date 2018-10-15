@@ -76,11 +76,11 @@ const placeOrder = (event) => {
             throw orderResponse;
           })
           .then((data) => {
+            clearCart();
             redirect(orderPage);
           })
       })
       .catch((error) => {
-        console.log(error);
         if (error.status === 401 || error.status === 406) {
           showMessage(formatErrors(error.error), 'error-text');
         }

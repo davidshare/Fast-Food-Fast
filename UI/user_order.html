@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Order: Fast-Food-Fast</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/all.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
 <body>
@@ -26,7 +27,12 @@
           <li class="nav-item admin-auth"><a href="order_history.html">Order History</a></li>
           <li class="nav-item auth"><a href="signup.html">Signup</a></li>
           <li class="nav-item auth"><a href="signin.html">Signin</a></li>
-          <li class="nav-item no-auth"><a href="logout.html">Signout</a></li>
+          <li class="nav-item" id="no-auth"><a href="#" onclick="logout()">Signout</a></li>
+          <li class="nav-item">
+            <a href="cart.html">
+              <i class="fas fa-shopping-cart nav-item" href="cart.html"><sup class="cart-items">0</sup></i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

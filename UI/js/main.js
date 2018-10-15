@@ -5,3 +5,4 @@ const toggleNavDisplay = (x) => {
   mainNav.classList.toggle('display-show');
 };
 removeLogoutLink();
+getCartCount();
