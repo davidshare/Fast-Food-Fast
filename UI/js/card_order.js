@@ -15,11 +15,13 @@ cardContainer.addEventListener('change', (event) => {
 cardContainer.addEventListener('click', (event) => {
   document.getElementById('message').textContent = '';
   if (event.target && event.target.classList.contains('cart-btn')) {
-    const mealName = document.querySelector('.card-title').textContent;
-    const price = document.querySelector('.card-price').textContent;
-    const quantity = document.querySelector('.card-quantity').value;
+    const item = document.querySelector('.card-title').textContent;
+    let price = document.querySelector('.card-price').textContent;
+    let quantity = document.querySelector('.card-quantity').value;
     if (parseInt(quantity, 10) && parseInt(quantity, 10) > 0) {
-      addToCart({ mealName, price, quantity });
+      price = parseInt(price, 10);
+      quantity = parseInt(quantity, 10);
+      addToCart({ item, price, quantity });
       redirect('cart.html');
     } else {
       showMessage('The quantity must be a number greater than zero(0)', 'error-text');
