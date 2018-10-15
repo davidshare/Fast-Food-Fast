@@ -496,6 +496,10 @@ th, td {
   width: 40%;
 }
 
+.cart-items{
+  margin: 5px;
+}
+
 table .order-info{
   border: 0 !important;
 }

@@ -22,7 +22,6 @@ cardContainer.addEventListener('click', (event) => {
       price = parseInt(price, 10);
       quantity = parseInt(quantity, 10);
       addToCart({ item, price, quantity });
-      redirect('cart.html');
     } else {
       showMessage('The quantity must be a number greater than zero(0)', 'error-text');
     }

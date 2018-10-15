@@ -30,6 +30,7 @@ cartTable.addEventListener('click', (event) => {
     displayTotalQuantity(subtractQuantity(itemQuantity));
     displayTotalPrice(subtractPrice(itemTotalPrice));
     removeItem(table);
+    getCartCount();
   }
 });
 
