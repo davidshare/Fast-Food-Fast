@@ -30,5 +30,6 @@ document.getElementById('meals-container').addEventListener('click', (event) => 
     const item = mealCard[0].textContent;
     const price = parseInt(mealCard[2].children[0].textContent.split(':')[1], 10);
     addToCart({ item, quantity: 1, price });
+    getCartCount();
   }
 });
