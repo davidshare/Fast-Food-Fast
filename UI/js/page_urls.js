@@ -9,9 +9,11 @@ const CLOUDINARY_UPLOAD_PRESET ='knowshare';
 const signupURL = `${baseUrl}auth/signup`;
 const loginURL = `${baseUrl}auth/login`;
 const menuUrl = `${baseUrl}menu`;
+const ordersURL = `${baseUrl}orders`;
 
 /* HTML PAGES*/
 const landingPage = 'index.html';
 const adminSignUpPage = 'new_admin.html';
 const loginPage = 'signin.html';
 const menuPage = 'meals.html';
+const orderPage = 'order_summary.html';

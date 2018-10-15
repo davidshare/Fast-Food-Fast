@@ -143,7 +143,7 @@ const displayMeal = (meal, containterClass) => {
 const itemExists = (cart, item) => {
   let exists = 'e';
   cart.forEach((currentItem, index) => {
-    if (currentItem.mealName === item.mealName) exists = index;
+    if (currentItem.item === item.item) exists = index;
   });
   return exists;
 };
@@ -172,7 +172,7 @@ const getCart = () => JSON.parse(localStorage.getItem('cart'));
 const formatCartItem = (item, serialNo) => {
   let cartRow = document.createElement('tr');
   cartRow.innerHTML = `<td>${serialNo}</td>
-    <td class="item">${item.mealName}</td>
+    <td class="item">${item.item}</td>
     <td class="item_price">${item.price}</td>
     <td><input type="number" class="cart-quantity" value=${item.quantity}></td>
     <td class="price-total">${item.price * item.quantity}</td>
@@ -268,4 +268,11 @@ const removeItem = (parentElement) => {
 const updateCart = (cart) => {
   localStorage.removeItem('cart');
   localStorage.setItem('cart', JSON.stringify(cart));
+};
+
+const calculateItemsTotal = (items) => {
+  items.forEach((item) => {
+    item.total = item.quantity * item.price;
+  });
+  return items;
 };

@@ -26,9 +26,9 @@
           <li class="nav-item"><a href="index.html">Home</a></li>
           <li class="nav-item"><a href="meals.html">Meals</a></li>
           <li class="nav-item"><a href="order_history.html">Order History</a></li>
-          <li class="nav-item"><a href="signup.html">Signup</a></li>
-          <li class="nav-item"><a href="signin.html">Signin</a></li>
-          <li class="nav-item"><a href="logout.html">Signout</a></li>
+          <li class="nav-item auth"><a href="signup.html">Signup</a></li>
+          <li class="nav-item auth"><a href="signin.html">Signin</a></li>
+          <li class="nav-item" id="no-auth"><a href="logout.html">Signout</a></li>
         </ul>
       </div>
     </div>
@@ -37,73 +37,27 @@
   </header>
   <section class="checkout-section bg-white footer-bottom">
     <div class="card container center-float bg-white clearfix">
-      <div class="order-summary table-responsive w4 left-float">
-        <h3 class="margin-top-bottom-1">Order Summary</h3>
-        <table class="center-float">
-          <tr>
-            <th></th>
-            <th>Item</th>
-            <th>QTY</th>
-            <th>Price</th>
-            <th>Total</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Pampers</td>
-            <td>5</td>
-            <td>3,000</td>
-            <td>15,000</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Pampers</td>
-            <td>5</td>
-            <td>3,000</td>
-            <td>15,000</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Pampers</td>
-            <td>5</td>
-            <td>3,000</td>
-            <td>15,000</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Pampers</td>
-            <td>5</td>
-            <td>3,000</td>
-            <td>15,000</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Pampers</td>
-            <td>5</td>
-            <td>3,000</td>
-            <td>15,000</td>
-          </tr>
-          <tr>
-            <td><strong>Total</strong></td>
-            <td></td>
-            <td><strong>25</strong></td>
-            <td></td>
-            <td><strong>75,000</strong></td>
-          </tr>
-        </table>
-      </div>
       <div class="delivery-details w6 left-float">
-        <form class="delivery-form">
+        <form class="delivery-form" id="checkout">
           <h3 class="margin-top-bottom-1">Delivery information</h3>
           <p class="info">Enter the recipient data</p>
-          <p><input type="text" placeholder="First Name" id="firstname"><input type="text" placeholder="Last Name" id="lastname"></p>
-          <p><input type="phone" placeholder="Phone Number"  id="phone"><input type="email" placeholder="Email" id="email"></p>
-          <p><textarea rows="4" placeholder="Recipient address" id="recipient-address"></textarea></p>
-          <h3 class="margin-top-bottom-1">Payment information</h3>
-          <p class="info">Fill all the input fields in this section with numbers</p>
-          <p><input type="text" placeholder="Card number"></p>
-          <p><input type="number" placeholder="Month"><input type="number" placeholder="Year"><input type="number" placeholder="CVV"></p>
-          <p><button class="btn btn-danger">Make order</button></p>
-            
+          <p id="message" class="error-text"></p>
+          <p>
+            <span id="fname_msg" class="error-text"></span>
+            <span id="lname_msg" class="error-text"></span>
+            <input type="text" placeholder="First Name" id="firstname" required><input type="text" placeholder="Last Name"
+              id="lastname" required>
+          </p>
+          <p>
+            <span id="phone_msg" class="error-text"></span>
+            <span id="email_msg" class="error-text"></span>
+            <input type="phone" placeholder="Phone Number" id="phone" required><input type="email" placeholder="Email"
+              id="email">
+          </p>
+          <p>
+            <span id="address_msg" class="error-text"></span>
+            <textarea rows="4" placeholder="Please provide a very detailed and specific address" id="address" required></textarea></p>
+          <p><button class="btn btn-danger" type="submit">Place order</button></p>
         </form>
       </div>
     </div>
@@ -112,7 +66,12 @@
     <p>Developed by Essien, David Itam - for Andela 21</p>
     Copyright &copy 2018
   </footer>
+  <script src="js/validation_rules.js "></script>
+  <script src="js/functions.js"></script>
+  <script src="js/page_urls.js"></script>
+  <script src="js/authenticate.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
 </body>
 
 </html>

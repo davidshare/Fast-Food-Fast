@@ -18,7 +18,7 @@ cartTable.addEventListener('click', (event) => {
     const cart = getCart();
     let itemIndex;
     cart.forEach((item, index) => {
-      if (item.mealName === mealName) {
+      if (item.item === mealName) {
         itemIndex = index;
         return 0;
       }
@@ -41,12 +41,11 @@ cartTable.addEventListener('change', (event) => {
     const rowElements = itemRow.children;
     const mealName = rowElements[1].textContent;
     const mealPrice = parseInt(rowElements[2].textContent, 10);
-    const totalCost = rowElements[4].textContent;
     const mealQuantity = parseInt(rowElements[3].children[0].value, 10);
     const cart = getCart();
     let itemIndex;
     cart.forEach((item, index) => {
-      if (item.mealName === mealName) {
+      if (item.item === mealName) {
         itemIndex = index;
         return 0;
       }
