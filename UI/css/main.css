@@ -222,6 +222,11 @@ color: #fff;
   padding:5px;
 }
 
+button:disabled{
+  background: #c1c1c1;
+  cursor: not-allowed;
+  color: #272822;
+}
 
 /* ----------------------------------------------- */
 /* HEADER */

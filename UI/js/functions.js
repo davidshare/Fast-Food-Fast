@@ -90,13 +90,13 @@ const logout = () => {
 const getDecodedUser = () => {
   if(localStorage.getItem('userToken')) {
     return jwt_decode(localStorage.getItem('userToken'));
-  }  
+  }
 };
 
 const formatMeal = (meal) => {
   const card = document.createElement('div');
   card.classList.add('card', 'w3', 'left-float');
-  card.innerHTML = 
+  card.innerHTML =
   `<div class="card-img">
     <img src="${meal.picture}" alt="${meal.name} image">
   </div>
@@ -287,4 +287,58 @@ const getCartCount = () => {
   const cartDisplay = document.querySelector('.cart-items');
   const cart = getCart();
   cartDisplay.innerHTML = cart.length || 0;
-}
+};
+
+const displayOrders = (orders) => {
+  if (orders) {
+    const ordersTable = document.querySelector('.order-table');
+    const tableHead = document.createElement('tr');
+
+    tableHead.innerHTML = '<th>S/N</th><th>Order No</th><th>No.of Items</th><th>Total cost</th><th>Date</th><th></th>  <th></th><th></th>';
+    ordersTable.appendChild(tableHead);
+    orders.forEach((order) => {
+      const tableRow = document.createElement('tr');
+      tableRow.innerHTML = `
+      <td>1</td>
+      <td>${order.id}</td>
+      <td>${order.items}</td>
+      <td>${order.total_cost}</td>
+      <td><button class="btn btn-dark"><a class="order-btn" href="order_summary.html?orderId=${order.id}">View</a></button></td>
+      ${displayButtons(order.status)}
+      `;
+      ordersTable.appendChild(tableRow);
+    });
+  } else {
+    showMessage('Sorry! No orders have been placed', 'error-text');
+  }
+};
+
+const displayButtons = (status) => {
+  const buttonsDisplay = {
+    pending: `
+    <td><button class="btn btn-primary status-accept" id="accept">Accept</button></td>
+    <td><button class="btn btn-danger status-reject" id="reject">Reject</button></td>
+    <td><button class="btn btn-success status-complete" id="complete">Complete</button></td>
+    `,
+    canceled: '<td><button class="btn btn-primary" id="accept" disabled>Canceled</button></td>',
+    declined: '<td><button class="btn btn-primary" id="reject" disabled>Rejected</button></td>',
+    accepted: `
+    <td><button class="btn btn-primary" id="accept" disabled>Accepted</button></td>
+    <td><button class="btn btn-success status-complete" id="complete">Complete</button></td>
+    `,
+    completed: '<td><button class="btn btn-success" id="complete" disabled>Completed</button></td>',
+  };
+  switch (status) {
+  case 'Canceled':
+    return buttonsDisplay.canceled;
+  case 'Declined':
+    return buttonsDisplay.declined;
+  case 'Accepted':
+    return buttonsDisplay.accepted;
+  case 'Completed':
+    return buttonsDisplay.completed;
+  default:
+    return buttonsDisplay.pending;
+  }
+};
+['Canceled', 'Declined', 'Accepted', 'Completed'];
