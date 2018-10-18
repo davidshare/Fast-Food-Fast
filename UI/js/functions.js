@@ -241,11 +241,11 @@ const displayCart = () => {
   cartTable.appendChild(tableFooter);
 };
 
-const clearCart = () => {
+const clearCart = (redirectFlag) => {
   if (getCart()) {
     localStorage.removeItem('cart');
     getCartCount();
-    redirect('cart.html');
+    if (redirectFlag) redirect('cart.html');
   }
 };
 
@@ -286,7 +286,11 @@ const calculateItemsTotal = (items) => {
 const getCartCount = () => {
   const cartDisplay = document.querySelector('.cart-items');
   const cart = getCart();
-  cartDisplay.innerHTML = cart.length || 0;
+  if (cart) {
+    cartDisplay.innerHTML = cart.length;
+  } else {
+    cartDisplay.innerHTML = 0;
+  }
 };
 
 const displayOrders = (orders) => {
@@ -341,4 +345,113 @@ const displayButtons = (status) => {
     return buttonsDisplay.pending;
   }
 };
-['Canceled', 'Declined', 'Accepted', 'Completed'];
+
+const displayOrderDetails = (order, container) => {
+  const detailsTable = document.createElement('table');
+  detailsTable.classList.add('center-float', 'w6', 'clearfix', 'user-details', 'margin-bottom-4');
+  detailsTable.innerHTML = `
+  <tr class="order-info">
+    <td><strong>Order number:</strong></td>
+    <td>${orderId}</td>
+  </tr>
+  <tr class="order-info">
+    <td><strong>Status:</strong></td>
+    <td>${order.status}</td>
+  </tr>
+  <tr class="order-info">
+    <td><strong>Recipient:</strong></td>
+    <td>${order.firstname} ${order.lastname}</td>
+  </tr>
+  <tr class="order-info">
+    <td><strong>Recipient Email:</strong></td>
+    <td>${order.email}</td>
+  </tr>
+  <tr class="order-info">
+    <td><strong>Recipient Phone number:</strong></td>
+    <td>${order.phone}</td>
+  </tr>
+  <tr class="order-info">
+    <td><strong>Recipient address:</strong></td>
+    <td>${order.address}</td>
+  </tr>
+  `;
+
+  container.appendChild(detailsTable);
+};
+
+const displayItemsTable = (orderItems, totalCost, status, container) => {
+  const items = Array.from(orderItems);
+  let count = 1;
+  let totalQuantity = 0;
+  const itemsTable = document.createElement('table');
+  const tableHead = document.createElement('tr');
+  const tableFooter = document.createElement('tr');
+  itemsTable.classList.add('center-float', 'w6', 'clearfix');
+  tableHead.innerHTML = `
+    <th></th>
+    <th>Item</th>
+    <th>QTY</th>
+    <th>Price</th>
+    <th>Total</th> `;
+  itemsTable.appendChild(tableHead);
+  items.forEach((item) => {
+    const itemRow = document.createElement('tr');
+    itemRow.innerHTML = `
+    <td>${count}</td>
+    <td>${item.item}</td>
+    <td>${item.quantity}</td>
+    <td>${item.price}</td>
+    <td>${item.total}</td>
+    `;
+    totalQuantity += item.quantity;
+    count += 1;
+    itemsTable.appendChild(itemRow);
+  });
+  tableFooter.innerHTML = `
+    <td><strong>Total</strong></td>
+    <td></td>
+    <td><strong>${totalQuantity}</strong></td>
+    <td></td>
+    <td><strong>${totalCost}</strong></td>
+  `;
+  itemsTable.appendChild(tableFooter);
+  container.appendChild(itemsTable);
+  if (status === 'pending') {
+    const cancelButton = document.createElement('p');
+    cancelButton.classList.add('text-center', 'margin-bottom-4');
+    cancelButton.innerHTML = '<button class="btn btn-danger status-cancel">Cancel order</button>';
+    container.appendChild(cancelButton);
+  }
+};
+
+const displayOrder = (order, container) => {
+  displayOrderDetails(order, container);
+  displayItemsTable(order.items, order.totalCost, order.status, container);
+};
+
+const getOrder = (orderId, orderContainer) => {
+  if (!parseInt(orderId, 10)) showMessage('Sorry, the orderId must be a valid Integer greater than 0', 'error-text');
+  fetch(`${ordersURL}/${orderId}`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access': getUserToken(),
+    },
+  })
+    .then((response) => {
+      return response.json()
+        .then((orderResponse) => {
+          if (response.ok) return orderResponse;
+          throw orderResponse;
+        })
+        .then((data) => {
+          displayOrder(data.order, orderContainer);
+        })
+    })
+    .catch((error) => {
+      if (error.status === 404) {
+        showMessage(formatErrors(error.error), 'error-text');
+      }
+    });
+};
