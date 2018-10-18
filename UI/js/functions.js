@@ -455,3 +455,66 @@ const getOrder = (orderId, orderContainer) => {
       }
     });
 };
+
+const displayCancelButton = (status) => {
+  if (status === 'pending') return '<td><button class="btn btn-danger status-cancel">Cancel</button></td>';
+};
+
+const getUserOrders = (userOrdersURL) => {
+  fetch(userOrdersURL, {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access': getUserToken(),
+    },
+  })
+    .then((response) => {
+      return response.json()
+        .then((ordersResponse) => {
+          if (response.ok) return ordersResponse;
+          throw ordersResponse;
+        })
+        .then((data) => {
+          displayOrderHistory(data.orders);
+          // displayOrders(data.orders, 'orders-container');
+        })
+    })
+    .catch((error) => {
+      if (error.status === 404) {
+        showMessage(error.error, 'error-text');
+      }
+    });
+};
+
+const displayOrderHistory = (orders) => {
+  const historyTable = document.createElement('table');
+  const tableHead = document.createElement('tr');
+  const count = 1;
+
+  historyTable.classList.add('order-table', 'center-float', 'margin-bottom-4', 'margin-top-4');
+  tableHead.innerHTML = `
+  <th>S/N</th>
+  <th>Order No</th>
+  <th>No.of Items</th>
+  <th>Total cost</th>
+  <th>Status</th>
+  <th></th>
+  <th></th>
+  `;
+  historyTable.appendChild(tableHead);
+  orders.forEach((order) => {
+    const orderRow = document.createElement('tr');
+    orderRow.innerHTML = `
+    <td>${count}</td>
+    <td>${order.id}</td>
+    <td>${order.items}</td>
+    <td>${order.total_cost}</td>
+    <td>${order.status}</td>
+    <td><button class="btn btn-dark"><a class="order-btn" href="order_summary.html?orderId=${order.id}">View</a></button></td>
+    ${displayCancelButton(order.status)}
+    `;
+    historyTable.appendChild(orderRow);
+    document.querySelector('.history-list').appendChild(historyTable);
+  });
+};
