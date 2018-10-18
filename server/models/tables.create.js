@@ -11,6 +11,19 @@ const createUsersTable = `
   );
 `;
 
+const createOrdersTable = `
+  CREATE TABLE IF NOT EXISTS orders(
+    id SERIAL PRIMARY KEY NOT NULL,
+    user_id INTEGER REFERENCES users(id),
+    items INTEGER NOT NULL,
+    quantity INTEGER,
+    total_cost INTEGER,
+    status VARCHAR(10) DEFAULT 'Pending', 
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
+    updated TIMESTAMP WITH TIME ZONE DEFAULT now()
+  );
+`;
+
 const createRecipientTable = `
   CREATE TABLE IF NOT EXISTS recipient(
     id SERIAL PRIMARY KEY NOT NULL,
@@ -19,21 +32,7 @@ const createRecipientTable = `
     email VARCHAR(30) NOT NULL,
     phone BIGINT,
     address TEXT,
-    user_id INTEGER REFERENCES users(id),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
-    updated TIMESTAMP WITH TIME ZONE DEFAULT now()
-  );
-`;
-
-const createOrdersTable = `
-  CREATE TABLE IF NOT EXISTS orders(
-    id SERIAL PRIMARY KEY NOT NULL,
-    user_id INTEGER REFERENCES users(id),
-    recipient_id INTEGER REFERENCES users(id),
-    items INTEGER NOT NULL,
-    quantity INTEGER,
-    total_cost INTEGER,
-    status VARCHAR(10) DEFAULT 'Pending', 
+    order_id INTEGER REFERENCES orders(id),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
@@ -64,5 +63,5 @@ const createOrderItemsTable = `
     updated TIMESTAMP WITH TIME ZONE DEFAULT now()
   );
 `;
-const createQuery = `${createUsersTable}${createRecipientTable}${createOrdersTable}${createMealsTable}${createOrderItemsTable}`;
+const createQuery = `${createUsersTable}${createOrdersTable}${createRecipientTable}${createMealsTable}${createOrderItemsTable}`;
 export default createQuery;

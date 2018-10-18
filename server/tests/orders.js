@@ -376,7 +376,6 @@ describe('ORDERS CONTROLLER ', () => {
         })
         .set('token', currentToken)
         .end((error, response) => {
-          console.log(response.body);
           expect(response).to.have.status(406);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('error');
