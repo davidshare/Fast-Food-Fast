@@ -23,12 +23,12 @@
             <div class="nav">
               <ul class="main-nav">
                   <li class="nav-item welcome">Welcome David!</li>
-                  <li class="nav-item"><a href="../index.html">Home</a></li>
-                  <li class="nav-item"><a href="../meals.html">Meals</a></li>
+                  <li class="nav-item"><a href="index.html">Home</a></li>
+                  <li class="nav-item"><a href="meals.html">Meals</a></li>
                   <li class="nav-item"><a href="orders.html">Orders</a></li>
                   <li class="nav-item"><a href="new_meal.html">New meal</a></li>
                   <li class="nav-item active"><a href="new_admin.html">New Admin</a></li>
-                  <li class="nav-item"><a href="../logout.html">Signout</a></li>
+                  <li class="nav-item" id="no-auth"><a href="#" onclick="logout()">Signout</a></li>
               </ul>
             </div>
           </div>
@@ -69,6 +69,10 @@
       </form>
     </div>
   </section>
+  <script src="../js/validation_rules.js"></script>
+  <script src="../js/page_urls.js"></script>
+  <script src="../js/functions.js"></script>
+  <script src="../js/signup.js"></script>
   <script src="../js/main.js"></script>
 </body>
 
