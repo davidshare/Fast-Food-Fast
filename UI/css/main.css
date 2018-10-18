@@ -535,6 +535,42 @@ table .order-info{
   margin-bottom: 20px;
 }
 
+/*-------------------------------------------------
+					SIDE NAV
+--------------------------------------------------*/
+.side-nav{
+  width: 250px;
+  height:100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 50px 20px 20px 30px;
+  color: #cdcdcd;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('../assets/images/food photo.jpg');
+  font-size: 1.2em;
+}
+
+.side-nav ul {
+  list-style: none;
+}
+
+.side-nav li a{
+  text-decoration: none;
+  color: #cdcdcd;
+}
+
+.side-nav li a:hover{
+  color: #fff;
+  font-weight: bold;
+}
+
+.admin-content{
+  width: 80%;
+  padding: 20px 40px 20px 20px;
+  position: absolute;
+  left: 250px;
+  overflow-x: hidden;
+}
 
 /*-------------------------------------------------
 					MEDIA QUERIES
