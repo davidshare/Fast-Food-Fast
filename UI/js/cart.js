@@ -2,7 +2,7 @@ displayCart();
 const cartTable = document.getElementById('cart-table');
 cartTable.addEventListener('click', (event) => {
   if (event.target && event.target.classList.contains('clear-cart')) {
-    clearCart();
+    clearCart(true);
   }
 
   if (event.target && event.target.classList.contains('continue')) {

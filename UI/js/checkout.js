@@ -76,8 +76,8 @@ const placeOrder = (event) => {
             throw orderResponse;
           })
           .then((data) => {
-            clearCart();
-            redirect(orderPage);
+            clearCart(false);
+            redirect(`${orderPage}?orderId=${data.order.id}`);
           })
       })
       .catch((error) => {
