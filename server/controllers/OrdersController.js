@@ -58,7 +58,8 @@ class OrdersController {
    */
   static getOrderById(request, response) {
     const { orderId } = request.params;
-    const query = `SELECT * from orders WHERE id=${orderId}`;
+    const query =`select o.user_id, o.items, o.quantity, o.total_cost, o.status, i.item, i.quantity, i.price, i.total, r.firstname, r.lastname, r.email, r.phone, r.address from orders AS o INNER JOIN items AS i on o.id = i.order_id AND o.id=${orderId} INNER JOIN recipient as r on o.id=r.order_id AND o.id=${orderId}`;
+    // const query = `SELECT * from orders WHERE id=${orderId}`;
     client.query(query)
       .then((dbResult) => {
         if (!dbResult.rows[0]) {
@@ -85,7 +86,7 @@ class OrdersController {
       status: 200,
       success: true,
       message: 'Successfully got order',
-      order: dbResult.rows[0],
+      order: OrdersController.processOrder(dbResult.rows),
     });
   }
 
@@ -112,15 +113,14 @@ class OrdersController {
       totalPrice,
     } = OrdersController.generateItemsQuery(items);
 
-    const query = `WITH new_recipient AS (
-      insert into recipient (firstname, lastname, email, phone, address) 
-      values ('${firstName}', '${lastName}', '${recipientEmail}', ${recipientPhoneNumber}, '${recipientAddress}')
-      returning id as recipient_id
-    ),    
-    new_order AS(
-      insert into orders(user_id, recipient_id, items, quantity, total_cost, status)
-      values(${userId}, (select * from new_recipient), ${items.length}, ${totalQuantity}, ${totalPrice}, 'pending')
+    const query = `WITH new_order AS (
+      insert into orders(user_id, items, quantity, total_cost, status)
+      values(${userId}, ${items.length}, ${totalQuantity}, ${totalPrice}, 'pending')
       returning id as order_id
+    ),    
+    new_recipient AS(
+      insert into recipient (firstname, lastname, email, phone, address, order_id) 
+      values ('${firstName}', '${lastName}', '${recipientEmail}', ${recipientPhoneNumber}, '${recipientAddress}', (select * from new_order))
     )
     ${baseQuery}`;
 
@@ -240,6 +240,21 @@ class OrdersController {
     });
     baseQuery = `${baseQuery} ${queryArray.join(', ')} RETURNING *;`;
     return { baseQuery, totalQuantity, totalPrice };
+  }
+
+  static processOrder(order){
+    const { firstname, lastname, address, email, phone, status } = order[0];
+    const num_items = order[0].items;
+    const totalCost = order[0].total_cost;
+    const userId = order[0].user_id;
+    const items = [];
+  
+    order.forEach((orderItem) => {
+      const { item, price, quantity, total } = orderItem;
+      items.push({ item, price, quantity, total });
+    })
+  
+    return { userId, firstname, lastname, address, email, phone, num_items, totalCost, status, items };
   }
 }
 
