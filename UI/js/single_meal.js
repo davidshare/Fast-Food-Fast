@@ -24,7 +24,6 @@ const getMeal = () => {
       }
     });
 };
-document.querySelector('.no-auth').addEventListener('click', logout);
 getMeal();
 removeLogoutLink();
 removeAuthLinks();
