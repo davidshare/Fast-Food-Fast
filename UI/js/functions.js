@@ -355,6 +355,46 @@ const displayButtons = (status) => {
   }
 };
 
+const displaySummaryButtons = (status, container) => {
+  const buttonContainer = document.createElement('p');
+  buttonContainer.classList = 'text-center';
+  const buttonsDisplay = {
+    pending: `
+    <button class="btn btn-primary status-accept" id="accept">Accept</button>
+    <button class="btn btn-danger status-reject" id="reject">Reject</button>
+    <button class="btn btn-success status-complete" id="complete">Complete</button>
+    `,
+    canceled: '<button class="btn btn-primary" id="accept" disabled>Canceled</button>',
+    declined: '<button class="btn btn-primary" id="reject" disabled>Rejected</button>',
+    accepted: `
+    <button class="btn btn-primary" id="accept" disabled>Accepted</button>
+    <button class="btn btn-success status-complete" id="complete">Complete</button>
+    `,
+    completed: '<button class="btn btn-success" id="complete" disabled>Completed</button>',
+  };
+  switch (status) {
+  case 'Canceled':
+    buttonContainer.innerHTML = buttonsDisplay.canceled;
+    container.appendChild(buttonContainer);
+    break;
+  case 'Declined':
+    buttonContainer.innerHTML = buttonsDisplay.declined;
+    container.appendChild(buttonContainer);
+    break;
+  case 'Accepted':
+    buttonContainer.innerHTML = buttonsDisplay.accepted;
+    container.appendChild(buttonContainer);
+    break;
+  case 'Completed':
+    buttonContainer.innerHTML = buttonsDisplay.completed;
+    container.appendChild(buttonContainer);
+    break;
+  default:
+    buttonContainer.innerHTML = buttonsDisplay.pending;
+    container.appendChild(buttonContainer);
+  }
+};
+
 const displayOrderDetails = (order, container) => {
   const detailsTable = document.createElement('table');
   detailsTable.classList.add('center-float', 'w6', 'clearfix', 'user-details', 'margin-bottom-4');
@@ -425,11 +465,13 @@ const displayItemsTable = (orderItems, totalCost, status, container) => {
   `;
   itemsTable.appendChild(tableFooter);
   container.appendChild(itemsTable);
-  if (status === 'pending') {
+  if (status === 'pending' && getDecodedUser() === 0) {
     const cancelButton = document.createElement('p');
     cancelButton.classList.add('text-center', 'margin-bottom-4');
     cancelButton.innerHTML = '<button class="btn btn-danger status-cancel">Cancel order</button>';
     container.appendChild(cancelButton);
+  } else {
+    displaySummaryButtons(status, container);
   }
 };
 
