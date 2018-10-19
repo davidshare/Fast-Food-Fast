@@ -1,11 +1,11 @@
-showMessage(getMessage('login-message'), 'success-text', true);
+showMessage(getMessage('auth'));
 
 const getLoginInput = () => {
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
   return { email, password };
-}
- 
+};
+
 const login = (event) => {
   event.preventDefault();
   if(validateLogin(getLoginInput())) {
@@ -18,12 +18,16 @@ const login = (event) => {
       .then((response) => {
         return response.json()
           .then((signinResponse) => {
-            if(response.ok) return signinResponse;
+            if (response.ok) return signinResponse;
             throw signinResponse;
           })
           .then((data) => {
             setAuthentication(data);
-            redirect(landingPage);
+            if (getDecodedUser().user.role === 0) {
+              redirect(appUrl);
+            } else {
+              redirect(`${appUrl}/admin`);
+            }
           })
       })
       .catch((error) => {
@@ -32,6 +36,8 @@ const login = (event) => {
         }
         return error;
       });
+  }else{
+    showMessage('Please enter a valid username and password', 'error-text');
   }
 };
 
@@ -62,3 +68,4 @@ const validateLogin = (userObject) => {
 };
 
 document.getElementById('login-btn').addEventListener('click', login);
+if(getUserToken()) redirect('index.html');

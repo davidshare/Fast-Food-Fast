@@ -1,0 +1,1 @@
+authenticateAdmin(loginPage);

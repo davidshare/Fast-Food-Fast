@@ -27,10 +27,12 @@ const getMessage = (key) => {
   }
   return currentMessage;
 };
-const showMessage = (message, type) => {
+const showMessage = (message, type = 'error-text') => {
   const messageObj = document.getElementById('message');
-  messageObj.innerHTML = message;
-  messageObj.classList = type;
+  if (messageObj && message) {
+    messageObj.innerHTML = message;
+    messageObj.classList = type;
+  }
 };
 
 const getUserRole = () => {
@@ -74,7 +76,13 @@ const authenticateAdmin = (url) => {
   if (getUserToken()) {
     removeAuthLinks();
     const user = getDecodedUser(getUserToken());
-    if (user.user.role !== 1 && user.user.role !== 2) redirect(url);
+    if (user.user.role !== 1 && user.user.role !== 2){
+      setMessage('auth', 'Sorry you must be loggedin to access this section of the app');
+      redirect(url);
+    }
+  } else {
+    setMessage('auth', 'Sorry you must be loggedin to access this section of the app');
+    redirect(url);
   }
 };
 
@@ -286,9 +294,10 @@ const calculateItemsTotal = (items) => {
 const getCartCount = () => {
   const cartDisplay = document.querySelector('.cart-items');
   const cart = getCart();
-  if (cart) {
+  if (cart && cartDisplay) {
     cartDisplay.innerHTML = cart.length;
-  } else {
+  }
+  if (!cart && cartDisplay) {
     cartDisplay.innerHTML = 0;
   }
 };
