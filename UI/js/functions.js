@@ -307,7 +307,7 @@ const displayOrders = (orders) => {
     const ordersTable = document.querySelector('.order-table');
     const tableHead = document.createElement('tr');
 
-    tableHead.innerHTML = '<th>S/N</th><th>Order No</th><th>No.of Items</th><th>Total cost</th><th>Date</th><th></th>  <th></th><th></th>';
+    tableHead.innerHTML = '<th>S/N</th><th>Order No</th><th>No. of Items</th><th>Total cost</th><th>Date</th><th></th>  <th></th><th></th>';
     ordersTable.appendChild(tableHead);
     orders.forEach((order) => {
       const tableRow = document.createElement('tr');
@@ -465,12 +465,12 @@ const displayItemsTable = (orderItems, totalCost, status, container) => {
   `;
   itemsTable.appendChild(tableFooter);
   container.appendChild(itemsTable);
-  if (status === 'pending' && getDecodedUser() === 0) {
+  if (status === 'pending' && getDecodedUser().user.role === 0) {
     const cancelButton = document.createElement('p');
     cancelButton.classList.add('text-center', 'margin-bottom-4');
     cancelButton.innerHTML = '<button class="btn btn-danger status-cancel">Cancel order</button>';
     container.appendChild(cancelButton);
-  } else {
+  } else if (getDecodedUser().user.role !== 0) {
     displaySummaryButtons(status, container);
   }
 };
@@ -509,6 +509,7 @@ const getOrder = (orderId, orderContainer) => {
 
 const displayCancelButton = (status) => {
   if (status === 'pending') return '<td><button class="btn btn-danger status-cancel">Cancel</button></td>';
+  return '';
 };
 
 const getUserOrders = (userOrdersURL) => {
@@ -528,7 +529,6 @@ const getUserOrders = (userOrdersURL) => {
         })
         .then((data) => {
           displayOrderHistory(data.orders);
-          // displayOrders(data.orders, 'orders-container');
         })
     })
     .catch((error) => {
@@ -547,7 +547,7 @@ const displayOrderHistory = (orders) => {
   tableHead.innerHTML = `
   <th>S/N</th>
   <th>Order No</th>
-  <th>No.of Items</th>
+  <th>No. of Items</th>
   <th>Total cost</th>
   <th>Status</th>
   <th></th>
@@ -568,4 +568,63 @@ const displayOrderHistory = (orders) => {
     historyTable.appendChild(orderRow);
     document.querySelector('.history-list').appendChild(historyTable);
   });
+};
+
+const getUpdateStatus = (status) => {
+  switch (status) {
+  case 'cancel':
+    return 'Canceled';
+  case 'reject':
+    return 'Declined';
+  case 'complete':
+    return 'Completed';
+  case 'accept':
+    return 'Accepted';
+  default:
+    return false;
+  }
+};
+
+const getOrderId = (event) => {
+  if (window.location.href === `${appUrl}admin/orders.html` || window.location.href === `${appUrl}order_history.html`) {
+    return event.target.parentElement.parentElement.children[1].textContent;
+  }
+  return window.location.href.split('?')[1].split('=')[1];
+};
+
+const updateStatus = (event) => {
+  const orderId = getOrderId(event);
+  const validStatuses = ['cancel', 'reject', 'accept', 'complete'];
+  let status;
+  if (event.target && event.target.classList.contains('btn') && !event.target.classList.contains('btn-dark')) {
+    status = event.target.classList[2].split('-')[1];
+  }
+  if (status && validStatuses.includes(status)) {
+    const orderStatus = getUpdateStatus(status);
+    fetch(`${ordersURL}/${orderId}`, {
+      method: 'PUT',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access': getUserToken(),
+      },
+      body: JSON.stringify({
+        orderStatus,
+      }),
+    })
+      .then((response) => {
+        return response.json()
+          .then((statusResponse) => {
+            if (response.ok) {
+              redirect(window.location.href);
+            }
+            throw statusResponse;
+          })
+      })
+      .catch((error) => {
+        if (error.status === 404 || error.status === 401 || error.status === 406) {
+          showMessage(error.error);
+        }
+      });
+  }
 };
