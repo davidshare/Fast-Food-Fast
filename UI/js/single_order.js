@@ -4,3 +4,5 @@ const orderContainer = document.querySelector('.order-summary');
 getOrder(orderId, orderContainer);
 removeLogoutLink();
 removeAuthLinks();
+
+document.querySelector('.order-summary').addEventListener('click', updateStatus);

@@ -85,6 +85,8 @@ const placeOrder = (event) => {
           showMessage(formatErrors(error.error), 'error-text');
         }
       });
+  } else {
+    showMessage('The order could not be place. Please try again');
   }
 };
 

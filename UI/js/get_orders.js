@@ -24,3 +24,4 @@ const getOrders = () => {
     });
 };
 getOrders();
+document.querySelector('.history-list').addEventListener('click', updateStatus);
