@@ -7,6 +7,9 @@ const getLoginInput = () => {
 };
 
 const login = (event) => {
+  const loginButton = document.getElementById('login-btn');
+  const buttonContent = addLoader(loginButton);
+
   event.preventDefault();
   if(validateLogin(getLoginInput())) {
     fetch(loginURL, {
@@ -31,12 +34,14 @@ const login = (event) => {
           })
       })
       .catch((error) => {
+        removeLoader(loginButton, buttonContent);
         if (error.statusCode === 404 || error.statusCode === 406 || error.statusCode === 401) {
           showMessage(formatErrors(error.error), 'error-text');
         }
         return error;
       });
   }else{
+    removeLoader(loginButton, buttonContent);
     showMessage('Please enter a valid username and password', 'error-text');
   }
 };

@@ -58,6 +58,8 @@ const validateOrder = (checkoutObject) => {
 
 const placeOrder = (event) => {
   event.preventDefault();
+  const checkoutButton = document.querySelector('.btn-danger');
+  const buttonContent = addLoader(checkoutButton);
   const checkoutInfo = getCheckoutInfo();
   if (validateOrder(checkoutInfo)) {
     fetch(ordersURL, {
@@ -81,11 +83,13 @@ const placeOrder = (event) => {
           })
       })
       .catch((error) => {
+        removeLoader(checkoutButton, buttonContent);
         if (error.status === 401 || error.status === 406) {
           showMessage(formatErrors(error.error), 'error-text');
         }
       });
   } else {
+    removeLoader(checkoutButton, buttonContent);
     showMessage('The order could not be place. Please try again');
   }
 };

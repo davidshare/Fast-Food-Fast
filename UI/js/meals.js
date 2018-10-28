@@ -10,6 +10,8 @@ const getMealInput = () => {
 };
 
 const addMeal = (event) => {
+  const mealButton = document.getElementById('add-meal-btn');
+  const buttonContent = addLoader(mealButton);
   event.preventDefault();
   const mealInput = getMealInput();
   if (validateMeal(mealInput)) {
@@ -31,8 +33,11 @@ const addMeal = (event) => {
           })
       })
       .catch((error) => {
+        removeLoader(mealButton, buttonContent);
         return error;
       });
+  } else {
+    removeLoader(mealButton, buttonContent);
   }
 };
 
@@ -100,7 +105,7 @@ const  saveMeal = (mealInput) => {
         })
         .then((data) => {
           setMessage('fff_signup', data.message);
-          redirect(`../${menuPage}`);
+          redirect(menuPage);
         })
     })
     .catch((error) => {

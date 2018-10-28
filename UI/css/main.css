@@ -191,35 +191,88 @@ section, footer {
   padding:5px 15px;
   margin-top:15px;
   font-size: 1em;
+  text-decoration: none;
   border: 0;
   border-radius: 2px;
   cursor: pointer;
 }
+a.btn{
+  display: inline-block;
+}
 
-.btn-danger{
+.card .btn:hover{
+  padding:9px 12px;
+  font-weight: bold;
+}
+
+.cart-summary .btn:hover{
+  font-weight: normal;
+  padding: 4px 12px
+}
+
+.btn[disabled]:hover{
+  padding:5px 15px;
+  font-weight: normal;
+}
+
+.btn-danger, .btn-danger-outline:hover{
   background: rgb(158, 26, 6);
   color: #fff;
 }
 
-.btn-success{
+.btn-danger-outline, .btn-danger:hover{
+  color: rgb(158, 26, 6);
+  border: 1px solid rgb(158, 26, 6);
+  background: #fff;
+}
+
+.btn-success, .btn-success-outline:hover{
   background: rgb(2, 92, 17);
   color: #fff;
 }
 
-.btn-dark{
+.btn-success-outline, .btn-success:hover{
+  color:rgb(2, 92, 17);
+  border: 1px solid rgb(2, 92, 17);
+  background: #fff;
+  font-weight: bold;
+}
+
+.btn-dark, .btn-dark-outline:hover{
   background: rgb(52, 54, 52);
   color: #fff;
 }
 
-.btn-primary{
+.btn-dark:hover{
+  padding: 5px 12px;
+}
+
+.btn-dark-outline, .btn-dark:hover{
+  color: rgb(52, 54, 52);
+  border: 1px solid rgb(52, 54, 52);
+  background: #fff;
+  font-weight: bold;
+}
+
+.btn-primary, .btn-primary-outline:hover{
 background: #007acc;
 color: #fff;
+}
+
+.btn-primary-outline, .btn-primary:hover{
+  color:#007acc;
+  border: 1px solid #007acc;
+  background: #fff;
+  font-weight: bold;
+}
+
+.btn .fa-spin{
+  margin: 0 10px;
 }
 
 .order-btn, .cart-btn{
   text-decoration: none;
   color: #fff;
-  padding:5px;
 }
 
 button:disabled{
@@ -437,6 +490,50 @@ section.about{
 /* ----------------------------------------------- */
 .footer-bottom{
   min-height: 40vh;
+}
+
+/*-------------------------------------------------
+    Flash message
+  ---------------------------------------------------*/
+  .flash-message{
+    width: 60%;
+    background: #d6b640;
+    visibility: hidden;
+    color: #272822;
+    font-weight: bold;
+    position: fixed;
+    bottom: 30px;
+    left: 20%;
+    padding: 10px;
+    border-radius: 2px;
+    z-index: 5;
+  }
+
+  .animate-flash{
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+
+/** Source W3Schools**/
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
 }
 
 /* ----------------------------------------------- */
@@ -713,7 +810,6 @@ table .order-info{
   footer{
     padding:40px;
   }
-
 
   /*-------------------------------------------------
     Signup and Signin pages
