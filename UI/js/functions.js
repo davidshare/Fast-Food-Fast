@@ -121,8 +121,6 @@ const formatMeal = (meal) => {
   </div>
   <div class="card-body">
       <h3 class="card-title margin-top-bottom-1">${meal.name}</h3>
-      <p class="card-content text-justify margin-top-bottom-1">${meal.description}
-      </p>
       <div class="card-footer text-justify margin-top-bottom-1">
         <p><strong>Price:</strong>${meal.price}</p>
         <p class="text-center">
@@ -161,6 +159,31 @@ const displayMeal = (meal, containterClass) => {
   </div>
 </div>`;
   document.getElementById(containterClass).appendChild(card);
+};
+
+const getMenu = () => {
+  fetch(menuUrl, {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      return response.json()
+        .then((menuResponse) => {
+          if (response.ok) return menuResponse;
+          throw menuResponse;
+        })
+        .then((data) => {
+          displayMeals(data.menu, 'meals-container');
+        })
+    })
+    .catch((error) => {
+      if (error.statusCode === 404) {
+        showMessage(formatErrors(error.error), 'error-text');
+      }
+    });
 };
 
 const itemExists = (cart, item) => {
