@@ -17,6 +17,17 @@ const setMessage = (key, message) => {
   }
 };
 
+const showFlashMessage = (message) => {
+  const messageContainer = document.getElementById('flash-message');
+  if (messageContainer) {
+    messageContainer.textContent = message;
+    messageContainer.classList.add('animate-flash');
+    setTimeout(() => {
+      messageContainer.classList.remove('animate-flash');
+    }, 1500)
+  }
+};
+
 const getUserToken = () => localStorage.getItem('userToken') || null;
 
 const getMessage = (key) => {
@@ -116,7 +127,7 @@ const formatMeal = (meal) => {
         <p><strong>Price:</strong>${meal.price}</p>
         <p class="text-center">
         <button class="btn btn-danger">Add to cart</button> 
-        <button class="btn btn-success"><a href="user_order.html?mealId=${meal.id}" class="order-btn">View meal</a></button>
+        <a href="user_order.html?mealId=${meal.id}" class="btn btn-success">View meal</a>
         </p>
     </div>
   </div>
@@ -146,7 +157,7 @@ const displayMeal = (meal, containterClass) => {
     <p><strong>Price:</strong> N<span class="card-price">${meal.price}</span></p>
     <p><strong>Quantity:</strong> <input type="number" class="card-quantity" name="quantity" value=0 required></p>
     <p><strong>Total:</strong> <span class="card-total"></span></p>
-    <button class="btn btn-danger"><a href="#" class="cart-btn">Add to cart</a></p></button>
+    <button class="btn btn-danger">Add to cart</button>
   </div>
 </div>`;
   document.getElementById(containterClass).appendChild(card);
@@ -178,6 +189,8 @@ const  addToCart = (item) => {
     localStorage.setItem('cart', JSON.stringify(cart));
     getCartCount();
   }
+  const message = `${item.item} has been added to the cart`;
+  showFlashMessage(message);
 };
 
 const getCart = () => JSON.parse(localStorage.getItem('cart'));
@@ -222,7 +235,7 @@ const displayCart = () => {
     <td></td>
     <td></td>
     <td><button class="btn btn-primary continue">Continue shopping</button></td>
-    <td><button class="btn btn-success"><a class="order-btn" href="checkout.html">Checkout</a></button></td>
+    <td><a class="btn btn-success" href="checkout.html">Checkout</a></td>
   `;
 
   cartTable.appendChild(tableHead);
@@ -316,7 +329,7 @@ const displayOrders = (orders) => {
       <td>${order.id}</td>
       <td>${order.items}</td>
       <td>${order.total_cost}</td>
-      <td><button class="btn btn-dark"><a class="order-btn" href="order_summary.html?orderId=${order.id}">View</a></button></td>
+      <td><a class="btn btn-dark" href="order_summary.html?orderId=${order.id}">View</a></td>
       ${displayButtons(order.status)}
       `;
       ordersTable.appendChild(tableRow);
@@ -329,17 +342,17 @@ const displayOrders = (orders) => {
 const displayButtons = (status) => {
   const buttonsDisplay = {
     pending: `
-    <td><button class="btn btn-primary status-accept" id="accept">Accept</button></td>
-    <td><button class="btn btn-danger status-reject" id="reject">Reject</button></td>
-    <td><button class="btn btn-success status-complete" id="complete">Complete</button></td>
+    <td><button class="btn btn-primary-outline status-accept" id="accept">Accept</button></td>
+    <td><button class="btn btn-danger-outline status-reject" id="reject">Reject</button></td>
+    <td><button class="btn btn-success-outline status-complete" id="complete">Complete</button></td>
     `,
-    canceled: '<td><button class="btn btn-primary" id="accept" disabled>Canceled</button></td>',
-    declined: '<td><button class="btn btn-primary" id="reject" disabled>Rejected</button></td>',
+    canceled: '<td><button class="btn" id="accept" disabled>Canceled</button></td>',
+    declined: '<td><button class="btn" id="reject" disabled>Rejected</button></td>',
     accepted: `
-    <td><button class="btn btn-primary" id="accept" disabled>Accepted</button></td>
-    <td><button class="btn btn-success status-complete" id="complete">Complete</button></td>
+    <td><button class="btn" id="accept" disabled>Accepted</button></td>
+    <td><button class="btn btn-success-outline status-complete" id="complete">Complete</button></td>
     `,
-    completed: '<td><button class="btn btn-success" id="complete" disabled>Completed</button></td>',
+    completed: '<td><button class="btn" id="complete" disabled>Completed</button></td>',
   };
   switch (status) {
   case 'Canceled':
@@ -628,3 +641,16 @@ const updateStatus = (event) => {
       });
   }
 };
+
+const addLoader = (button) => {
+  const loading = '<i class="fas fa-spinner fa-spin"></i>Processing';
+  const loginContent = button.innerHTML;
+  button.innerHTML = loading;
+  button.disabled = true;
+  return loginContent;
+};
+
+const removeLoader = (button, buttonContent) => {
+  button.innerHTML = buttonContent;
+  button.disabled = false;
+}

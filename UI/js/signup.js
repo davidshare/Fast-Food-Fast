@@ -1,14 +1,17 @@
 const getSignupInput = () => {
-  const fullname = document.getElementById('fullname').value.trim();
+  const firstName = document.getElementById('firstname').value.trim();
+  const lastName = document.getElementById('firstname').value.trim();
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
   const role = getUserRole();
   return {
-    fullname, email, password, role,
+    firstName, lastName, email, password, role,
   };
 };
 
 const signup = (event) => {
+  const signupButton = document.getElementById('signup-btn');
+  const buttonContent = addLoader(signupButton);
   event.preventDefault();
   if (validateUser(getSignupInput())) {
     fetch(signupURL, {
@@ -29,10 +32,13 @@ const signup = (event) => {
           })
       })
       .catch((error) => {
+        removeLoader(signupButton, buttonContent);
         if (error.status === 409 || error.status === 406) {
           showMessage(formatErrors(error.error), 'error-text');
         }
       });
+  }else{
+    removeLoader(signupButton, buttonContent);
   }
 };
 
@@ -40,21 +46,27 @@ document.getElementById('signup-btn').addEventListener('click', signup);
 
 const validateUser = (userObject) => {
   let errorFlag = true;
-  const { fullname, email, password } = userObject;
+  const { firstName, lastName, email, password, role, } = userObject;
 
-  document.getElementById('name_msg').innerHTML = '';
+  document.getElementById('fname_msg').innerHTML = '';
+  document.getElementById('lname_msg').innerHTML = '';
   document.getElementById('email_msg').innerHTML = '';
   document.getElementById('paswd_msg').innerHTML = '';
   document.getElementById('message').innerHTML = '';
 
-  if (fullname === '' || email === '' || password === '') {
+  if (firstName === '' || lastName === '' || email === '' || password === '') {
     showMessage('Sorry all the fields are required', 'error-text');
     return false;
   }
 
-  if (!rules.validName.test(fullname)) {
+  if (!rules.validName.test(firstName)) {
     errorFlag = false;
-    document.getElementById('name_msg').innerHTML = errorsMessages.invalidFullname;
+    document.getElementById('fname_msg').innerHTML = errorsMessages.invalidFirstName;
+  }
+
+  if (!rules.validName.test(lastName)) {
+    errorFlag = false;
+    document.getElementById('lname_msg').innerHTML = errorsMessages.invalidLastName;
   }
 
   if (!rules.validEmail.test(email)) {
