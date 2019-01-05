@@ -47,6 +47,7 @@
     "cors": "^2.8.4",
     "cross-env": "^5.2.0",
     "dotenv": "^6.0.0",
+    "event-stream": "^4.0.1",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "nyc": "^13.0.1",
