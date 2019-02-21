@@ -18,7 +18,7 @@ const createOrdersTable = `
     items INTEGER NOT NULL,
     quantity INTEGER,
     total_cost INTEGER,
-    status VARCHAR(10) DEFAULT 'Pending', 
+    status VARCHAR(10) DEFAULT 'Pending',
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated TIMESTAMP WITH TIME ZONE DEFAULT now()
   );

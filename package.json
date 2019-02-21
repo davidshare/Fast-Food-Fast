@@ -4,7 +4,8 @@
   "description": "Fast-Food-Fast is a food delivery service app for a restaurant. A user can create an account, signin to the account ame make orders for food items.",
   "main": "app.js",
   "scripts": {
-    "dev-start": "nodemon --exec babel-node app.js",
+    "dev-start": "nodemon --exec set NODE_ENV=development&&babel-node app.js",
+    "dev:migrate": "set NODE_ENV=development&& babel-node server/models/index.js",
     "lint": "eslint ./server",
     "start": "babel-node app.js",
     "pretest": "npm run db-migrate",
